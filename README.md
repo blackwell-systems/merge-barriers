@@ -5,7 +5,7 @@
 Dayna Blackwell, Blackwell Systems
 
 <p align="center">
-  <a href="paper/merge-barriers-v3.pdf"><img src="https://img.shields.io/badge/paper-PDF-18befc?style=for-the-badge" alt="Paper"></a>
+  <a href="paper/merge-barriers-in-bpe-tokenization.pdf"><img src="https://img.shields.io/badge/paper-PDF-18befc?style=for-the-badge" alt="Paper"></a>
   <a href="https://huggingface.co/blackwell-systems/merge-barriers"><img src="https://img.shields.io/badge/checkpoints-HuggingFace-ff9d00?style=for-the-badge" alt="Checkpoints"></a>
   <a href="https://doi.org/10.5281/zenodo.20925910"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20925910-blue?style=for-the-badge" alt="DOI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-333?style=for-the-badge" alt="License"></a>
@@ -75,7 +75,7 @@ This is the first controlled experiment connecting tokenizer design to attention
 ```
 paper/                    # Paper (v3, 16K words, 27 references, 23 figures)
   revision-v3.md          # Markdown source
-  merge-barriers-v3.pdf   # Rendered PDF
+  merge-barriers-in-bpe-tokenization.pdf   # Rendered PDF
 
 structok-64k.json         # Merge-barrier tokenizer (65,539 vocab, 16 barriers)
 structok-256k.json        # 256K variant
