@@ -1195,7 +1195,7 @@ Pipe delimiters are always single tokens across all tokenizers. Variance is only
 | Checkpoints | HuggingFace (blackwell-systems/structok-checkpoints, private) |
 | Logs | Cloudflare R2 (structok-training bucket) |
 
-Repository: [github.com/blackwell-systems/gcf](https://github.com/blackwell-systems/gcf)
+Repository: [github.com/blackwell-systems/merge-barriers](https://github.com/blackwell-systems/merge-barriers)
 
 ## Appendix G: Production Model Probing
 
