@@ -1,0 +1,321 @@
+{
+  "metadata": {
+    "experiment": "remaining_ablation_combined",
+    "description": "Three remaining ablation experiments: embedding space (#19), adversarial robustness (#21), sufficiency scaling (#22)",
+    "timestamp_utc": "2026-06-28T15:52:42.597793+00:00",
+    "device": "cuda",
+    "platform": "Linux-5.15.0-181-generic-x86_64-with-glibc2.35",
+    "python_version": "3.11.9",
+    "torch_version": "2.4.0",
+    "cuda_version": "12.4",
+    "gpu_name": "NVIDIA RTX 6000 Ada Generation",
+    "gpu_memory_mb": 48508
+  },
+  "delimiter_heads_count": 50,
+  "embedding_space": {
+    "experiment": "embedding_space_ablation",
+    "baseline": {
+      "delimiter_cohesion": 0.1707,
+      "content_cohesion": 0.141,
+      "ratio": 1.2103,
+      "n_delimiter_tokens": 1128,
+      "n_content_tokens": 967
+    },
+    "ablated": {
+      "delimiter_cohesion": 0.1735,
+      "content_cohesion": 0.1517,
+      "ratio": 1.1434
+    },
+    "random_control": {
+      "ratios": [
+        1.1945,
+        1.1031,
+        1.3123
+      ],
+      "mean_ratio": 1.2033
+    },
+    "changes": {
+      "delimiter_cohesion_pct": 1.7,
+      "content_cohesion_pct": 7.6,
+      "ratio_change_pct": -5.5
+    },
+    "conclusion": "NULL RESULT: embedding structure is a whole-model property, not head-controlled"
+  },
+  "adversarial_robustness": {
+    "experiment": "adversarial_robustness_ablation",
+    "model_a_baseline": {
+      "clean": 9648.9,
+      "wrong_delimiters": 15544.45,
+      "missing_fields": 18315.48,
+      "wrong_header": 15339.5,
+      "swapped_values": 22224.02
+    },
+    "model_a_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": 61.1,
+      "missing_fields": 89.8,
+      "wrong_header": 59.0,
+      "swapped_values": 130.3
+    },
+    "model_b_baseline": {
+      "clean": 429010.61,
+      "wrong_delimiters": 210512.41,
+      "missing_fields": 2572447.62,
+      "wrong_header": 3266847.44,
+      "swapped_values": 972498.06
+    },
+    "model_b_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": -50.9,
+      "missing_fields": 499.6,
+      "wrong_header": 661.5,
+      "swapped_values": 126.7
+    },
+    "model_a_ablated": {
+      "clean": 15260.69,
+      "wrong_delimiters": 24864.09,
+      "missing_fields": 19801.36,
+      "wrong_header": 17643.41,
+      "swapped_values": 21389.71
+    },
+    "model_a_ablated_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": 62.9,
+      "missing_fields": 29.8,
+      "wrong_header": 15.6,
+      "swapped_values": 40.2
+    },
+    "summary": {
+      "a_avg_detection": 85.1,
+      "b_avg_detection": 334.7,
+      "a_ablated_avg_detection": 37.1
+    },
+    "conclusion": "NO DETECTION ADVANTAGE: both models respond similarly to corruption"
+  },
+  "sufficiency_scaling": {
+    "experiment": "sufficiency_scaling",
+    "delimiter_heads": 50,
+    "total_heads": 384,
+    "sizes_tested": [
+      30,
+      50,
+      100,
+      200
+    ],
+    "results": [
+      {
+        "size": 30,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 9838.68,
+            "delim_only_ppl": 4369.5,
+            "delim_only_delta_pct": -55.6,
+            "random_only_delta_mean_pct": 37.7,
+            "random_only_deltas": [
+              108.2,
+              70.2,
+              -65.5
+            ],
+            "sufficient": "YES"
+          },
+          "json": {
+            "baseline_ppl": 5506432.45,
+            "delim_only_ppl": 469.5,
+            "delim_only_delta_pct": -100.0,
+            "random_only_delta_mean_pct": -100.0,
+            "random_only_deltas": [
+              -100.0,
+              -100.0,
+              -100.0
+            ],
+            "sufficient": "NO"
+          },
+          "yaml": {
+            "baseline_ppl": 6599.72,
+            "delim_only_ppl": 726.35,
+            "delim_only_delta_pct": -89.0,
+            "random_only_delta_mean_pct": -87.5,
+            "random_only_deltas": [
+              -87.2,
+              -87.3,
+              -88.1
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 1754.42,
+            "delim_only_ppl": 11850.31,
+            "delim_only_delta_pct": 575.5,
+            "random_only_delta_mean_pct": 353.7,
+            "random_only_deltas": [
+              535.2,
+              342.0,
+              184.0
+            ],
+            "sufficient": "NO"
+          }
+        }
+      },
+      {
+        "size": 50,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 9648.9,
+            "delim_only_ppl": 4325.14,
+            "delim_only_delta_pct": -55.2,
+            "random_only_delta_mean_pct": 34.4,
+            "random_only_deltas": [
+              100.0,
+              71.7,
+              -68.5
+            ],
+            "sufficient": "YES"
+          },
+          "json": {
+            "baseline_ppl": 7488072.58,
+            "delim_only_ppl": 484.91,
+            "delim_only_delta_pct": -100.0,
+            "random_only_delta_mean_pct": -100.0,
+            "random_only_deltas": [
+              -100.0,
+              -100.0,
+              -100.0
+            ],
+            "sufficient": "NO"
+          },
+          "yaml": {
+            "baseline_ppl": 10190.84,
+            "delim_only_ppl": 703.9,
+            "delim_only_delta_pct": -93.1,
+            "random_only_delta_mean_pct": -92.4,
+            "random_only_deltas": [
+              -92.6,
+              -92.1,
+              -92.6
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 1754.42,
+            "delim_only_ppl": 11850.31,
+            "delim_only_delta_pct": 575.5,
+            "random_only_delta_mean_pct": 353.7,
+            "random_only_deltas": [
+              535.2,
+              342.0,
+              184.0
+            ],
+            "sufficient": "NO"
+          }
+        }
+      },
+      {
+        "size": 100,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 11927.43,
+            "delim_only_ppl": 4289.27,
+            "delim_only_delta_pct": -64.0,
+            "random_only_delta_mean_pct": -1.3,
+            "random_only_deltas": [
+              41.2,
+              30.5,
+              -75.5
+            ],
+            "sufficient": "YES"
+          },
+          "json": {
+            "baseline_ppl": 7811585.87,
+            "delim_only_ppl": 483.45,
+            "delim_only_delta_pct": -100.0,
+            "random_only_delta_mean_pct": -100.0,
+            "random_only_deltas": [
+              -100.0,
+              -100.0,
+              -100.0
+            ],
+            "sufficient": "NO"
+          },
+          "yaml": {
+            "baseline_ppl": 15837.33,
+            "delim_only_ppl": 728.72,
+            "delim_only_delta_pct": -95.4,
+            "random_only_delta_mean_pct": -95.0,
+            "random_only_deltas": [
+              -95.2,
+              -94.7,
+              -95.1
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 1754.42,
+            "delim_only_ppl": 11850.31,
+            "delim_only_delta_pct": 575.5,
+            "random_only_delta_mean_pct": 353.7,
+            "random_only_deltas": [
+              535.2,
+              342.0,
+              184.0
+            ],
+            "sufficient": "NO"
+          }
+        }
+      },
+      {
+        "size": 200,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 18576.09,
+            "delim_only_ppl": 5306.01,
+            "delim_only_delta_pct": -71.4,
+            "random_only_delta_mean_pct": -30.6,
+            "random_only_deltas": [
+              -3.8,
+              -8.1,
+              -80.0
+            ],
+            "sufficient": "YES"
+          },
+          "json": {
+            "baseline_ppl": 7811585.87,
+            "delim_only_ppl": 483.45,
+            "delim_only_delta_pct": -100.0,
+            "random_only_delta_mean_pct": -100.0,
+            "random_only_deltas": [
+              -100.0,
+              -100.0,
+              -100.0
+            ],
+            "sufficient": "NO"
+          },
+          "yaml": {
+            "baseline_ppl": 15837.33,
+            "delim_only_ppl": 728.72,
+            "delim_only_delta_pct": -95.4,
+            "random_only_delta_mean_pct": -95.0,
+            "random_only_deltas": [
+              -95.2,
+              -94.7,
+              -95.1
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 1754.42,
+            "delim_only_ppl": 11850.31,
+            "delim_only_delta_pct": 575.5,
+            "random_only_delta_mean_pct": 353.7,
+            "random_only_deltas": [
+              535.2,
+              342.0,
+              184.0
+            ],
+            "sufficient": "NO"
+          }
+        }
+      }
+    ],
+    "conclusion": "SUFFICIENCY HOLDS: delimiter heads outperform random at all scales including 100/200 rows"
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "metadata": {
+    "experiment": "scaling_ablation",
+    "description": "Does the delimiter head causal effect strengthen with payload size?",
+    "timestamp_utc": "2026-06-27T21:30:28.789170+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "control_seeds": 3,
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads": 168,
+  "sizes_tested": [
+    10,
+    30,
+    50,
+    100,
+    200
+  ],
+  "results": [
+    {
+      "size": 10,
+      "formats": {
+        "gcf_generic": {
+          "baseline_ppl": 19090.75,
+          "delim_ablated_ppl": 16500.57,
+          "delim_delta_pct": -13.6,
+          "random_delta_mean_pct": -75.6,
+          "random_delta_samples": [
+            -75.5,
+            -74.9,
+            -76.4
+          ],
+          "gap_pp": 62.0
+        },
+        "json": {
+          "baseline_ppl": 3147573.8,
+          "delim_ablated_ppl": 1382.86,
+          "delim_delta_pct": -100.0,
+          "random_delta_mean_pct": -57.8,
+          "random_delta_samples": [
+            -92.8,
+            -59.9,
+            -20.7
+          ],
+          "gap_pp": -42.2
+        },
+        "toon": {
+          "baseline_ppl": 14194.71,
+          "delim_ablated_ppl": 4012.51,
+          "delim_delta_pct": -71.7,
+          "random_delta_mean_pct": 55.5,
+          "random_delta_samples": [
+            -11.9,
+            193.9,
+            -15.5
+          ],
+          "gap_pp": -127.2
+        },
+        "nl": {
+          "baseline_ppl": 1754.42,
+          "delim_ablated_ppl": 2686.41,
+          "delim_delta_pct": 53.1,
+          "random_delta_mean_pct": 129.8,
+          "random_delta_samples": [
+            71.2,
+            219.1,
+            99.0
+          ],
+          "gap_pp": -76.7
+        }
+      }
+    },
+    {
+      "size": 30,
+      "formats": {
+        "gcf_generic": {
+          "baseline_ppl": 9838.68,
+          "delim_ablated_ppl": 9149.16,
+          "delim_delta_pct": -7.0,
+          "random_delta_mean_pct": 12.6,
+          "random_delta_samples": [
+            2.9,
+            32.9,
+            1.8
+          ],
+          "gap_pp": -19.6
+        },
+        "json": {
+          "baseline_ppl": 5506441.4,
+          "delim_ablated_ppl": 1755.7,
+          "delim_delta_pct": -100.0,
+          "random_delta_mean_pct": -48.7,
+          "random_delta_samples": [
+            -92.1,
+            -47.2,
+            -6.6
+          ],
+          "gap_pp": -51.3
+        },
+        "toon": {
+          "baseline_ppl": 21471.05,
+          "delim_ablated_ppl": 1982.22,
+          "delim_delta_pct": -90.8,
+          "random_delta_mean_pct": 112.2,
+          "random_delta_samples": [
+            17.4,
+            313.8,
+            5.6
+          ],
+          "gap_pp": -203.0
+        },
+        "nl": {
+          "baseline_ppl": 1754.42,
+          "delim_ablated_ppl": 2686.41,
+          "delim_delta_pct": 53.1,
+          "random_delta_mean_pct": 129.8,
+          "random_delta_samples": [
+            71.2,
+            219.1,
+            99.0
+          ],
+          "gap_pp": -76.7
+        }
+      }
+    },
+    {
+      "size": 50,
+      "formats": {
+        "gcf_generic": {
+          "baseline_ppl": 9648.91,
+          "delim_ablated_ppl": 6245.33,
+          "delim_delta_pct": -35.3,
+          "random_delta_mean_pct": 65.3,
+          "random_delta_samples": [
+            25.6,
+            128.6,
+            41.7
+          ],
+          "gap_pp": -100.6
+        },
+        "json": {
+          "baseline_ppl": 7488072.58,
+          "delim_ablated_ppl": 1898.84,
+          "delim_delta_pct": -100.0,
+          "random_delta_mean_pct": -59.5,
+          "random_delta_samples": [
+            -93.9,
+            -57.3,
+            -27.2
+          ],
+          "gap_pp": -40.5
+        },
+        "toon": {
+          "baseline_ppl": 22116.85,
+          "delim_ablated_ppl": 1506.09,
+          "delim_delta_pct": -93.2,
+          "random_delta_mean_pct": 128.6,
+          "random_delta_samples": [
+            16.9,
+            345.7,
+            23.3
+          ],
+          "gap_pp": -221.8
+        },
+        "nl": {
+          "baseline_ppl": 1754.42,
+          "delim_ablated_ppl": 2686.41,
+          "delim_delta_pct": 53.1,
+          "random_delta_mean_pct": 129.8,
+          "random_delta_samples": [
+            71.2,
+            219.1,
+            99.0
+          ],
+          "gap_pp": -76.7
+        }
+      }
+    },
+    {
+      "size": 100,
+      "formats": {
+        "gcf_generic": {
+          "baseline_ppl": 11927.43,
+          "delim_ablated_ppl": 5390.82,
+          "delim_delta_pct": -54.8,
+          "random_delta_mean_pct": 141.4,
+          "random_delta_samples": [
+            17.1,
+            322.6,
+            84.4
+          ],
+          "gap_pp": -196.2
+        },
+        "json": {
+          "baseline_ppl": 7811600.78,
+          "delim_ablated_ppl": 1918.04,
+          "delim_delta_pct": -100.0,
+          "random_delta_mean_pct": -60.3,
+          "random_delta_samples": [
+            -94.0,
+            -58.4,
+            -28.4
+          ],
+          "gap_pp": -39.7
+        },
+        "toon": {
+          "baseline_ppl": 28453.95,
+          "delim_ablated_ppl": 1173.29,
+          "delim_delta_pct": -95.9,
+          "random_delta_mean_pct": 117.8,
+          "random_delta_samples": [
+            -4.6,
+            321.4,
+            36.5
+          ],
+          "gap_pp": -213.6
+        },
+        "nl": {
+          "baseline_ppl": 1754.42,
+          "delim_ablated_ppl": 2686.41,
+          "delim_delta_pct": 53.1,
+          "random_delta_mean_pct": 129.8,
+          "random_delta_samples": [
+            71.2,
+            219.1,
+            99.0
+          ],
+          "gap_pp": -76.7
+        }
+      }
+    },
+    {
+      "size": 200,
+      "formats": {
+        "gcf_generic": {
+          "baseline_ppl": 18576.11,
+          "delim_ablated_ppl": 6961.57,
+          "delim_delta_pct": -62.5,
+          "random_delta_mean_pct": 206.8,
+          "random_delta_samples": [
+            7.6,
+            500.5,
+            112.3
+          ],
+          "gap_pp": -269.3
+        },
+        "json": {
+          "baseline_ppl": 7811600.78,
+          "delim_ablated_ppl": 1918.04,
+          "delim_delta_pct": -100.0,
+          "random_delta_mean_pct": -60.3,
+          "random_delta_samples": [
+            -94.0,
+            -58.4,
+            -28.4
+          ],
+          "gap_pp": -39.7
+        },
+        "toon": {
+          "baseline_ppl": 46740.19,
+          "delim_ablated_ppl": 1364.85,
+          "delim_delta_pct": -97.1,
+          "random_delta_mean_pct": 177.1,
+          "random_delta_samples": [
+            -4.4,
+            471.2,
+            64.4
+          ],
+          "gap_pp": -274.2
+        },
+        "nl": {
+          "baseline_ppl": 1754.42,
+          "delim_ablated_ppl": 2686.41,
+          "delim_delta_pct": 53.1,
+          "random_delta_mean_pct": 129.8,
+          "random_delta_samples": [
+            71.2,
+            219.1,
+            99.0
+          ],
+          "gap_pp": -76.7
+        }
+      }
+    }
+  ]
+}

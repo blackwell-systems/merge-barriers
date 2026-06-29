@@ -1,0 +1,81 @@
+==========================================================================================
+PRODUCTION MODEL PROBING v2
+==========================================================================================
+
+Device: cuda
+Method: GCF-only probing, excess scores, scale-invariant metrics
+
+  Loading structok-410m (Model A)...
+  24 layers, 16 heads/layer, 384 total
+  GCF text: 355 tokens, 127 delimiters (36% base rate)
+  GCF text: 333 tokens, 106 delimiters (32% base rate)
+  Top-10 avg excess: 0.3491
+  Mean excess: -0.0182, std: 0.1334
+  Max excess: 0.4480, min: -0.2508
+  Concentration (top 10% share of positive excess): 54.3%
+  Bimodality gap (top 10% mean - bottom 90% mean): 0.2976
+
+  Loading standard-410m (Model B)...
+  24 layers, 16 heads/layer, 384 total
+  GCF text: 440 tokens, 96 delimiters (22% base rate)
+  GCF text: 431 tokens, 52 delimiters (12% base rate)
+  Top-10 avg excess: 0.2817
+  Mean excess: -0.0126, std: 0.0882
+  Max excess: 0.4847, min: -0.1526
+  Concentration (top 10% share of positive excess): 63.6%
+  Bimodality gap (top 10% mean - bottom 90% mean): 0.2164
+
+  Loading microsoft/phi-2...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/453 [00:00<?, ?it/s]Loading weights: 100%|██████████| 453/453 [00:00<00:00, 6161.87it/s]
+  32 layers, 32 query heads/layer, 1024 total
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer CodeGenTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  GCF text: 256 tokens, 69 delimiters (27% base rate)
+  GCF text: 256 tokens, 30 delimiters (12% base rate)
+  Top-10 avg excess: 0.6261
+  Mean excess: nan, std: nan
+  Max excess: 0.7453, min: nan
+  Concentration (top 10% share of positive excess): 17.9%
+  Bimodality gap (top 10% mean - bottom 90% mean): nan
+
+  Loading mistralai/Mistral-7B-v0.3...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   2%|▏         | 5/291 [00:00<00:05, 48.99it/s]Loading weights:   7%|▋         | 19/291 [00:00<00:03, 70.93it/s]Loading weights:   9%|▉         | 27/291 [00:00<00:03, 74.09it/s]Loading weights:  14%|█▎        | 40/291 [00:00<00:02, 91.33it/s]Loading weights:  17%|█▋        | 50/291 [00:00<00:03, 72.09it/s]Loading weights:  20%|█▉        | 58/291 [00:00<00:03, 73.62it/s]Loading weights:  23%|██▎       | 67/291 [00:00<00:02, 76.34it/s]Loading weights:  28%|██▊       | 81/291 [00:01<00:02, 75.56it/s]Loading weights:  31%|███       | 89/291 [00:01<00:02, 74.68it/s]Loading weights:  35%|███▌      | 102/291 [00:01<00:02, 88.49it/s]Loading weights:  38%|███▊      | 112/291 [00:01<00:02, 73.34it/s]Loading weights:  42%|████▏     | 121/291 [00:01<00:02, 63.46it/s]Loading weights:  45%|████▌     | 131/291 [00:01<00:02, 70.69it/s]Loading weights:  48%|████▊     | 139/291 [00:01<00:02, 72.59it/s]Loading weights:  51%|█████     | 148/291 [00:01<00:01, 76.17it/s]Loading weights:  54%|█████▍    | 157/291 [00:02<00:01, 77.88it/s]Loading weights:  57%|█████▋    | 167/291 [00:02<00:01, 69.33it/s]Loading weights:  60%|██████    | 175/291 [00:02<00:01, 68.43it/s]Loading weights:  64%|██████▍   | 186/291 [00:02<00:01, 65.76it/s]Loading weights:  66%|██████▋   | 193/291 [00:02<00:01, 66.47it/s]Loading weights:  70%|██████▉   | 203/291 [00:02<00:01, 74.56it/s]Loading weights:  73%|███████▎  | 211/291 [00:02<00:01, 75.76it/s]Loading weights:  76%|███████▌  | 220/291 [00:03<00:01, 63.54it/s]Loading weights:  79%|███████▊  | 229/291 [00:03<00:00, 68.69it/s]Loading weights:  82%|████████▏ | 240/291 [00:03<00:00, 76.25it/s]Loading weights:  87%|████████▋ | 253/291 [00:03<00:00, 74.71it/s]Loading weights:  90%|█████████ | 262/291 [00:03<00:00, 77.31it/s]Loading weights:  94%|█████████▍| 273/291 [00:03<00:00, 84.37it/s]Loading weights:  97%|█████████▋| 282/291 [00:03<00:00, 83.74it/s]Loading weights: 100%|██████████| 291/291 [00:03<00:00, 74.99it/s]
+  32 layers, 32 query heads/layer, 1024 total
+  GCF text: 256 tokens, 51 delimiters (20% base rate)
+  GCF text: 256 tokens, 27 delimiters (11% base rate)
+  Top-10 avg excess: 0.8363
+  Mean excess: 0.5447, std: 0.1741
+  Max excess: 0.8467, min: 0.0564
+  Concentration (top 10% share of positive excess): 14.5%
+  Bimodality gap (top 10% mean - bottom 90% mean): 0.2768
+
+==========================================================================================
+SUMMARY: Scale-invariant delimiter specialization metrics
+==========================================================================================
+
+Model                           Heads  Top10 exc  Mean exc  Concen  Bimodal    GCF
+----------------------------------------------------------------------------------
+structok-410m (Model A)           384     0.3491   -0.0182  54.3%   0.2976    N/A
+standard-410m (Model B)           384     0.2817   -0.0126  63.6%   0.2164    N/A
+microsoft/phi-2                  1024     0.6261       nan  17.9%      nan    N/A
+mistralai/Mistral-7B-v0.3        1024     0.8363    0.5447  14.5%   0.2768  64.6%
+
+Excess score distribution (fraction of heads in each bin):
+Bin                structok-410m ( standard-410m ( microsoft/phi-2 mistralai/Mistr
+----------------------------------------------------------------------------------
+<-0.10                       29.9%            9.9%            0.2%            0.0%
+-0.10 to -0.05               15.6%           30.7%            0.2%            0.0%
+-0.05 to 0                   15.4%           25.3%            0.3%            0.0%
+0 to 0.05                    10.2%           15.1%            2.0%            0.0%
+0.05 to 0.10                 10.7%            8.3%            2.4%            0.4%
+0.10 to 0.15                  7.6%            4.4%            3.2%            0.8%
+0.15 to 0.20                  4.7%            3.9%            7.4%            1.0%
+0.20 to 0.25                  1.8%            1.0%           10.5%            3.0%
+>0.25                         4.2%            1.3%           73.7%           94.8%
+
+Results saved to /root/logs/run-002-production-probing-v2-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/production-probing-v2-results.json
+  Uploaded probing-v2-log.txt

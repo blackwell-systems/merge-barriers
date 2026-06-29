@@ -1,0 +1,167 @@
+[transformers] `sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Device: cuda
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+================================================================================
+1. GENERATION QUALITY
+================================================================================
+
+  structok-64k:
+    gcf_tabular: 3/3 valid
+      [0] 0.61 ORD- 16 | . \n -4 | Kim a tos me _s son | a .s son mail | .s son example.com
+      [1] 1. \n 88 | ars an | s. u stag app archived 22 \n 8 | a | end Brown ro brown prod v
+      [2] 2. \n -4 | Park | Mu | end mu @ | hold 12 74 \n -4 18 | a | ars | s. @ .io cancell
+    gcf_graph: 3/3 valid
+      [0] Event ) @ { : | | | | | | | | | | | | | | } \n 0 \n @ | len event @ | len event ' 
+      [1] | | | | function method import | | _ nan @ . | | | function const | | ( = < < < 
+      [2] | | | | ( < ) [ ] [ > ] > ) @ | ( < [ [ ] > [ ] > ] ) @ ] ) " \n \n @ \n : resoluti
+    json_object: 3/3 valid
+      [0] , id " " \n ] } \n \n 	 t.Run " no " user found " func t Add Show ( *testing.T desc
+      [1] } { name " " " " " } } , ] } \n , } ; const = Login Schema ( Schema ; \n eslint-di
+      [2] } } { id " " " " " " { name : Alice } " , role " " " } } \n id " " { : } { } } \n 
+    python_func: 3/3 valid
+      [0] - base_ _price * ( - ( - count tax amount item. * _ ) item. ) \n = ( - value - ) 
+      [1] for in items \n _ g amount items tax \n sum tax = ( + ( % ) ( + ) 2 ( ) ( ) for in
+      [2] .total tax items. ( items . ) item ) sum item. total \n = _m sum ( price dis amou
+    go_func: 3/3 valid
+      [0] { 	 r. ( ) Method http.MethodGet \n } \n // : is \n ( Method ) Methods r this print
+      [1] { 	 http.Error w r. ( ) ( ) ( , ( ) ` \n } \n // : : \n 1. Handle ( ) // - \n Handle
+      [2] { 	 http.Error w r. ( ) ( , Method ) \n 	 return } 	 = ( ) = { Method 0 Method r.
+
+  standard-64k:
+    gcf_tabular: 3/3 valid
+      [0] .@.||.||_|5824ORD35.| AndersonZara|.@.|.||.|88ORD949313ORD19.|| SvenssonKenji|.@
+      [1] .@.||.|||.|76ORD857| SinghTara|.@.|.|||.|24ORD46.|| KimORD88.| BrownFrankQuinn|.
+      [2] .@.||.|||.| RossiORD36.| ParkCarla|.@.|.|||.|-191ORD86|.\n-69|.@.|.|.||.|\n-36| Sv
+    gcf_graph: 3/3 valid
+      [0] ||||||-|-||//||||-||||||||-|-T::::ZerroruserserviceCache| attemptPOSTapigatewayR
+      [1] ||||||-|-||//|||-|||||-T::::ZinfouserserviceRate exceededDELETEapigatewayConnect
+      [2] ||||||-|-\n-30522sammuellertestorgeditortrue202501141007\n--6404karenmuellerintern
+    json_object: 3/3 valid
+      [0] }]\n\n #end\n -*-::.///////////////////////////////////////////////////////////////
+      [1] }]\n\n result await.(":////////////////////////"user\n\n@.\n _____________(__________
+      [2] }]\n\n #\n Public private for to\n test\n := publicservicegetproject\n testserviceget.
+    python_func: 3/3 valid
+      [0] _.(,____) taxrate\n totalgross total __(,___ -) tax\n totaltotal Tax(_(___) total\n
+      [1] (.,subtotal total total\n )\n totalsubtotal calculatesubtotal\n taxratesubtotalsubt
+      [2] .,_)   __ +_\n total (_ total taxrate\n total Tax ( TaxTax\n\n )._\n    TaxMoney TaxR
+    go_func: 3/3 valid
+      [0] . {	httpErrorwWriteHeader httpMethod(,.)		shandle(,)	\n	\n	\n	 httpSet(,)}	set(,)	.
+      [1] . {	wWriteHeaderhttpErrorwWriteHeaderwrwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+      [2] . {	httpErrorw r wWriteHeaderhttpError()	fmtSprintfsErrorwwWriteHeaderhttp(,.,)	
+
+  Summary:
+    structok-64k: 15/15 valid generations
+    standard-64k: 15/15 valid generations
+
+================================================================================
+2. DELIMITER PREDICTION ACCURACY
+================================================================================
+
+  structok-64k:
+    gcf_tabular: delimiter acc 25.9% (15/58), content acc 0.0% (0/112)
+    gcf_graph: delimiter acc 4.5% (3/66), content acc 0.0% (0/55)
+    json: delimiter acc 4.4% (4/91), content acc 0.0% (0/40)
+
+  standard-64k:
+    gcf_tabular: delimiter acc 23.4% (11/47), content acc 0.0% (0/147)
+    gcf_graph: delimiter acc 0.0% (0/49), content acc 0.0% (0/83)
+    json: delimiter acc 8.2% (4/49), content acc 1.1% (1/87)
+
+  Comparison:
+  Test                 structok-64k delim standard-64k delim structok-64k content standard-64k content
+  -----------------------------------------------------------------------------------------------
+  gcf_tabular                      25.9%             23.4%              0.0%              0.0%
+  gcf_graph                         4.5%              0.0%              0.0%              0.0%
+  json                              4.4%              8.2%              0.0%              1.1%
+
+================================================================================
+3. ATTENTION PATTERN ANALYSIS
+================================================================================
+
+  structok-64k (73 tokens, 27 delimiters, 46 content):
+
+  standard-64k (83 tokens, 21 delimiters, 62 content):
+
+================================================================================
+4. SCALING CURVE
+================================================================================
+
+  structok-64k:
+       1 records: GCF PPL       2358.0 (34 tok), JSON PPL      11419.7 (55 tok)
+       2 records: GCF PPL       2293.9 (50 tok), JSON PPL      48417.0 (107 tok)
+       3 records: GCF PPL       1612.9 (64 tok), JSON PPL      72297.6 (157 tok)
+       5 records: GCF PPL       2295.6 (97 tok), JSON PPL      92326.6 (262 tok)
+      10 records: GCF PPL       1932.2 (178 tok), JSON PPL     188178.2 (523 tok)
+      20 records: GCF PPL       3374.4 (341 tok), JSON PPL     292769.3 (1046 tok)
+      50 records: GCF PPL       5882.8 (816 tok), JSON PPL     overflow (2601 tok)
+     100 records: GCF PPL       8112.0 (1617 tok), JSON PPL     overflow (5202 tok)
+     150 records: GCF PPL     overflow (2434 tok), JSON PPL     overflow (7819 tok)
+     200 records: GCF PPL     overflow (3241 tok), JSON PPL     overflow (10426 tok)
+
+  standard-64k:
+       1 records: GCF PPL       9619.3 (35 tok), JSON PPL       7257.9 (56 tok)
+       2 records: GCF PPL       5314.5 (55 tok), JSON PPL      14926.0 (111 tok)
+       3 records: GCF PPL       3317.8 (69 tok), JSON PPL      20817.6 (160 tok)
+       5 records: GCF PPL       5146.9 (109 tok), JSON PPL      40928.3 (274 tok)
+      10 records: GCF PPL       6615.9 (205 tok), JSON PPL     109782.8 (541 tok)
+      20 records: GCF PPL      13593.0 (385 tok), JSON PPL     196021.2 (1081 tok)
+      50 records: GCF PPL      26887.4 (915 tok), JSON PPL     overflow (2668 tok)
+     100 records: GCF PPL      43152.0 (1854 tok), JSON PPL     overflow (5370 tok)
+     150 records: GCF PPL     overflow (2779 tok), JSON PPL     overflow (8076 tok)
+     200 records: GCF PPL     overflow (3677 tok), JSON PPL     overflow (10725 tok)
+
+  GCF PPL scaling comparison:
+   Records    structok-64k    standard-64k      Ratio
+  ----------------------------------------------------
+         1          2358.0          9619.3       4.1x
+         2          2293.9          5314.5       2.3x
+         3          1612.9          3317.8       2.1x
+         5          2295.6          5146.9       2.2x
+        10          1932.2          6615.9       3.4x
+        20          3374.4         13593.0       4.0x
+        50          5882.8         26887.4       4.6x
+       100          8112.0         43152.0       5.3x
+       150        overflow        overflow
+       200        overflow        overflow
+
+================================================================================
+5. ADVERSARIAL INPUTS
+================================================================================
+
+  structok-64k:
+    normal                    PPL      893.3  acc   8.9%  (57 tokens)
+    pipe_in_values            PPL     1085.7  acc   6.7%  (76 tokens)
+    json_like_values          PPL      394.8  acc   5.3%  (76 tokens)
+    numeric_heavy             PPL      677.7  acc  11.2%  (108 tokens)
+    empty_fields              PPL      351.6  acc  25.7%  (75 tokens)
+
+  standard-64k:
+    normal                    PPL    13648.7  acc   4.8%  (63 tokens)
+    pipe_in_values            PPL     8052.6  acc   1.2%  (87 tokens)
+    json_like_values          PPL     9610.4  acc   3.0%  (67 tokens)
+    numeric_heavy             PPL     9548.9  acc   2.3%  (132 tokens)
+    empty_fields              PPL     6597.9  acc   9.5%  (75 tokens)
+
+  Comparison (PPL, lower is better):
+  Test                         structok-64k    standard-64k          Winner
+  ---------------------------------------------------------------------------
+  normal                              893.3         13648.7    structok-64k
+  pipe_in_values                     1085.7          8052.6    structok-64k
+  json_like_values                    394.8          9610.4    structok-64k
+  numeric_heavy                       677.7          9548.9    structok-64k
+  empty_fields                        351.6          6597.9    structok-64k
+
+================================================================================
+DEEP EVAL SUMMARY
+================================================================================
+
+  1. Generation: structok-64k 15/15, standard-64k 15/15
+  2. Delimiter accuracy: structok-64k 11.6%, standard-64k 10.5%
+  4. Scaling: structok-64k wins 8/8 sizes
+  5. Adversarial: structok-64k wins 5/5 tests
+
+  Results written to /workspace/run-002-deep-eval.json
+
+Done.

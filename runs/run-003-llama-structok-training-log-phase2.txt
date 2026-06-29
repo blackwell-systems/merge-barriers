@@ -1,0 +1,462 @@
+============================================================
+structok model training
+  Size: 410m-llama (1024h 24L 16H 4KV llama)
+  Device: cuda:0 (single)
+  Tokenizer: /root/structok-64k.json
+  Data: /root/data/
+  Steps: 40000
+  Batch size: 8 per GPU (8 effective)
+  Checkpoint every: 5000 steps
+============================================================
+
+Tokenizer vocab: 65,539
+Resuming from /root/checkpoints/step-20000...
+Architecture: llama
+Parameters: 404,806,656 (404.8M)
+  Gradient checkpointing: disabled (faster)
+  Mixed precision: fp16
+Resumed from step 20000, loss 4.4189
+  Resumed training log from R2 (412 entries)
+Loading pre-tokenized data from /root/data/tokens.bin...
+  1,258,728,671 tokens memory-mapped from binary
+  1,258,728,671 tokens -> 614,613 sequences of 2048
+
+Training from step 20000 to 40000...
+
+  step  20050/40000 | loss 3.5535 | ppl 34.9 | 1.5 steps/s | eta 220m
+  step  20100/40000 | loss 3.2654 | ppl 26.2 | 1.5 steps/s | eta 218m
+  step  20150/40000 | loss 3.5882 | ppl 36.2 | 1.5 steps/s | eta 218m
+  step  20200/40000 | loss 3.3490 | ppl 28.5 | 1.5 steps/s | eta 219m
+  step  20250/40000 | loss 3.5235 | ppl 33.9 | 1.5 steps/s | eta 219m
+  step  20300/40000 | loss 3.4565 | ppl 31.7 | 1.5 steps/s | eta 219m
+  step  20350/40000 | loss 3.4988 | ppl 33.1 | 1.5 steps/s | eta 219m
+  step  20400/40000 | loss 3.4931 | ppl 32.9 | 1.5 steps/s | eta 219m
+  step  20450/40000 | loss 3.3236 | ppl 27.8 | 1.5 steps/s | eta 219m
+  step  20500/40000 | loss 3.4270 | ppl 30.8 | 1.5 steps/s | eta 218m
+  step  20550/40000 | loss 3.5312 | ppl 34.2 | 1.5 steps/s | eta 218m
+  step  20600/40000 | loss 3.4953 | ppl 33.0 | 1.5 steps/s | eta 218m
+  step  20650/40000 | loss 3.5415 | ppl 34.5 | 1.5 steps/s | eta 217m
+  step  20700/40000 | loss 3.6301 | ppl 37.7 | 1.5 steps/s | eta 217m
+  step  20750/40000 | loss 3.4731 | ppl 32.2 | 1.5 steps/s | eta 217m
+  step  20800/40000 | loss 3.4584 | ppl 31.8 | 1.5 steps/s | eta 216m
+  step  20850/40000 | loss 3.2441 | ppl 25.6 | 1.5 steps/s | eta 216m
+  step  20900/40000 | loss 3.4026 | ppl 30.0 | 1.5 steps/s | eta 215m
+  step  20950/40000 | loss 3.5869 | ppl 36.1 | 1.5 steps/s | eta 215m
+  step  21000/40000 | loss 3.2700 | ppl 26.3 | 1.5 steps/s | eta 215m
+  step  21050/40000 | loss 3.2808 | ppl 26.6 | 1.5 steps/s | eta 214m
+  step  21100/40000 | loss 3.4867 | ppl 32.7 | 1.5 steps/s | eta 214m
+  step  21150/40000 | loss 3.5477 | ppl 34.7 | 1.5 steps/s | eta 213m
+  step  21200/40000 | loss 3.5227 | ppl 33.9 | 1.5 steps/s | eta 213m
+  step  21250/40000 | loss 3.3688 | ppl 29.0 | 1.5 steps/s | eta 212m
+  step  21300/40000 | loss 3.1991 | ppl 24.5 | 1.5 steps/s | eta 212m
+  step  21350/40000 | loss 3.3625 | ppl 28.9 | 1.5 steps/s | eta 211m
+  step  21400/40000 | loss 3.4599 | ppl 31.8 | 1.5 steps/s | eta 211m
+  step  21450/40000 | loss 3.3284 | ppl 27.9 | 1.5 steps/s | eta 210m
+  step  21500/40000 | loss 3.3921 | ppl 29.7 | 1.5 steps/s | eta 210m
+  step  21550/40000 | loss 3.5013 | ppl 33.2 | 1.5 steps/s | eta 209m
+  step  21600/40000 | loss 3.1916 | ppl 24.3 | 1.5 steps/s | eta 209m
+  step  21650/40000 | loss 3.4486 | ppl 31.5 | 1.5 steps/s | eta 208m
+  step  21700/40000 | loss 3.4545 | ppl 31.6 | 1.5 steps/s | eta 208m
+  step  21750/40000 | loss 3.6511 | ppl 38.5 | 1.5 steps/s | eta 207m
+  step  21800/40000 | loss 3.2762 | ppl 26.5 | 1.5 steps/s | eta 207m
+  step  21850/40000 | loss 3.2379 | ppl 25.5 | 1.5 steps/s | eta 206m
+  step  21900/40000 | loss 3.6268 | ppl 37.6 | 1.5 steps/s | eta 206m
+  step  21950/40000 | loss 3.3713 | ppl 29.1 | 1.5 steps/s | eta 205m
+  step  22000/40000 | loss 3.3983 | ppl 29.9 | 1.5 steps/s | eta 204m
+  step  22050/40000 | loss 3.5869 | ppl 36.1 | 1.5 steps/s | eta 204m
+  step  22100/40000 | loss 3.0602 | ppl 21.3 | 1.5 steps/s | eta 203m
+  step  22150/40000 | loss 3.3434 | ppl 28.3 | 1.5 steps/s | eta 203m
+  step  22200/40000 | loss 3.3802 | ppl 29.4 | 1.5 steps/s | eta 202m
+  step  22250/40000 | loss 3.5586 | ppl 35.1 | 1.5 steps/s | eta 202m
+  step  22300/40000 | loss 3.4992 | ppl 33.1 | 1.5 steps/s | eta 201m
+  step  22350/40000 | loss 3.2856 | ppl 26.7 | 1.5 steps/s | eta 201m
+  step  22400/40000 | loss 3.3244 | ppl 27.8 | 1.5 steps/s | eta 200m
+  step  22450/40000 | loss 3.3397 | ppl 28.2 | 1.5 steps/s | eta 200m
+  step  22500/40000 | loss 3.5141 | ppl 33.6 | 1.5 steps/s | eta 199m
+  step  22550/40000 | loss 3.4383 | ppl 31.1 | 1.5 steps/s | eta 199m
+  step  22600/40000 | loss 3.5425 | ppl 34.6 | 1.5 steps/s | eta 198m
+  step  22650/40000 | loss 3.3686 | ppl 29.0 | 1.5 steps/s | eta 198m
+  step  22700/40000 | loss 3.3553 | ppl 28.7 | 1.5 steps/s | eta 197m
+  step  22750/40000 | loss 3.4615 | ppl 31.9 | 1.5 steps/s | eta 196m
+  step  22800/40000 | loss 3.2924 | ppl 26.9 | 1.5 steps/s | eta 196m
+  step  22850/40000 | loss 3.5595 | ppl 35.1 | 1.5 steps/s | eta 195m
+  step  22900/40000 | loss 3.4091 | ppl 30.2 | 1.5 steps/s | eta 195m
+  step  22950/40000 | loss 3.2824 | ppl 26.6 | 1.5 steps/s | eta 194m
+  step  23000/40000 | loss 3.2914 | ppl 26.9 | 1.5 steps/s | eta 194m
+  step  23050/40000 | loss 3.3378 | ppl 28.2 | 1.5 steps/s | eta 193m
+  step  23100/40000 | loss 3.3603 | ppl 28.8 | 1.5 steps/s | eta 193m
+  step  23150/40000 | loss 3.2295 | ppl 25.3 | 1.5 steps/s | eta 192m
+  step  23200/40000 | loss 3.4611 | ppl 31.9 | 1.5 steps/s | eta 191m
+  step  23250/40000 | loss 3.5420 | ppl 34.5 | 1.5 steps/s | eta 191m
+  step  23300/40000 | loss 3.1746 | ppl 23.9 | 1.5 steps/s | eta 190m
+  step  23350/40000 | loss 3.4130 | ppl 30.4 | 1.5 steps/s | eta 190m
+  step  23400/40000 | loss 3.4417 | ppl 31.2 | 1.5 steps/s | eta 189m
+  step  23450/40000 | loss 3.3876 | ppl 29.6 | 1.5 steps/s | eta 189m
+  step  23500/40000 | loss 3.5424 | ppl 34.5 | 1.5 steps/s | eta 188m
+  step  23550/40000 | loss 3.2549 | ppl 25.9 | 1.5 steps/s | eta 188m
+  step  23600/40000 | loss 3.4602 | ppl 31.8 | 1.5 steps/s | eta 187m
+  step  23650/40000 | loss 3.4594 | ppl 31.8 | 1.5 steps/s | eta 187m
+  step  23700/40000 | loss 3.4312 | ppl 30.9 | 1.5 steps/s | eta 186m
+  step  23750/40000 | loss 3.5292 | ppl 34.1 | 1.5 steps/s | eta 185m
+  step  23800/40000 | loss 3.4195 | ppl 30.6 | 1.5 steps/s | eta 185m
+  step  23850/40000 | loss 3.2605 | ppl 26.1 | 1.5 steps/s | eta 184m
+  step  23900/40000 | loss 3.4073 | ppl 30.2 | 1.5 steps/s | eta 184m
+  step  23950/40000 | loss 3.3389 | ppl 28.2 | 1.5 steps/s | eta 183m
+  step  24000/40000 | loss 3.3546 | ppl 28.6 | 1.5 steps/s | eta 183m
+  step  24050/40000 | loss 3.2409 | ppl 25.6 | 1.5 steps/s | eta 182m
+  step  24100/40000 | loss 3.4850 | ppl 32.6 | 1.5 steps/s | eta 181m
+  step  24150/40000 | loss 3.6467 | ppl 38.3 | 1.5 steps/s | eta 181m
+  step  24200/40000 | loss 3.3587 | ppl 28.8 | 1.5 steps/s | eta 180m
+  step  24250/40000 | loss 3.2514 | ppl 25.8 | 1.5 steps/s | eta 180m
+  step  24300/40000 | loss 3.3516 | ppl 28.5 | 1.5 steps/s | eta 179m
+  step  24350/40000 | loss 3.4929 | ppl 32.9 | 1.5 steps/s | eta 179m
+  step  24400/40000 | loss 3.5046 | ppl 33.3 | 1.5 steps/s | eta 178m
+  step  24450/40000 | loss 3.4264 | ppl 30.8 | 1.5 steps/s | eta 178m
+  step  24500/40000 | loss 3.0438 | ppl 21.0 | 1.5 steps/s | eta 177m
+  step  24550/40000 | loss 3.3386 | ppl 28.2 | 1.5 steps/s | eta 176m
+  step  24600/40000 | loss 3.5639 | ppl 35.3 | 1.5 steps/s | eta 176m
+  step  24650/40000 | loss 3.2938 | ppl 26.9 | 1.5 steps/s | eta 175m
+  step  24700/40000 | loss 3.5809 | ppl 35.9 | 1.5 steps/s | eta 175m
+  step  24750/40000 | loss 3.5670 | ppl 35.4 | 1.5 steps/s | eta 174m
+  step  24800/40000 | loss 3.2782 | ppl 26.5 | 1.5 steps/s | eta 174m
+  step  24850/40000 | loss 3.2134 | ppl 24.9 | 1.5 steps/s | eta 173m
+  step  24900/40000 | loss 3.2542 | ppl 25.9 | 1.5 steps/s | eta 173m
+  step  24950/40000 | loss 3.2264 | ppl 25.2 | 1.5 steps/s | eta 172m
+  step  25000/40000 | loss 3.4567 | ppl 31.7 | 1.5 steps/s | eta 171m
+  Checkpoint saved: checkpoints/step-25000
+  Training log synced to R2 (62.3 KB)
+  Background upload started for step-25000
+  [bg] Uploading checkpoints/run-003-llama-structok/step-25000/checkpoint.pt (4633 MB)...
+  [bg] Checkpoint checkpoints/run-003-llama-structok/step-25000 synced to R2
+  [bg] Deleted old local checkpoint: step-10000
+  [bg] Deleted old local checkpoint: step-15000
+  [bg] Deleted old local checkpoint: step-20000
+  [bg] Deleted old local checkpoint: step-5000
+  step  25050/40000 | loss 3.3712 | ppl 29.1 | 1.5 steps/s | eta 171m
+  step  25100/40000 | loss 3.3619 | ppl 28.8 | 1.5 steps/s | eta 171m
+  step  25150/40000 | loss 3.2971 | ppl 27.0 | 1.5 steps/s | eta 170m
+  step  25200/40000 | loss 3.4879 | ppl 32.7 | 1.5 steps/s | eta 170m
+  step  25250/40000 | loss 3.2332 | ppl 25.4 | 1.5 steps/s | eta 169m
+  step  25300/40000 | loss 3.3439 | ppl 28.3 | 1.5 steps/s | eta 168m
+  step  25350/40000 | loss 3.2780 | ppl 26.5 | 1.5 steps/s | eta 168m
+  step  25400/40000 | loss 3.3764 | ppl 29.3 | 1.5 steps/s | eta 167m
+  step  25450/40000 | loss 3.4197 | ppl 30.6 | 1.5 steps/s | eta 167m
+  step  25500/40000 | loss 3.3260 | ppl 27.8 | 1.5 steps/s | eta 166m
+  step  25550/40000 | loss 3.4077 | ppl 30.2 | 1.5 steps/s | eta 166m
+  step  25600/40000 | loss 2.8750 | ppl 17.7 | 1.5 steps/s | eta 165m
+  step  25650/40000 | loss 3.4142 | ppl 30.4 | 1.5 steps/s | eta 164m
+  step  25700/40000 | loss 3.4891 | ppl 32.8 | 1.5 steps/s | eta 164m
+  step  25750/40000 | loss 3.3983 | ppl 29.9 | 1.5 steps/s | eta 163m
+  step  25800/40000 | loss 3.1900 | ppl 24.3 | 1.5 steps/s | eta 163m
+  step  25850/40000 | loss 3.2879 | ppl 26.8 | 1.5 steps/s | eta 162m
+  step  25900/40000 | loss 3.2190 | ppl 25.0 | 1.5 steps/s | eta 162m
+  step  25950/40000 | loss 3.2671 | ppl 26.2 | 1.5 steps/s | eta 161m
+  step  26000/40000 | loss 3.5382 | ppl 34.4 | 1.5 steps/s | eta 160m
+  step  26050/40000 | loss 3.4340 | ppl 31.0 | 1.5 steps/s | eta 160m
+  step  26100/40000 | loss 3.5522 | ppl 34.9 | 1.5 steps/s | eta 159m
+  step  26150/40000 | loss 3.3654 | ppl 28.9 | 1.5 steps/s | eta 159m
+  step  26200/40000 | loss 3.3634 | ppl 28.9 | 1.5 steps/s | eta 158m
+  step  26250/40000 | loss 3.4445 | ppl 31.3 | 1.5 steps/s | eta 158m
+  step  26300/40000 | loss 3.4151 | ppl 30.4 | 1.5 steps/s | eta 157m
+  step  26350/40000 | loss 3.2991 | ppl 27.1 | 1.5 steps/s | eta 156m
+  step  26400/40000 | loss 3.3064 | ppl 27.3 | 1.5 steps/s | eta 156m
+  step  26450/40000 | loss 3.3967 | ppl 29.9 | 1.5 steps/s | eta 155m
+  step  26500/40000 | loss 3.5308 | ppl 34.2 | 1.5 steps/s | eta 155m
+  step  26550/40000 | loss 3.3089 | ppl 27.4 | 1.5 steps/s | eta 154m
+  step  26600/40000 | loss 3.4429 | ppl 31.3 | 1.5 steps/s | eta 154m
+  step  26650/40000 | loss 3.3972 | ppl 29.9 | 1.5 steps/s | eta 153m
+  step  26700/40000 | loss 3.1744 | ppl 23.9 | 1.5 steps/s | eta 152m
+  step  26750/40000 | loss 3.2797 | ppl 26.6 | 1.5 steps/s | eta 152m
+  step  26800/40000 | loss 3.2979 | ppl 27.1 | 1.5 steps/s | eta 151m
+  step  26850/40000 | loss 3.4120 | ppl 30.3 | 1.5 steps/s | eta 151m
+  step  26900/40000 | loss 3.4824 | ppl 32.5 | 1.5 steps/s | eta 150m
+  step  26950/40000 | loss 3.1352 | ppl 23.0 | 1.5 steps/s | eta 150m
+  step  27000/40000 | loss 3.3322 | ppl 28.0 | 1.5 steps/s | eta 149m
+  step  27050/40000 | loss 3.2954 | ppl 27.0 | 1.5 steps/s | eta 148m
+  step  27100/40000 | loss 3.3636 | ppl 28.9 | 1.5 steps/s | eta 148m
+  step  27150/40000 | loss 3.2891 | ppl 26.8 | 1.5 steps/s | eta 147m
+  step  27200/40000 | loss 3.5792 | ppl 35.8 | 1.5 steps/s | eta 147m
+  step  27250/40000 | loss 3.2537 | ppl 25.9 | 1.5 steps/s | eta 146m
+  step  27300/40000 | loss 3.2246 | ppl 25.1 | 1.5 steps/s | eta 146m
+  step  27350/40000 | loss 3.3800 | ppl 29.4 | 1.5 steps/s | eta 145m
+  step  27400/40000 | loss 3.3603 | ppl 28.8 | 1.5 steps/s | eta 144m
+  step  27450/40000 | loss 3.3355 | ppl 28.1 | 1.5 steps/s | eta 144m
+  step  27500/40000 | loss 3.2352 | ppl 25.4 | 1.5 steps/s | eta 143m
+  step  27550/40000 | loss 3.2418 | ppl 25.6 | 1.5 steps/s | eta 143m
+  step  27600/40000 | loss 3.3253 | ppl 27.8 | 1.5 steps/s | eta 142m
+  step  27650/40000 | loss 3.3462 | ppl 28.4 | 1.5 steps/s | eta 142m
+  step  27700/40000 | loss 3.1980 | ppl 24.5 | 1.5 steps/s | eta 141m
+  step  27750/40000 | loss 3.4919 | ppl 32.8 | 1.5 steps/s | eta 140m
+  step  27800/40000 | loss 3.2608 | ppl 26.1 | 1.5 steps/s | eta 140m
+  step  27850/40000 | loss 3.2382 | ppl 25.5 | 1.5 steps/s | eta 139m
+  step  27900/40000 | loss 3.3142 | ppl 27.5 | 1.5 steps/s | eta 139m
+  step  27950/40000 | loss 3.2835 | ppl 26.7 | 1.5 steps/s | eta 138m
+  step  28000/40000 | loss 3.4735 | ppl 32.3 | 1.5 steps/s | eta 138m
+  step  28050/40000 | loss 3.2461 | ppl 25.7 | 1.5 steps/s | eta 137m
+  step  28100/40000 | loss 3.3393 | ppl 28.2 | 1.5 steps/s | eta 136m
+  step  28150/40000 | loss 3.4926 | ppl 32.9 | 1.5 steps/s | eta 136m
+  step  28200/40000 | loss 3.3249 | ppl 27.8 | 1.5 steps/s | eta 135m
+  step  28250/40000 | loss 3.0682 | ppl 21.5 | 1.5 steps/s | eta 135m
+  step  28300/40000 | loss 3.1638 | ppl 23.7 | 1.5 steps/s | eta 134m
+  step  28350/40000 | loss 3.3576 | ppl 28.7 | 1.5 steps/s | eta 134m
+  step  28400/40000 | loss 3.3211 | ppl 27.7 | 1.5 steps/s | eta 133m
+  step  28450/40000 | loss 3.5239 | ppl 33.9 | 1.5 steps/s | eta 132m
+  step  28500/40000 | loss 3.3012 | ppl 27.1 | 1.5 steps/s | eta 132m
+  step  28550/40000 | loss 3.1962 | ppl 24.4 | 1.5 steps/s | eta 131m
+  step  28600/40000 | loss 3.3524 | ppl 28.6 | 1.5 steps/s | eta 131m
+  step  28650/40000 | loss 3.4610 | ppl 31.8 | 1.5 steps/s | eta 130m
+  step  28700/40000 | loss 3.3920 | ppl 29.7 | 1.5 steps/s | eta 130m
+  step  28750/40000 | loss 3.3068 | ppl 27.3 | 1.5 steps/s | eta 129m
+  step  28800/40000 | loss 3.4821 | ppl 32.5 | 1.5 steps/s | eta 128m
+  step  28850/40000 | loss 3.2538 | ppl 25.9 | 1.5 steps/s | eta 128m
+  step  28900/40000 | loss 3.1522 | ppl 23.4 | 1.5 steps/s | eta 127m
+  step  28950/40000 | loss 3.0935 | ppl 22.1 | 1.5 steps/s | eta 127m
+  step  29000/40000 | loss 3.1898 | ppl 24.3 | 1.5 steps/s | eta 126m
+  step  29050/40000 | loss 3.2302 | ppl 25.3 | 1.5 steps/s | eta 126m
+  step  29100/40000 | loss 3.1068 | ppl 22.3 | 1.5 steps/s | eta 125m
+  step  29150/40000 | loss 3.2669 | ppl 26.2 | 1.5 steps/s | eta 124m
+  step  29200/40000 | loss 3.2794 | ppl 26.6 | 1.5 steps/s | eta 124m
+  step  29250/40000 | loss 3.5506 | ppl 34.8 | 1.5 steps/s | eta 123m
+  step  29300/40000 | loss 3.3702 | ppl 29.1 | 1.5 steps/s | eta 123m
+  step  29350/40000 | loss 3.1309 | ppl 22.9 | 1.5 steps/s | eta 122m
+  step  29400/40000 | loss 3.2767 | ppl 26.5 | 1.5 steps/s | eta 121m
+  step  29450/40000 | loss 3.0868 | ppl 21.9 | 1.5 steps/s | eta 121m
+  step  29500/40000 | loss 3.2218 | ppl 25.1 | 1.5 steps/s | eta 120m
+  step  29550/40000 | loss 3.5929 | ppl 36.3 | 1.5 steps/s | eta 120m
+  step  29600/40000 | loss 3.1210 | ppl 22.7 | 1.5 steps/s | eta 119m
+  step  29650/40000 | loss 3.2107 | ppl 24.8 | 1.5 steps/s | eta 119m
+  step  29700/40000 | loss 3.1942 | ppl 24.4 | 1.5 steps/s | eta 118m
+  step  29750/40000 | loss 3.3222 | ppl 27.7 | 1.5 steps/s | eta 117m
+  step  29800/40000 | loss 3.1654 | ppl 23.7 | 1.5 steps/s | eta 117m
+  step  29850/40000 | loss 3.2661 | ppl 26.2 | 1.5 steps/s | eta 116m
+  step  29900/40000 | loss 3.4030 | ppl 30.1 | 1.5 steps/s | eta 116m
+  step  29950/40000 | loss 3.2738 | ppl 26.4 | 1.5 steps/s | eta 115m
+  step  30000/40000 | loss 3.1931 | ppl 24.4 | 1.5 steps/s | eta 115m
+  Checkpoint saved: checkpoints/step-30000
+  Training log synced to R2 (74.5 KB)
+  Background upload started for step-30000
+  [bg] Uploading checkpoints/run-003-llama-structok/step-30000/checkpoint.pt (4633 MB)...
+  [bg] Checkpoint checkpoints/run-003-llama-structok/step-30000 synced to R2
+  [bg] Deleted old local checkpoint: step-25000
+  step  30050/40000 | loss 3.2102 | ppl 24.8 | 1.5 steps/s | eta 114m
+  step  30100/40000 | loss 3.3194 | ppl 27.6 | 1.5 steps/s | eta 114m
+  step  30150/40000 | loss 3.2036 | ppl 24.6 | 1.5 steps/s | eta 113m
+  step  30200/40000 | loss 3.3661 | ppl 29.0 | 1.5 steps/s | eta 112m
+  step  30250/40000 | loss 3.3161 | ppl 27.6 | 1.5 steps/s | eta 112m
+  step  30300/40000 | loss 3.1888 | ppl 24.3 | 1.5 steps/s | eta 111m
+  step  30350/40000 | loss 3.3652 | ppl 28.9 | 1.5 steps/s | eta 111m
+  step  30400/40000 | loss 3.4140 | ppl 30.4 | 1.5 steps/s | eta 110m
+  step  30450/40000 | loss 3.2353 | ppl 25.4 | 1.5 steps/s | eta 110m
+  step  30500/40000 | loss 3.3351 | ppl 28.1 | 1.5 steps/s | eta 109m
+  step  30550/40000 | loss 3.1939 | ppl 24.4 | 1.5 steps/s | eta 108m
+  step  30600/40000 | loss 3.1850 | ppl 24.2 | 1.5 steps/s | eta 108m
+  step  30650/40000 | loss 3.5156 | ppl 33.6 | 1.5 steps/s | eta 107m
+  step  30700/40000 | loss 3.2096 | ppl 24.8 | 1.5 steps/s | eta 107m
+  step  30750/40000 | loss 3.4021 | ppl 30.0 | 1.5 steps/s | eta 106m
+  step  30800/40000 | loss 3.0880 | ppl 21.9 | 1.5 steps/s | eta 106m
+  step  30850/40000 | loss 3.3477 | ppl 28.4 | 1.5 steps/s | eta 105m
+  step  30900/40000 | loss 3.2307 | ppl 25.3 | 1.5 steps/s | eta 104m
+  step  30950/40000 | loss 3.1440 | ppl 23.2 | 1.5 steps/s | eta 104m
+  step  31000/40000 | loss 3.1850 | ppl 24.2 | 1.5 steps/s | eta 103m
+  step  31050/40000 | loss 3.3605 | ppl 28.8 | 1.5 steps/s | eta 103m
+  step  31100/40000 | loss 3.0303 | ppl 20.7 | 1.5 steps/s | eta 102m
+  step  31150/40000 | loss 3.3947 | ppl 29.8 | 1.5 steps/s | eta 102m
+  step  31200/40000 | loss 3.3910 | ppl 29.7 | 1.5 steps/s | eta 101m
+  step  31250/40000 | loss 3.3850 | ppl 29.5 | 1.5 steps/s | eta 100m
+  step  31300/40000 | loss 3.4181 | ppl 30.5 | 1.5 steps/s | eta 100m
+  step  31350/40000 | loss 3.2461 | ppl 25.7 | 1.5 steps/s | eta 99m
+  step  31400/40000 | loss 3.2693 | ppl 26.3 | 1.5 steps/s | eta 99m
+  step  31450/40000 | loss 3.2107 | ppl 24.8 | 1.5 steps/s | eta 98m
+  step  31500/40000 | loss 3.1789 | ppl 24.0 | 1.5 steps/s | eta 98m
+  step  31550/40000 | loss 3.1852 | ppl 24.2 | 1.5 steps/s | eta 97m
+  step  31600/40000 | loss 3.2510 | ppl 25.8 | 1.5 steps/s | eta 96m
+  step  31650/40000 | loss 3.1274 | ppl 22.8 | 1.5 steps/s | eta 96m
+  step  31700/40000 | loss 3.2526 | ppl 25.9 | 1.5 steps/s | eta 95m
+  step  31750/40000 | loss 3.3185 | ppl 27.6 | 1.5 steps/s | eta 95m
+  step  31800/40000 | loss 3.2158 | ppl 24.9 | 1.5 steps/s | eta 94m
+  step  31850/40000 | loss 3.3395 | ppl 28.2 | 1.5 steps/s | eta 94m
+  step  31900/40000 | loss 3.3364 | ppl 28.1 | 1.5 steps/s | eta 93m
+  step  31950/40000 | loss 3.1378 | ppl 23.1 | 1.5 steps/s | eta 92m
+  step  32000/40000 | loss 3.1188 | ppl 22.6 | 1.5 steps/s | eta 92m
+  step  32050/40000 | loss 3.4444 | ppl 31.3 | 1.5 steps/s | eta 91m
+  step  32100/40000 | loss 3.4855 | ppl 32.6 | 1.5 steps/s | eta 91m
+  step  32150/40000 | loss 3.4339 | ppl 31.0 | 1.5 steps/s | eta 90m
+  step  32200/40000 | loss 3.2394 | ppl 25.5 | 1.5 steps/s | eta 90m
+  step  32250/40000 | loss 3.1634 | ppl 23.7 | 1.5 steps/s | eta 89m
+  step  32300/40000 | loss 3.3311 | ppl 28.0 | 1.5 steps/s | eta 88m
+  step  32350/40000 | loss 3.1491 | ppl 23.3 | 1.5 steps/s | eta 88m
+  step  32400/40000 | loss 3.2867 | ppl 26.8 | 1.5 steps/s | eta 87m
+  step  32450/40000 | loss 3.2621 | ppl 26.1 | 1.5 steps/s | eta 87m
+  step  32500/40000 | loss 3.1443 | ppl 23.2 | 1.5 steps/s | eta 86m
+  step  32550/40000 | loss 3.3183 | ppl 27.6 | 1.5 steps/s | eta 86m
+  step  32600/40000 | loss 3.2825 | ppl 26.6 | 1.5 steps/s | eta 85m
+  step  32650/40000 | loss 3.2631 | ppl 26.1 | 1.5 steps/s | eta 84m
+  step  32700/40000 | loss 3.3053 | ppl 27.3 | 1.5 steps/s | eta 84m
+  step  32750/40000 | loss 3.2394 | ppl 25.5 | 1.5 steps/s | eta 83m
+  step  32800/40000 | loss 3.1930 | ppl 24.4 | 1.5 steps/s | eta 83m
+  step  32850/40000 | loss 3.2263 | ppl 25.2 | 1.5 steps/s | eta 82m
+  step  32900/40000 | loss 3.2293 | ppl 25.3 | 1.5 steps/s | eta 82m
+  step  32950/40000 | loss 3.4472 | ppl 31.4 | 1.5 steps/s | eta 81m
+  step  33000/40000 | loss 3.2504 | ppl 25.8 | 1.5 steps/s | eta 80m
+  step  33050/40000 | loss 3.3192 | ppl 27.6 | 1.5 steps/s | eta 80m
+  step  33100/40000 | loss 3.4255 | ppl 30.7 | 1.5 steps/s | eta 79m
+  step  33150/40000 | loss 3.0981 | ppl 22.2 | 1.5 steps/s | eta 79m
+  step  33200/40000 | loss 3.2739 | ppl 26.4 | 1.5 steps/s | eta 78m
+  step  33250/40000 | loss 3.3613 | ppl 28.8 | 1.5 steps/s | eta 78m
+  step  33300/40000 | loss 3.1771 | ppl 24.0 | 1.5 steps/s | eta 77m
+  step  33350/40000 | loss 3.2356 | ppl 25.4 | 1.5 steps/s | eta 76m
+  step  33400/40000 | loss 3.2734 | ppl 26.4 | 1.5 steps/s | eta 76m
+  step  33450/40000 | loss 3.3877 | ppl 29.6 | 1.5 steps/s | eta 75m
+  step  33500/40000 | loss 3.4451 | ppl 31.3 | 1.5 steps/s | eta 75m
+  step  33550/40000 | loss 3.4371 | ppl 31.1 | 1.5 steps/s | eta 74m
+  step  33600/40000 | loss 3.4013 | ppl 30.0 | 1.5 steps/s | eta 74m
+  step  33650/40000 | loss 3.3564 | ppl 28.7 | 1.5 steps/s | eta 73m
+  step  33700/40000 | loss 3.2640 | ppl 26.2 | 1.5 steps/s | eta 72m
+  step  33750/40000 | loss 3.3643 | ppl 28.9 | 1.5 steps/s | eta 72m
+  step  33800/40000 | loss 3.3152 | ppl 27.5 | 1.4 steps/s | eta 71m
+  step  33850/40000 | loss 3.3210 | ppl 27.7 | 1.4 steps/s | eta 71m
+  step  33900/40000 | loss 3.2368 | ppl 25.5 | 1.4 steps/s | eta 70m
+  step  33950/40000 | loss 3.2342 | ppl 25.4 | 1.4 steps/s | eta 70m
+  step  34000/40000 | loss 3.2415 | ppl 25.6 | 1.4 steps/s | eta 69m
+  step  34050/40000 | loss 3.3359 | ppl 28.1 | 1.4 steps/s | eta 68m
+  step  34100/40000 | loss 3.3630 | ppl 28.9 | 1.4 steps/s | eta 68m
+  step  34150/40000 | loss 3.2316 | ppl 25.3 | 1.4 steps/s | eta 67m
+  step  34200/40000 | loss 3.2750 | ppl 26.4 | 1.4 steps/s | eta 67m
+  step  34250/40000 | loss 3.1044 | ppl 22.3 | 1.4 steps/s | eta 66m
+  step  34300/40000 | loss 3.0620 | ppl 21.4 | 1.4 steps/s | eta 66m
+  step  34350/40000 | loss 3.1283 | ppl 22.8 | 1.4 steps/s | eta 65m
+  step  34400/40000 | loss 3.2870 | ppl 26.8 | 1.4 steps/s | eta 64m
+  step  34450/40000 | loss 3.3279 | ppl 27.9 | 1.4 steps/s | eta 64m
+  step  34500/40000 | loss 3.1840 | ppl 24.1 | 1.4 steps/s | eta 63m
+  step  34550/40000 | loss 3.3424 | ppl 28.3 | 1.4 steps/s | eta 63m
+  step  34600/40000 | loss 3.1833 | ppl 24.1 | 1.4 steps/s | eta 62m
+  step  34650/40000 | loss 3.0664 | ppl 21.5 | 1.4 steps/s | eta 62m
+  step  34700/40000 | loss 3.1558 | ppl 23.5 | 1.4 steps/s | eta 61m
+  step  34750/40000 | loss 3.2029 | ppl 24.6 | 1.4 steps/s | eta 60m
+  step  34800/40000 | loss 3.3791 | ppl 29.3 | 1.4 steps/s | eta 60m
+  step  34850/40000 | loss 3.1689 | ppl 23.8 | 1.4 steps/s | eta 59m
+  step  34900/40000 | loss 3.3066 | ppl 27.3 | 1.4 steps/s | eta 59m
+  step  34950/40000 | loss 3.2471 | ppl 25.7 | 1.4 steps/s | eta 58m
+  step  35000/40000 | loss 3.2820 | ppl 26.6 | 1.4 steps/s | eta 58m
+  Checkpoint saved: checkpoints/step-35000
+  Training log synced to R2 (86.7 KB)
+  Background upload started for step-35000
+  [bg] Uploading checkpoints/run-003-llama-structok/step-35000/checkpoint.pt (4633 MB)...
+  step  35050/40000 | loss 3.1607 | ppl 23.6 | 1.4 steps/s | eta 57m
+  [bg] Checkpoint checkpoints/run-003-llama-structok/step-35000 synced to R2
+  [bg] Deleted old local checkpoint: step-30000
+  step  35100/40000 | loss 3.3482 | ppl 28.5 | 1.4 steps/s | eta 56m
+  step  35150/40000 | loss 3.0837 | ppl 21.8 | 1.4 steps/s | eta 56m
+  step  35200/40000 | loss 3.2458 | ppl 25.7 | 1.4 steps/s | eta 55m
+  step  35250/40000 | loss 3.3320 | ppl 28.0 | 1.4 steps/s | eta 55m
+  step  35300/40000 | loss 3.1727 | ppl 23.9 | 1.4 steps/s | eta 54m
+  step  35350/40000 | loss 3.1752 | ppl 23.9 | 1.4 steps/s | eta 54m
+  step  35400/40000 | loss 3.3168 | ppl 27.6 | 1.4 steps/s | eta 53m
+  step  35450/40000 | loss 3.0704 | ppl 21.5 | 1.4 steps/s | eta 52m
+  step  35500/40000 | loss 3.2602 | ppl 26.1 | 1.4 steps/s | eta 52m
+  step  35550/40000 | loss 3.1286 | ppl 22.8 | 1.4 steps/s | eta 51m
+  step  35600/40000 | loss 3.2214 | ppl 25.1 | 1.4 steps/s | eta 51m
+  step  35650/40000 | loss 3.3867 | ppl 29.6 | 1.4 steps/s | eta 50m
+  step  35700/40000 | loss 3.3351 | ppl 28.1 | 1.4 steps/s | eta 50m
+  step  35750/40000 | loss 3.3154 | ppl 27.5 | 1.4 steps/s | eta 49m
+  step  35800/40000 | loss 3.2867 | ppl 26.8 | 1.4 steps/s | eta 48m
+  step  35850/40000 | loss 3.1894 | ppl 24.3 | 1.4 steps/s | eta 48m
+  step  35900/40000 | loss 3.4059 | ppl 30.1 | 1.4 steps/s | eta 47m
+  step  35950/40000 | loss 3.2504 | ppl 25.8 | 1.4 steps/s | eta 47m
+  step  36000/40000 | loss 3.1246 | ppl 22.7 | 1.4 steps/s | eta 46m
+  step  36050/40000 | loss 3.2637 | ppl 26.1 | 1.4 steps/s | eta 45m
+  step  36100/40000 | loss 3.2534 | ppl 25.9 | 1.4 steps/s | eta 45m
+  step  36150/40000 | loss 3.0526 | ppl 21.2 | 1.4 steps/s | eta 44m
+  step  36200/40000 | loss 3.3345 | ppl 28.1 | 1.4 steps/s | eta 44m
+  step  36250/40000 | loss 3.2243 | ppl 25.1 | 1.4 steps/s | eta 43m
+  step  36300/40000 | loss 3.2313 | ppl 25.3 | 1.4 steps/s | eta 43m
+  step  36350/40000 | loss 3.2949 | ppl 27.0 | 1.4 steps/s | eta 42m
+  step  36400/40000 | loss 3.2476 | ppl 25.7 | 1.4 steps/s | eta 41m
+  step  36450/40000 | loss 3.1011 | ppl 22.2 | 1.4 steps/s | eta 41m
+  step  36500/40000 | loss 3.1560 | ppl 23.5 | 1.4 steps/s | eta 40m
+  step  36550/40000 | loss 3.2070 | ppl 24.7 | 1.4 steps/s | eta 40m
+  step  36600/40000 | loss 3.1416 | ppl 23.1 | 1.4 steps/s | eta 39m
+  step  36650/40000 | loss 3.1832 | ppl 24.1 | 1.4 steps/s | eta 39m
+  step  36700/40000 | loss 3.1420 | ppl 23.2 | 1.4 steps/s | eta 38m
+  step  36750/40000 | loss 3.3410 | ppl 28.2 | 1.4 steps/s | eta 37m
+  step  36800/40000 | loss 3.2238 | ppl 25.1 | 1.4 steps/s | eta 37m
+  step  36850/40000 | loss 3.2792 | ppl 26.6 | 1.4 steps/s | eta 36m
+  step  36900/40000 | loss 3.0967 | ppl 22.1 | 1.4 steps/s | eta 36m
+  step  36950/40000 | loss 3.2606 | ppl 26.1 | 1.4 steps/s | eta 35m
+  step  37000/40000 | loss 3.1146 | ppl 22.5 | 1.4 steps/s | eta 35m
+  step  37050/40000 | loss 3.1293 | ppl 22.9 | 1.4 steps/s | eta 34m
+  step  37100/40000 | loss 3.1758 | ppl 23.9 | 1.4 steps/s | eta 33m
+  step  37150/40000 | loss 3.1849 | ppl 24.2 | 1.4 steps/s | eta 33m
+  step  37200/40000 | loss 3.1887 | ppl 24.3 | 1.4 steps/s | eta 32m
+  step  37250/40000 | loss 3.2830 | ppl 26.7 | 1.4 steps/s | eta 32m
+  step  37300/40000 | loss 3.2048 | ppl 24.7 | 1.4 steps/s | eta 31m
+  step  37350/40000 | loss 3.1561 | ppl 23.5 | 1.4 steps/s | eta 31m
+  step  37400/40000 | loss 3.1860 | ppl 24.2 | 1.4 steps/s | eta 30m
+  step  37450/40000 | loss 3.3811 | ppl 29.4 | 1.4 steps/s | eta 29m
+  step  37500/40000 | loss 3.1374 | ppl 23.0 | 1.4 steps/s | eta 29m
+  step  37550/40000 | loss 3.1273 | ppl 22.8 | 1.4 steps/s | eta 28m
+  step  37600/40000 | loss 3.0837 | ppl 21.8 | 1.4 steps/s | eta 28m
+  step  37650/40000 | loss 3.1917 | ppl 24.3 | 1.4 steps/s | eta 27m
+  step  37700/40000 | loss 3.2092 | ppl 24.8 | 1.4 steps/s | eta 27m
+  step  37750/40000 | loss 3.1750 | ppl 23.9 | 1.4 steps/s | eta 26m
+  step  37800/40000 | loss 3.2954 | ppl 27.0 | 1.4 steps/s | eta 25m
+  step  37850/40000 | loss 3.0392 | ppl 20.9 | 1.4 steps/s | eta 25m
+  step  37900/40000 | loss 3.1552 | ppl 23.5 | 1.4 steps/s | eta 24m
+  step  37950/40000 | loss 3.1490 | ppl 23.3 | 1.4 steps/s | eta 24m
+  step  38000/40000 | loss 3.2745 | ppl 26.4 | 1.4 steps/s | eta 23m
+  step  38050/40000 | loss 3.2215 | ppl 25.1 | 1.4 steps/s | eta 22m
+  step  38100/40000 | loss 3.2625 | ppl 26.1 | 1.4 steps/s | eta 22m
+  step  38150/40000 | loss 3.1513 | ppl 23.4 | 1.4 steps/s | eta 21m
+  step  38200/40000 | loss 3.3440 | ppl 28.3 | 1.4 steps/s | eta 21m
+  step  38250/40000 | loss 3.3151 | ppl 27.5 | 1.4 steps/s | eta 20m
+  step  38300/40000 | loss 3.2027 | ppl 24.6 | 1.4 steps/s | eta 20m
+  step  38350/40000 | loss 3.1863 | ppl 24.2 | 1.4 steps/s | eta 19m
+  step  38400/40000 | loss 3.1119 | ppl 22.5 | 1.4 steps/s | eta 18m
+  step  38450/40000 | loss 3.2998 | ppl 27.1 | 1.4 steps/s | eta 18m
+  step  38500/40000 | loss 3.2483 | ppl 25.7 | 1.4 steps/s | eta 17m
+  step  38550/40000 | loss 3.3242 | ppl 27.8 | 1.4 steps/s | eta 17m
+  step  38600/40000 | loss 3.1692 | ppl 23.8 | 1.4 steps/s | eta 16m
+  step  38650/40000 | loss 3.2255 | ppl 25.2 | 1.4 steps/s | eta 16m
+  step  38700/40000 | loss 3.2951 | ppl 27.0 | 1.4 steps/s | eta 15m
+  step  38750/40000 | loss 3.3007 | ppl 27.1 | 1.4 steps/s | eta 14m
+  step  38800/40000 | loss 3.0380 | ppl 20.9 | 1.4 steps/s | eta 14m
+  step  38850/40000 | loss 3.2900 | ppl 26.8 | 1.4 steps/s | eta 13m
+  step  38900/40000 | loss 3.2267 | ppl 25.2 | 1.4 steps/s | eta 13m
+  step  38950/40000 | loss 3.1169 | ppl 22.6 | 1.4 steps/s | eta 12m
+  step  39000/40000 | loss 2.9978 | ppl 20.0 | 1.4 steps/s | eta 12m
+  step  39050/40000 | loss 3.3016 | ppl 27.2 | 1.4 steps/s | eta 11m
+  step  39100/40000 | loss 3.3205 | ppl 27.7 | 1.4 steps/s | eta 10m
+  step  39150/40000 | loss 3.2969 | ppl 27.0 | 1.4 steps/s | eta 10m
+  step  39200/40000 | loss 3.3129 | ppl 27.5 | 1.4 steps/s | eta 9m
+  step  39250/40000 | loss 3.1779 | ppl 24.0 | 1.4 steps/s | eta 9m
+  step  39300/40000 | loss 3.1961 | ppl 24.4 | 1.4 steps/s | eta 8m
+  step  39350/40000 | loss 3.2084 | ppl 24.7 | 1.4 steps/s | eta 7m
+  step  39400/40000 | loss 3.1694 | ppl 23.8 | 1.4 steps/s | eta 7m
+  step  39450/40000 | loss 3.3546 | ppl 28.6 | 1.4 steps/s | eta 6m
+  step  39500/40000 | loss 3.3243 | ppl 27.8 | 1.4 steps/s | eta 6m
+  step  39550/40000 | loss 3.2942 | ppl 27.0 | 1.4 steps/s | eta 5m
+  step  39600/40000 | loss 3.2109 | ppl 24.8 | 1.4 steps/s | eta 5m
+  step  39650/40000 | loss 3.1566 | ppl 23.5 | 1.4 steps/s | eta 4m
+  step  39700/40000 | loss 3.1340 | ppl 23.0 | 1.4 steps/s | eta 3m
+  step  39750/40000 | loss 3.1668 | ppl 23.7 | 1.4 steps/s | eta 3m
+  step  39800/40000 | loss 3.2808 | ppl 26.6 | 1.4 steps/s | eta 2m
+  step  39850/40000 | loss 2.9542 | ppl 19.2 | 1.4 steps/s | eta 2m
+  step  39900/40000 | loss 3.2799 | ppl 26.6 | 1.4 steps/s | eta 1m
+  step  39950/40000 | loss 3.2588 | ppl 26.0 | 1.4 steps/s | eta 1m
+  step  40000/40000 | loss 3.2569 | ppl 26.0 | 1.4 steps/s | eta 0m
+  Checkpoint saved: checkpoints/step-40000
+  Training log synced to R2 (99.0 KB)
+  Background upload started for step-40000
+  [bg] Uploading checkpoints/run-003-llama-structok/step-40000/checkpoint.pt (4633 MB)...
+  Waiting for previous upload...
+  [bg] Checkpoint checkpoints/run-003-llama-structok/step-40000 synced to R2
+  [bg] Deleted old local checkpoint: step-35000
+  Checkpoint saved: checkpoints/step-40000
+  Training log synced to R2 (99.0 KB)
+  Background upload started for step-40000
+
+Training complete: 40000 steps in 231.3 minutes
+Final loss: 3.2097
+Checkpoints in: checkpoints/
+  [bg] Uploading checkpoints/run-003-llama-structok/step-40000/checkpoint.pt (4633 MB)...
+  [bg] R2 upload failed: cannot schedule new futures after interpreter shutdown (keeping local checkpoints)

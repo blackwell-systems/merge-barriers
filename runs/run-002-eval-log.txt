@@ -1,0 +1,61 @@
+Device: cuda
+Loaded structok model from step 20000 (training loss: 2.9802)
+Loading held-out test data from /workspace/eval/test_data/
+
+================================================================================
+Model A: structok-64k (step 20000) on cuda
+================================================================================
+
+Records      JSON PPL    GCF PPL   JSON Acc    GCF Acc     Winner
+------------------------------------------------------------
+5            103943.4     1899.5      1.7%      8.9%        GCF
+10           167400.7     2716.5      0.8%      4.0%        GCF
+20           290846.0     3951.7      0.4%      3.1%        GCF
+50           405979.8     5856.1      0.2%      1.7%        GCF
+100          382561.2     9719.0      0.1%      0.9%        GCF
+
+  Avg JSON PPL: 270146.2  |  Avg GCF PPL: 4828.6  |  Ratio: 55.95x
+  Avg JSON Acc: 0.7%  |  Avg GCF Acc: 3.7%
+Loaded structok model from step 20000 (training loss: 2.1966)
+
+================================================================================
+Model B: standard-64k (step 20000) on cuda
+================================================================================
+
+Records      JSON PPL    GCF PPL   JSON Acc    GCF Acc     Winner
+------------------------------------------------------------
+5             37234.0     3641.6      2.2%      3.8%        GCF
+10            77914.2     4766.6      1.0%      2.5%        GCF
+20           141646.9     9809.7      1.3%      1.7%        GCF
+50           239817.9    21182.6      0.8%      2.3%        GCF
+100          211066.9    33703.0      0.9%      1.9%        GCF
+
+  Avg JSON PPL: 141536.0  |  Avg GCF PPL: 14620.7  |  Ratio: 9.68x
+  Avg JSON Acc: 1.2%  |  Avg GCF Acc: 2.5%
+
+================================================================================
+CONTROLLED COMPARISON
+================================================================================
+
+Metric                          structok-64k       standard-64k      Delta
+---------------------------------------------------------------------------
+Avg JSON PPL                        270146.2           141536.0  +128610.2
+Avg GCF PPL                           4828.6            14620.7    -9792.1
+JSON/GCF PPL ratio                     55.95x               9.68x
+Avg JSON Accuracy                      0.7%              1.2%      -0.6%
+Avg GCF Accuracy                       3.7%              2.5%      +1.3%
+
+Per-size comparison (GCF PPL):
+Records       structok-64k    standard-64k     Winner
+-------------------------------------------------------
+5                   1899.5          3641.6 structok-64k
+10                  2716.5          4766.6 structok-64k
+20                  3951.7          9809.7 structok-64k
+50                  5856.1         21182.6 structok-64k
+100                 9719.0         33703.0 structok-64k
+
+GCF PPL wins: structok-64k 5/5, standard-64k 0/5
+
+Results written to /workspace/run-002-eval-results.json
+
+Done.

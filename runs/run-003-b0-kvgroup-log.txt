@@ -1,0 +1,88 @@
+==========================================================================================
+RUN-003: B0 ABLATION + KV-GROUP ABLATION
+==========================================================================================
+GPU: NVIDIA RTX 6000 Ada Generation
+
+Loading Model A (structok)...
+Loaded Llama model from step 40000 (tokenizer: structok-64k)
+Loading Model B (standard)...
+Loaded Llama model from step 40000 (tokenizer: standard-64k)
+
+==========================================================================================
+EXPERIMENT 1: MODEL B0 (STANDARD LLAMA) HEAD IDENTIFICATION AND ABLATION
+==========================================================================================
+
+Model B0 baselines:
+  gcf_generic: 152085.8
+  json: 1846606.6
+  yaml: 51521.9
+  nl: 1223.4
+
+Identifying delimiter heads on Model B0...
+  Excess threshold: 0.15
+  Heads above threshold: 35 / 384
+Model B0 delimiter heads: 35
+
+Ablating 35 delimiter heads on Model B0...
+
+Format            Baseline    Ablated      Delta
+--------------------------------------------------
+  gcf_generic       152085.8    70254.5     -53.8%
+  json             1846606.6  1446286.4     -21.7%
+  yaml               51521.9    47921.3      -7.0%
+  nl                  1223.4     1369.2     +11.9%
+
+Conclusion: B0 heads are FUNCTIONAL (causal)
+
+==========================================================================================
+EXPERIMENT 2: KV-GROUP ABLATION ON MODEL A0
+==========================================================================================
+
+Rationale: single query-head ablation is weak under GQA because 3 siblings
+still share the same KV projection. Ablating entire KV groups (all 4 query
+heads sharing one KV head) is the equivalent of NeoX's per-head ablation.
+
+Identifying delimiter KV groups...
+  Excess threshold: 0.15
+  Heads above threshold: 69 / 384
+  KV groups with majority delimiter heads: 19 / 96
+    L8 KV3: 2/4 query heads, avg excess 0.397
+    L6 KV0: 4/4 query heads, avg excess 0.323
+    L7 KV1: 4/4 query heads, avg excess 0.278
+    L3 KV1: 2/4 query heads, avg excess 0.258
+    L17 KV1: 2/4 query heads, avg excess 0.252
+    L11 KV0: 3/4 query heads, avg excess 0.251
+    L18 KV1: 3/4 query heads, avg excess 0.249
+    L4 KV2: 2/4 query heads, avg excess 0.243
+    L19 KV2: 4/4 query heads, avg excess 0.242
+    L1 KV3: 2/4 query heads, avg excess 0.235
+
+Delimiter KV groups: 19 / 96
+
+Ablating delimiter KV groups...
+
+Format            Baseline Delim KV abl      Delta
+-------------------------------------------------------
+  gcf_generic        16287.8      13765.2     -15.5%
+  json              230558.1     386961.3     +67.8%
+  yaml               10840.3      14523.0     +34.0%
+  nl                  1769.1       2013.6     +13.8%
+
+Random KV-group control (3 seeds)...
+
+Format            Delim KV Δ  Random KV Δ        Gap
+-------------------------------------------------------
+  gcf_generic           -15.5%       -63.9%     +48.4pp
+  json                  +67.8%       -96.2%    +164.0pp
+  yaml                  +34.0%       -18.0%     +52.0pp
+  nl                    +13.8%       +28.5%     -14.7pp
+
+Conclusion: KV-group ablation does NOT recover NeoX direction on GCF. JSON worsens (different from NeoX)
+
+Results saved to /root/run-003-b0-kvgroup-results.json
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+B0 delimiter heads: 35 (B0 heads are FUNCTIONAL (causal))
+KV-group ablation: KV-group ablation does NOT recover NeoX direction on GCF. JSON worsens (different from NeoX)

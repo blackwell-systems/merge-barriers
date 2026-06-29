@@ -1,0 +1,350 @@
+{
+  "generation": {
+    "model_a": {
+      "gcf_tabular": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "0.61 ORD- 16 | . \n -4 | Kim a tos me _s son | a .s son mail | .s son example.com archived 15 26 57 \n -4 | Pat | G ia | id chen gar @ .run back | | | |",
+          "1. \n 88 | ars an | s. u stag app archived 22 \n 8 | a | end Brown ro brown prod vc processing 27 | 5. \n 76 | ian Singh | ian .s h cloud | ian .s h inte",
+          "2. \n -4 | Park | Mu | end mu @ | hold 12 74 \n -4 18 | a | ars | s. @ .io cancelled 215 98 4 ORD- 76 17 | ati Wilson | ir wil @ .run confirmed 497 59 O"
+        ]
+      },
+      "gcf_graph": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "Event ) @ { : | | | | | | | | | | | | | | } \n 0 \n @ | len event @ | len event ' ' \n ' ' App Detail : : ' * \n * type string * Event * Detail * \n ' Even",
+          "| | | | function method import | | _ nan @ . | | | function const | | ( = < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < ",
+          "| | | | ( < ) [ ] [ > ] > ) @ | ( < [ [ ] > [ ] > ] ) @ ] ) \" \n \n @ \n : resolution { \t @ protocol def encies : - 19 \" : , \" \" , \" \" \" \" \" \" \" \" \" \" \" "
+        ]
+      },
+      "json_object": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          ", id \" \" \n ] } \n \n \t t.Run \" no \" user found \" func t Add Show ( *testing.T desc , { , , , , ) } \n \t \" \" \n \t _ err = ( Show ( ( ( ( ( ( ( ( ( ( ( ( ( ",
+          "} { name \" \" \" \" \" } } , ] } \n , } ; const = Login Schema ( Schema ; \n eslint-disable-next-line typescript-eslint/no-explicit-any ( Login Schema { : }",
+          "} } { id \" \" \" \" \" \" { name : Alice } \" , role \" \" \" } } \n id \" \" { : } { } } \n \" \" \n \n def staff _client ( _api , , _group manage_ ) \n = _client \n _g"
+        ]
+      },
+      "python_func": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "- base_ _price * ( - ( - count tax amount item. * _ ) item. ) \n = ( - value - ) sum item ( ( - item ) item ( ) item ) return \n = ( subtotal ( und coun",
+          "for in items \n _ g amount items tax \n sum tax = ( + ( % ) ( + ) 2 ( ) ( ) for in \n \n = _ count total items items return \n sum = [ for in [ , in items ",
+          ".total tax items. ( items . ) item ) sum item. total \n = _m sum ( price dis amount items order \n sum items. ( { where ( _ item __ __ __ __ __ __ __ __"
+        ]
+      },
+      "go_func": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "{ \t r. ( ) Method http.MethodGet \n } \n // : is \n ( Method ) Methods r this printf \" \" Method Methods this \" \" return \" of Method ( ) \n TestHandle ( , ",
+          "{ \t http.Error w r. ( ) ( ) ( , ( ) ` \n } \n // : : \n 1. Handle ( ) // - \n Handle ( // : Handle \n Body Reader r \n ( Http ) Body r ( ) \n \n handle : func",
+          "{ \t http.Error w r. ( ) ( , Method ) \n \t return } \t = ( ) = { Method 0 Method r. ( ) Method \" Method } \t r. ( ) ( ) \t \n var Req Request \t r. = ( serve"
+        ]
+      }
+    },
+    "model_b": {
+      "gcf_tabular": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          ".@.||.||_|5824ORD35.| AndersonZara|.@.|.||.|88ORD949313ORD19.|| SvenssonKenji|.@.|.|.|31ORD44586ORD126Alice|.\n-37.@.|.|.|.|.|||.@.|.|.|.@.|0ORD37.|| V",
+          ".@.||.|||.|76ORD857| SinghTara|.@.|.|||.|24ORD46.|| KimORD88.| BrownFrankQuinn|.@.|.||.|.|22ORD42.| KimFatima|.@.|.|.||.|.@.|.| RossiORD826.\n-793|.@.|",
+          ".@.||.|||.| RossiORD36.| ParkCarla|.@.|.|||.|-191ORD86|.\n-69|.@.|.|.||.|\n-36| Svenssonxaviersvenssonapicoexpired29.\n-54| Singh##14.\n-47|.@.||.|||.||||"
+        ]
+      },
+      "gcf_graph": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "||||||-|-||//||||-||||||||-|-T::::ZerroruserserviceCache| attemptPOSTapigatewayRequest|| missPATCHgraphql23|10|\n-08050409192132201518,   |||-| timeout",
+          "||||||-|-||//|||-|||||-T::::ZinfouserserviceRate exceededDELETEapigatewayConnection|||||//|||||-||-| missPATCHgraphql647||\n-23011218001701192215|||-||",
+          "||||||-|-\n-30522sammuellertestorgeditortrue202501141007\n--6404karenmuellerinternalhealth40|.\n-115||| Tanakanakamurainternalhealth24|22002026031528|\n-5"
+        ]
+      },
+      "json_object": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "}]\n\n #end\n -*-::.//////////////////////////////////////////////////////////////////\"       \n }     \n if//\"   \n #\n This marks last also the that of ser",
+          "}]\n\n result await.(\":////////////////////////\"user\n\n@.\n _____________(________________=\"\")\nrequire\n\n@\n _______________(   ._\n\nrequireresourceinfo geti",
+          "}]\n\n #\n Public private for to\n test\n := publicservicegetproject\n testserviceget._ =\n .(\"\") #:_ created       _ =.(\"\") #:,_:__.\") #,:_.\ndef__(_:) str\n("
+        ]
+      },
+      "python_func": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          "_.(,____) taxrate\n totalgross total __(,___ -) tax\n totaltotal Tax(_(___) total\n\n total Tax(___ total total\n total Tax_(__ total total\n totalTax total",
+          "(.,subtotal total total\n )\n totalsubtotal calculatesubtotal\n taxratesubtotalsubtotalsubtotal(_(,subtotal total\n\ndef___():   Tax |\n taxrate (__,_):    ",
+          ".,_)   __ +_\n total (_ total taxrate\n total Tax ( TaxTax\n\n )._\n    TaxMoney TaxRate 05\n Tax Tax Tax 0\n Tax 0 Tax\n 0\n\n taxpayto Tax 0\nTax Tax 0\n\n Tax T"
+        ]
+      },
+      "go_func": {
+        "valid": 3,
+        "total": 3,
+        "samples": [
+          ". {\thttpErrorwWriteHeader httpMethod(,.)\t\tshandle(,)\t\n\t\n\t\n\t httpSet(,)}\tset(,)\t.Response\n\nif. == {\t \"\":\t shandle,Err httpErr httpErr\n\nreturn}\n\n s.Hand",
+          ". {\twWriteHeaderhttpErrorwWriteHeaderwrwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+          ". {\thttpErrorw r wWriteHeaderhttpError()\tfmtSprintfsErrorwwWriteHeaderhttp(,.,)\t\n}funcswHeaderErrorwwww( string rhttpResponseWriter rResponseWriter rR"
+        ]
+      }
+    }
+  },
+  "delimiter_accuracy": {
+    "model_a": {
+      "gcf_tabular": {
+        "delimiter_acc": 0.25862068965517243,
+        "delimiter_n": 58,
+        "content_acc": 0.0,
+        "content_n": 112
+      },
+      "gcf_graph": {
+        "delimiter_acc": 0.045454545454545456,
+        "delimiter_n": 66,
+        "content_acc": 0.0,
+        "content_n": 55
+      },
+      "json": {
+        "delimiter_acc": 0.04395604395604396,
+        "delimiter_n": 91,
+        "content_acc": 0.0,
+        "content_n": 40
+      }
+    },
+    "model_b": {
+      "gcf_tabular": {
+        "delimiter_acc": 0.23404255319148937,
+        "delimiter_n": 47,
+        "content_acc": 0.0,
+        "content_n": 147
+      },
+      "gcf_graph": {
+        "delimiter_acc": 0.0,
+        "delimiter_n": 49,
+        "content_acc": 0.0,
+        "content_n": 83
+      },
+      "json": {
+        "delimiter_acc": 0.08163265306122448,
+        "delimiter_n": 49,
+        "content_acc": 0.011494252873563218,
+        "content_n": 87
+      }
+    }
+  },
+  "attention": {
+    "model_a": {
+      "layers": []
+    },
+    "model_b": {
+      "layers": []
+    }
+  },
+  "scaling": {
+    "model_a": [
+      {
+        "records": 1,
+        "gcf_ppl": 2357.9766921690953,
+        "json_ppl": 11419.70646647862,
+        "gcf_tokens": 34,
+        "json_tokens": 55
+      },
+      {
+        "records": 2,
+        "gcf_ppl": 2293.9268739170757,
+        "json_ppl": 48416.952306402476,
+        "gcf_tokens": 50,
+        "json_tokens": 107
+      },
+      {
+        "records": 3,
+        "gcf_ppl": 1612.921272773217,
+        "json_ppl": 72297.59769731826,
+        "gcf_tokens": 64,
+        "json_tokens": 157
+      },
+      {
+        "records": 5,
+        "gcf_ppl": 2295.5966652845586,
+        "json_ppl": 92326.57962199325,
+        "gcf_tokens": 97,
+        "json_tokens": 262
+      },
+      {
+        "records": 10,
+        "gcf_ppl": 1932.223621123974,
+        "json_ppl": 188178.16187138407,
+        "gcf_tokens": 178,
+        "json_tokens": 523
+      },
+      {
+        "records": 20,
+        "gcf_ppl": 3374.39062597629,
+        "json_ppl": 292769.26412627357,
+        "gcf_tokens": 341,
+        "json_tokens": 1046
+      },
+      {
+        "records": 50,
+        "gcf_ppl": 5882.774722132146,
+        "json_ppl": null,
+        "gcf_tokens": 816,
+        "json_tokens": 2601
+      },
+      {
+        "records": 100,
+        "gcf_ppl": 8111.9679248794655,
+        "json_ppl": null,
+        "gcf_tokens": 1617,
+        "json_tokens": 5202
+      },
+      {
+        "records": 150,
+        "gcf_ppl": null,
+        "json_ppl": null,
+        "gcf_tokens": 2434,
+        "json_tokens": 7819
+      },
+      {
+        "records": 200,
+        "gcf_ppl": null,
+        "json_ppl": null,
+        "gcf_tokens": 3241,
+        "json_tokens": 10426
+      }
+    ],
+    "model_b": [
+      {
+        "records": 1,
+        "gcf_ppl": 9619.319626120669,
+        "json_ppl": 7257.934886466487,
+        "gcf_tokens": 35,
+        "json_tokens": 56
+      },
+      {
+        "records": 2,
+        "gcf_ppl": 5314.461607430331,
+        "json_ppl": 14925.984768696373,
+        "gcf_tokens": 55,
+        "json_tokens": 111
+      },
+      {
+        "records": 3,
+        "gcf_ppl": 3317.75696281444,
+        "json_ppl": 20817.597144061452,
+        "gcf_tokens": 69,
+        "json_tokens": 160
+      },
+      {
+        "records": 5,
+        "gcf_ppl": 5146.887008345447,
+        "json_ppl": 40928.31528835754,
+        "gcf_tokens": 109,
+        "json_tokens": 274
+      },
+      {
+        "records": 10,
+        "gcf_ppl": 6615.884726915593,
+        "json_ppl": 109782.82181089291,
+        "gcf_tokens": 205,
+        "json_tokens": 541
+      },
+      {
+        "records": 20,
+        "gcf_ppl": 13593.024692121171,
+        "json_ppl": 196021.16866842072,
+        "gcf_tokens": 385,
+        "json_tokens": 1081
+      },
+      {
+        "records": 50,
+        "gcf_ppl": 26887.38095075527,
+        "json_ppl": null,
+        "gcf_tokens": 915,
+        "json_tokens": 2668
+      },
+      {
+        "records": 100,
+        "gcf_ppl": 43151.97405850793,
+        "json_ppl": null,
+        "gcf_tokens": 1854,
+        "json_tokens": 5370
+      },
+      {
+        "records": 150,
+        "gcf_ppl": null,
+        "json_ppl": null,
+        "gcf_tokens": 2779,
+        "json_tokens": 8076
+      },
+      {
+        "records": 200,
+        "gcf_ppl": null,
+        "json_ppl": null,
+        "gcf_tokens": 3677,
+        "json_tokens": 10725
+      }
+    ]
+  },
+  "adversarial": {
+    "model_a": {
+      "normal": {
+        "ppl": 893.27646639802,
+        "acc": 0.08928571428571429,
+        "tokens": 57
+      },
+      "pipe_in_values": {
+        "ppl": 1085.6948246816034,
+        "acc": 0.06666666666666667,
+        "tokens": 76
+      },
+      "json_like_values": {
+        "ppl": 394.7977180497753,
+        "acc": 0.05333333333333334,
+        "tokens": 76
+      },
+      "numeric_heavy": {
+        "ppl": 677.7146633738653,
+        "acc": 0.11214953271028037,
+        "tokens": 108
+      },
+      "empty_fields": {
+        "ppl": 351.5540041158833,
+        "acc": 0.25675675675675674,
+        "tokens": 75
+      }
+    },
+    "model_b": {
+      "normal": {
+        "ppl": 13648.699181124533,
+        "acc": 0.04838709677419355,
+        "tokens": 63
+      },
+      "pipe_in_values": {
+        "ppl": 8052.556117692291,
+        "acc": 0.011627906976744186,
+        "tokens": 87
+      },
+      "json_like_values": {
+        "ppl": 9610.425253560586,
+        "acc": 0.030303030303030304,
+        "tokens": 67
+      },
+      "numeric_heavy": {
+        "ppl": 9548.904446875522,
+        "acc": 0.022900763358778626,
+        "tokens": 132
+      },
+      "empty_fields": {
+        "ppl": 6597.895892361762,
+        "acc": 0.0945945945945946,
+        "tokens": 75
+      }
+    }
+  }
+}

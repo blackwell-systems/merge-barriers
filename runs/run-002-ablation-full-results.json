@@ -1,0 +1,785 @@
+{
+  "metadata": {
+    "experiment": "head_ablation_v2",
+    "description": "Progressive ablation of delimiter-specialized attention heads to test causal role in structured data comprehension",
+    "hypothesis": "Delimiter-majority heads are causally responsible for structured data comprehension in merge-barrier models",
+    "timestamp_utc": "2026-06-27T19:14:34.546415+00:00",
+    "args": {
+      "checkpoint_a": "/root/checkpoint-a.pt",
+      "tokenizer_a": "/root/structok-64k.json",
+      "checkpoint_b": "/root/checkpoint-b.pt",
+      "tokenizer_b": "/root/standard-64k.json",
+      "size": "410m",
+      "device": null,
+      "output": "/root/logs/run-002-ablation-full-results.json",
+      "control_seeds": 5,
+      "ablate_model": "a",
+      "delimiter_threshold": 0.5
+    },
+    "device": "cuda",
+    "platform": "Linux-6.8.0-58-lowlatency-x86_64-with-glibc2.35",
+    "python_version": "3.11.9",
+    "torch_version": "2.4.0",
+    "cuda_version": "12.1",
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "gpu_memory_mb": 24126,
+    "transformers_version": "5.12.1"
+  },
+  "config": {
+    "model_size": "410m",
+    "delimiter_threshold": 0.5,
+    "control_seeds": 5,
+    "ablate_model": "a",
+    "checkpoint_a": "/root/checkpoint-a.pt",
+    "checkpoint_b": "/root/checkpoint-b.pt",
+    "tokenizer_a": "/root/structok-64k.json",
+    "tokenizer_b": "/root/standard-64k.json"
+  },
+  "test_data_stats": {
+    "gcf_generic": {
+      "n_texts": 2,
+      "total_chars": 3150
+    },
+    "gcf_graph": {
+      "n_texts": 2,
+      "total_chars": 3059
+    },
+    "json": {
+      "n_texts": 2,
+      "total_chars": 9636
+    },
+    "yaml": {
+      "n_texts": 1,
+      "total_chars": 2796
+    },
+    "code": {
+      "n_texts": 1,
+      "total_chars": 1464
+    }
+  },
+  "delimiter_heads": {
+    "count": 40,
+    "total_heads": 384,
+    "threshold": 0.5,
+    "top_20": [
+      {
+        "layer": 20,
+        "head": 15,
+        "score": 0.7757
+      },
+      {
+        "layer": 19,
+        "head": 15,
+        "score": 0.7551
+      },
+      {
+        "layer": 20,
+        "head": 4,
+        "score": 0.7155
+      },
+      {
+        "layer": 21,
+        "head": 13,
+        "score": 0.6991
+      },
+      {
+        "layer": 17,
+        "head": 1,
+        "score": 0.697
+      },
+      {
+        "layer": 10,
+        "head": 5,
+        "score": 0.6764
+      },
+      {
+        "layer": 12,
+        "head": 0,
+        "score": 0.6672
+      },
+      {
+        "layer": 15,
+        "head": 15,
+        "score": 0.6597
+      },
+      {
+        "layer": 11,
+        "head": 12,
+        "score": 0.6509
+      },
+      {
+        "layer": 21,
+        "head": 0,
+        "score": 0.6467
+      },
+      {
+        "layer": 12,
+        "head": 10,
+        "score": 0.6444
+      },
+      {
+        "layer": 16,
+        "head": 5,
+        "score": 0.6416
+      },
+      {
+        "layer": 17,
+        "head": 7,
+        "score": 0.6377
+      },
+      {
+        "layer": 1,
+        "head": 6,
+        "score": 0.6328
+      },
+      {
+        "layer": 1,
+        "head": 2,
+        "score": 0.6235
+      },
+      {
+        "layer": 13,
+        "head": 13,
+        "score": 0.581
+      },
+      {
+        "layer": 1,
+        "head": 5,
+        "score": 0.5802
+      },
+      {
+        "layer": 18,
+        "head": 11,
+        "score": 0.5733
+      },
+      {
+        "layer": 14,
+        "head": 10,
+        "score": 0.5729
+      },
+      {
+        "layer": 16,
+        "head": 14,
+        "score": 0.5719
+      }
+    ]
+  },
+  "baseline_a": {
+    "gcf_generic": 9719.1971,
+    "gcf_graph": 46663.3359,
+    "json": 5784278.9342,
+    "yaml": 11327.8958,
+    "code": 602.7975,
+    "nl": 2027.1935
+  },
+  "baseline_b": {
+    "gcf_generic": 447663.8205,
+    "gcf_graph": 504157.6763,
+    "json": 25188322.2277,
+    "yaml": 58950.387,
+    "code": 2971.9476,
+    "nl": 1375.3168
+  },
+  "ablation_curve": [
+    {
+      "heads_ablated": 0,
+      "gcf_generic_ppl": 9719.2,
+      "gcf_generic_delta": 0.0,
+      "gcf_graph_ppl": 46663.34,
+      "gcf_graph_delta": 0.0,
+      "json_ppl": 5784278.93,
+      "json_delta": 0.0,
+      "yaml_ppl": 11327.9,
+      "yaml_delta": 0.0,
+      "code_ppl": 602.8,
+      "code_delta": 0.0,
+      "nl_ppl": 2027.19,
+      "nl_delta": 0.0
+    },
+    {
+      "heads_ablated": 4,
+      "gcf_generic_ppl": 12052.16,
+      "gcf_generic_delta": 24.0,
+      "gcf_graph_ppl": 51972.74,
+      "gcf_graph_delta": 11.4,
+      "json_ppl": 6041146.55,
+      "json_delta": 4.4,
+      "yaml_ppl": 11058.0,
+      "yaml_delta": -2.4,
+      "code_ppl": 594.23,
+      "code_delta": -1.4,
+      "nl_ppl": 2030.41,
+      "nl_delta": 0.2
+    },
+    {
+      "heads_ablated": 8,
+      "gcf_generic_ppl": 11688.74,
+      "gcf_generic_delta": 20.3,
+      "gcf_graph_ppl": 49086.89,
+      "gcf_graph_delta": 5.2,
+      "json_ppl": 5362474.44,
+      "json_delta": -7.3,
+      "yaml_ppl": 12137.92,
+      "yaml_delta": 7.2,
+      "code_ppl": 583.41,
+      "code_delta": -3.2,
+      "nl_ppl": 2030.03,
+      "nl_delta": 0.1
+    },
+    {
+      "heads_ablated": 12,
+      "gcf_generic_ppl": 11373.35,
+      "gcf_generic_delta": 17.0,
+      "gcf_graph_ppl": 46229.61,
+      "gcf_graph_delta": -0.9,
+      "json_ppl": 4940190.51,
+      "json_delta": -14.6,
+      "yaml_ppl": 12390.67,
+      "yaml_delta": 9.4,
+      "code_ppl": 537.92,
+      "code_delta": -10.8,
+      "nl_ppl": 2037.77,
+      "nl_delta": 0.5
+    },
+    {
+      "heads_ablated": 16,
+      "gcf_generic_ppl": 10640.55,
+      "gcf_generic_delta": 9.5,
+      "gcf_graph_ppl": 40617.63,
+      "gcf_graph_delta": -13.0,
+      "json_ppl": 4133044.35,
+      "json_delta": -28.5,
+      "yaml_ppl": 12314.93,
+      "yaml_delta": 8.7,
+      "code_ppl": 531.7,
+      "code_delta": -11.8,
+      "nl_ppl": 2051.06,
+      "nl_delta": 1.2
+    },
+    {
+      "heads_ablated": 20,
+      "gcf_generic_ppl": 10300.06,
+      "gcf_generic_delta": 6.0,
+      "gcf_graph_ppl": 35419.29,
+      "gcf_graph_delta": -24.1,
+      "json_ppl": 4011412.27,
+      "json_delta": -30.6,
+      "yaml_ppl": 12980.66,
+      "yaml_delta": 14.6,
+      "code_ppl": 528.29,
+      "code_delta": -12.4,
+      "nl_ppl": 2056.42,
+      "nl_delta": 1.4
+    },
+    {
+      "heads_ablated": 24,
+      "gcf_generic_ppl": 10839.83,
+      "gcf_generic_delta": 11.5,
+      "gcf_graph_ppl": 36064.72,
+      "gcf_graph_delta": -22.7,
+      "json_ppl": 3788646.17,
+      "json_delta": -34.5,
+      "yaml_ppl": 13689.67,
+      "yaml_delta": 20.8,
+      "code_ppl": 522.85,
+      "code_delta": -13.3,
+      "nl_ppl": 2104.5,
+      "nl_delta": 3.8
+    },
+    {
+      "heads_ablated": 28,
+      "gcf_generic_ppl": 11893.06,
+      "gcf_generic_delta": 22.4,
+      "gcf_graph_ppl": 36218.97,
+      "gcf_graph_delta": -22.4,
+      "json_ppl": 3725906.99,
+      "json_delta": -35.6,
+      "yaml_ppl": 13328.12,
+      "yaml_delta": 17.7,
+      "code_ppl": 521.62,
+      "code_delta": -13.5,
+      "nl_ppl": 2128.59,
+      "nl_delta": 5.0
+    },
+    {
+      "heads_ablated": 32,
+      "gcf_generic_ppl": 14810.65,
+      "gcf_generic_delta": 52.4,
+      "gcf_graph_ppl": 37732.82,
+      "gcf_graph_delta": -19.1,
+      "json_ppl": 3554226.52,
+      "json_delta": -38.6,
+      "yaml_ppl": 13214.96,
+      "yaml_delta": 16.7,
+      "code_ppl": 513.85,
+      "code_delta": -14.8,
+      "nl_ppl": 2144.16,
+      "nl_delta": 5.8
+    },
+    {
+      "heads_ablated": 36,
+      "gcf_generic_ppl": 15706.76,
+      "gcf_generic_delta": 61.6,
+      "gcf_graph_ppl": 38261.23,
+      "gcf_graph_delta": -18.0,
+      "json_ppl": 3622186.48,
+      "json_delta": -37.4,
+      "yaml_ppl": 13450.54,
+      "yaml_delta": 18.7,
+      "code_ppl": 511.59,
+      "code_delta": -15.1,
+      "nl_ppl": 2147.38,
+      "nl_delta": 5.9
+    },
+    {
+      "heads_ablated": 40,
+      "gcf_generic_ppl": 15428.49,
+      "gcf_generic_delta": 58.7,
+      "gcf_graph_ppl": 37467.82,
+      "gcf_graph_delta": -19.7,
+      "json_ppl": 3643597.49,
+      "json_delta": -37.0,
+      "yaml_ppl": 13215.76,
+      "yaml_delta": 16.7,
+      "code_ppl": 514.36,
+      "code_delta": -14.7,
+      "nl_ppl": 2113.22,
+      "nl_delta": 4.2
+    }
+  ],
+  "control_results": [
+    [
+      {
+        "seed": 0,
+        "heads_ablated": 0,
+        "gcf_generic_ppl": 9719.2,
+        "gcf_generic_delta": 0.0,
+        "gcf_graph_ppl": 46663.34,
+        "gcf_graph_delta": 0.0,
+        "json_ppl": 5784278.93,
+        "json_delta": 0.0,
+        "yaml_ppl": 11327.9,
+        "yaml_delta": 0.0,
+        "code_ppl": 602.8,
+        "code_delta": 0.0,
+        "nl_ppl": 2027.19,
+        "nl_delta": 0.0
+      },
+      {
+        "seed": 0,
+        "heads_ablated": 20,
+        "gcf_generic_ppl": 6509.84,
+        "gcf_generic_delta": -33.0,
+        "gcf_graph_ppl": 20554.33,
+        "gcf_graph_delta": -56.0,
+        "json_ppl": 4281644.6,
+        "json_delta": -26.0,
+        "yaml_ppl": 7378.06,
+        "yaml_delta": -34.9,
+        "code_ppl": 636.07,
+        "code_delta": 5.5,
+        "nl_ppl": 2078.48,
+        "nl_delta": 2.5
+      },
+      {
+        "seed": 0,
+        "heads_ablated": 40,
+        "gcf_generic_ppl": 2006.08,
+        "gcf_generic_delta": -79.4,
+        "gcf_graph_ppl": 10505.09,
+        "gcf_graph_delta": -77.5,
+        "json_ppl": 738353.62,
+        "json_delta": -87.2,
+        "yaml_ppl": 634.43,
+        "yaml_delta": -94.4,
+        "code_ppl": 594.79,
+        "code_delta": -1.3,
+        "nl_ppl": 2077.47,
+        "nl_delta": 2.5
+      }
+    ],
+    [
+      {
+        "seed": 1,
+        "heads_ablated": 0,
+        "gcf_generic_ppl": 9719.2,
+        "gcf_generic_delta": 0.0,
+        "gcf_graph_ppl": 46663.34,
+        "gcf_graph_delta": 0.0,
+        "json_ppl": 5784278.93,
+        "json_delta": 0.0,
+        "yaml_ppl": 11327.9,
+        "yaml_delta": 0.0,
+        "code_ppl": 602.8,
+        "code_delta": 0.0,
+        "nl_ppl": 2027.19,
+        "nl_delta": 0.0
+      },
+      {
+        "seed": 1,
+        "heads_ablated": 20,
+        "gcf_generic_ppl": 9868.67,
+        "gcf_generic_delta": 1.5,
+        "gcf_graph_ppl": 49052.24,
+        "gcf_graph_delta": 5.1,
+        "json_ppl": 2172523.06,
+        "json_delta": -62.4,
+        "yaml_ppl": 9840.88,
+        "yaml_delta": -13.1,
+        "code_ppl": 561.15,
+        "code_delta": -6.9,
+        "nl_ppl": 2079.79,
+        "nl_delta": 2.6
+      },
+      {
+        "seed": 1,
+        "heads_ablated": 40,
+        "gcf_generic_ppl": 8717.9,
+        "gcf_generic_delta": -10.3,
+        "gcf_graph_ppl": 39694.93,
+        "gcf_graph_delta": -14.9,
+        "json_ppl": 1195962.59,
+        "json_delta": -79.3,
+        "yaml_ppl": 5258.08,
+        "yaml_delta": -53.6,
+        "code_ppl": 528.89,
+        "code_delta": -12.3,
+        "nl_ppl": 2070.05,
+        "nl_delta": 2.1
+      }
+    ],
+    [
+      {
+        "seed": 2,
+        "heads_ablated": 0,
+        "gcf_generic_ppl": 9719.2,
+        "gcf_generic_delta": 0.0,
+        "gcf_graph_ppl": 46663.34,
+        "gcf_graph_delta": 0.0,
+        "json_ppl": 5784278.93,
+        "json_delta": 0.0,
+        "yaml_ppl": 11327.9,
+        "yaml_delta": 0.0,
+        "code_ppl": 602.8,
+        "code_delta": 0.0,
+        "nl_ppl": 2027.19,
+        "nl_delta": 0.0
+      },
+      {
+        "seed": 2,
+        "heads_ablated": 20,
+        "gcf_generic_ppl": 6866.41,
+        "gcf_generic_delta": -29.4,
+        "gcf_graph_ppl": 34236.87,
+        "gcf_graph_delta": -26.6,
+        "json_ppl": 1624485.69,
+        "json_delta": -71.9,
+        "yaml_ppl": 4506.33,
+        "yaml_delta": -60.2,
+        "code_ppl": 548.7,
+        "code_delta": -9.0,
+        "nl_ppl": 2053.01,
+        "nl_delta": 1.3
+      },
+      {
+        "seed": 2,
+        "heads_ablated": 40,
+        "gcf_generic_ppl": 3249.4,
+        "gcf_generic_delta": -66.6,
+        "gcf_graph_ppl": 21166.22,
+        "gcf_graph_delta": -54.6,
+        "json_ppl": 187288.31,
+        "json_delta": -96.8,
+        "yaml_ppl": 461.12,
+        "yaml_delta": -95.9,
+        "code_ppl": 420.17,
+        "code_delta": -30.3,
+        "nl_ppl": 2061.42,
+        "nl_delta": 1.7
+      }
+    ],
+    [
+      {
+        "seed": 3,
+        "heads_ablated": 0,
+        "gcf_generic_ppl": 9719.2,
+        "gcf_generic_delta": 0.0,
+        "gcf_graph_ppl": 46663.34,
+        "gcf_graph_delta": 0.0,
+        "json_ppl": 5784278.93,
+        "json_delta": 0.0,
+        "yaml_ppl": 11327.9,
+        "yaml_delta": 0.0,
+        "code_ppl": 602.8,
+        "code_delta": 0.0,
+        "nl_ppl": 2027.19,
+        "nl_delta": 0.0
+      },
+      {
+        "seed": 3,
+        "heads_ablated": 20,
+        "gcf_generic_ppl": 7625.25,
+        "gcf_generic_delta": -21.5,
+        "gcf_graph_ppl": 25179.69,
+        "gcf_graph_delta": -46.0,
+        "json_ppl": 2687735.97,
+        "json_delta": -53.5,
+        "yaml_ppl": 11216.97,
+        "yaml_delta": -1.0,
+        "code_ppl": 611.25,
+        "code_delta": 1.4,
+        "nl_ppl": 2101.79,
+        "nl_delta": 3.7
+      },
+      {
+        "seed": 3,
+        "heads_ablated": 40,
+        "gcf_generic_ppl": 7293.73,
+        "gcf_generic_delta": -25.0,
+        "gcf_graph_ppl": 16988.17,
+        "gcf_graph_delta": -63.6,
+        "json_ppl": 1824595.43,
+        "json_delta": -68.5,
+        "yaml_ppl": 12635.57,
+        "yaml_delta": 11.5,
+        "code_ppl": 604.3,
+        "code_delta": 0.2,
+        "nl_ppl": 2124.15,
+        "nl_delta": 4.8
+      }
+    ],
+    [
+      {
+        "seed": 4,
+        "heads_ablated": 0,
+        "gcf_generic_ppl": 9719.2,
+        "gcf_generic_delta": 0.0,
+        "gcf_graph_ppl": 46663.34,
+        "gcf_graph_delta": 0.0,
+        "json_ppl": 5784278.93,
+        "json_delta": 0.0,
+        "yaml_ppl": 11327.9,
+        "yaml_delta": 0.0,
+        "code_ppl": 602.8,
+        "code_delta": 0.0,
+        "nl_ppl": 2027.19,
+        "nl_delta": 0.0
+      },
+      {
+        "seed": 4,
+        "heads_ablated": 20,
+        "gcf_generic_ppl": 8836.08,
+        "gcf_generic_delta": -9.1,
+        "gcf_graph_ppl": 35104.82,
+        "gcf_graph_delta": -24.8,
+        "json_ppl": 4103645.28,
+        "json_delta": -29.1,
+        "yaml_ppl": 7210.73,
+        "yaml_delta": -36.3,
+        "code_ppl": 595.52,
+        "code_delta": -1.2,
+        "nl_ppl": 2047.6,
+        "nl_delta": 1.0
+      },
+      {
+        "seed": 4,
+        "heads_ablated": 40,
+        "gcf_generic_ppl": 9935.81,
+        "gcf_generic_delta": 2.2,
+        "gcf_graph_ppl": 38879.32,
+        "gcf_graph_delta": -16.7,
+        "json_ppl": 3377986.42,
+        "json_delta": -41.6,
+        "yaml_ppl": 5078.22,
+        "yaml_delta": -55.2,
+        "code_ppl": 640.28,
+        "code_delta": 6.2,
+        "nl_ppl": 2092.7,
+        "nl_delta": 3.2
+      }
+    ]
+  ],
+  "reverse_ablation": {
+    "delimiter_only": {
+      "gcf_generic_ppl": 5457.46,
+      "gcf_generic_delta": -43.8,
+      "gcf_graph_ppl": 13023.08,
+      "gcf_graph_delta": -72.1,
+      "json_ppl": 821.5,
+      "json_delta": -100.0,
+      "yaml_ppl": 1316.47,
+      "yaml_delta": -88.4,
+      "code_ppl": 3344.7,
+      "code_delta": 454.9,
+      "nl_ppl": 9682.59,
+      "nl_delta": 377.6
+    },
+    "random_only_control": {
+      "gcf_generic_ppl": 4548.23,
+      "gcf_generic_delta": -53.2,
+      "gcf_graph_ppl": 4249.63,
+      "gcf_graph_delta": -90.9,
+      "json_ppl": 388.26,
+      "json_delta": -100.0,
+      "yaml_ppl": 634.07,
+      "yaml_delta": -94.4,
+      "code_ppl": 1414.33,
+      "code_delta": 134.6,
+      "nl_ppl": 4853.75,
+      "nl_delta": 139.4
+    }
+  },
+  "layer_wise_ablation": {
+    "early (0-7)": {
+      "n_heads": 6,
+      "gcf_generic_ppl": 8726.59,
+      "gcf_generic_delta": -10.2,
+      "gcf_graph_ppl": 33712.67,
+      "gcf_graph_delta": -27.8,
+      "json_ppl": 5118645.62,
+      "json_delta": -11.5,
+      "yaml_ppl": 11066.75,
+      "yaml_delta": -2.3,
+      "code_ppl": 600.21,
+      "code_delta": -0.4,
+      "nl_ppl": 2028.16,
+      "nl_delta": 0.0
+    },
+    "middle (8-15)": {
+      "n_heads": 14,
+      "gcf_generic_ppl": 10147.71,
+      "gcf_generic_delta": 4.4,
+      "gcf_graph_ppl": 42021.79,
+      "gcf_graph_delta": -9.9,
+      "json_ppl": 5359687.37,
+      "json_delta": -7.3,
+      "yaml_ppl": 13110.03,
+      "yaml_delta": 15.7,
+      "code_ppl": 559.23,
+      "code_delta": -7.2,
+      "nl_ppl": 1992.66,
+      "nl_delta": -1.7
+    },
+    "late (16-23)": {
+      "n_heads": 20,
+      "gcf_generic_ppl": 15812.12,
+      "gcf_generic_delta": 62.7,
+      "gcf_graph_ppl": 54928.85,
+      "gcf_graph_delta": 17.7,
+      "json_ppl": 5197153.83,
+      "json_delta": -10.2,
+      "yaml_ppl": 12316.17,
+      "yaml_delta": 8.7,
+      "code_ppl": 559.04,
+      "code_delta": -7.3,
+      "nl_ppl": 2138.45,
+      "nl_delta": 5.5
+    }
+  },
+  "attention_patterns": {
+    "gcf_generic": {
+      "n_tokens": 512,
+      "n_delimiter_positions": 181,
+      "n_content_positions": 331,
+      "heads": [
+        {
+          "layer": 20,
+          "head": 15,
+          "overall_delimiter_score": 0.7757,
+          "delim_query_to_delim_key": 0.8318,
+          "delim_query_to_content_key": 0.1682,
+          "content_query_to_delim_key": 0.852,
+          "content_query_to_content_key": 0.148
+        },
+        {
+          "layer": 19,
+          "head": 15,
+          "overall_delimiter_score": 0.7551,
+          "delim_query_to_delim_key": 0.7052,
+          "delim_query_to_content_key": 0.2948,
+          "content_query_to_delim_key": 0.742,
+          "content_query_to_content_key": 0.258
+        },
+        {
+          "layer": 20,
+          "head": 4,
+          "overall_delimiter_score": 0.7155,
+          "delim_query_to_delim_key": 0.8071,
+          "delim_query_to_content_key": 0.1929,
+          "content_query_to_delim_key": 0.894,
+          "content_query_to_content_key": 0.106
+        },
+        {
+          "layer": 21,
+          "head": 13,
+          "overall_delimiter_score": 0.6991,
+          "delim_query_to_delim_key": 0.8017,
+          "delim_query_to_content_key": 0.1983,
+          "content_query_to_delim_key": 0.7328,
+          "content_query_to_content_key": 0.2672
+        },
+        {
+          "layer": 17,
+          "head": 1,
+          "overall_delimiter_score": 0.697,
+          "delim_query_to_delim_key": 0.7215,
+          "delim_query_to_content_key": 0.2785,
+          "content_query_to_delim_key": 0.8565,
+          "content_query_to_content_key": 0.1435
+        }
+      ]
+    },
+    "json": {
+      "n_tokens": 512,
+      "n_delimiter_positions": 387,
+      "n_content_positions": 125,
+      "heads": [
+        {
+          "layer": 20,
+          "head": 15,
+          "overall_delimiter_score": 0.7757,
+          "delim_query_to_delim_key": 0.8463,
+          "delim_query_to_content_key": 0.1537,
+          "content_query_to_delim_key": 0.8862,
+          "content_query_to_content_key": 0.1138
+        },
+        {
+          "layer": 19,
+          "head": 15,
+          "overall_delimiter_score": 0.7551,
+          "delim_query_to_delim_key": 0.6195,
+          "delim_query_to_content_key": 0.3805,
+          "content_query_to_delim_key": 0.649,
+          "content_query_to_content_key": 0.351
+        },
+        {
+          "layer": 20,
+          "head": 4,
+          "overall_delimiter_score": 0.7155,
+          "delim_query_to_delim_key": 0.9193,
+          "delim_query_to_content_key": 0.0807,
+          "content_query_to_delim_key": 0.9261,
+          "content_query_to_content_key": 0.0739
+        },
+        {
+          "layer": 21,
+          "head": 13,
+          "overall_delimiter_score": 0.6991,
+          "delim_query_to_delim_key": 0.8871,
+          "delim_query_to_content_key": 0.1129,
+          "content_query_to_delim_key": 0.9738,
+          "content_query_to_content_key": 0.0262
+        },
+        {
+          "layer": 17,
+          "head": 1,
+          "overall_delimiter_score": 0.697,
+          "delim_query_to_delim_key": 0.9781,
+          "delim_query_to_content_key": 0.0219,
+          "content_query_to_delim_key": 0.9914,
+          "content_query_to_content_key": 0.0086
+        }
+      ]
+    }
+  }
+}

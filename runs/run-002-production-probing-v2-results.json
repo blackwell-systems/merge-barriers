@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "experiment": "production_model_probing_v2",
+    "description": "Delimiter specialization via distribution shape, top-K, and concentration ratio (GCF-only probing)",
+    "timestamp_utc": "2026-06-27T22:16:53.827496+00:00",
+    "device": "cuda",
+    "method": "GCF-only text, excess = raw_delimiter_attention - base_rate, scale-invariant metrics",
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "models": [
+    {
+      "model": "structok-410m (Model A)",
+      "n_layers": 24,
+      "n_query_heads": 16,
+      "n_kv_heads": 16,
+      "total_head_positions": 384,
+      "top_10_avg_excess": 0.3491,
+      "top_20_avg_excess": 0.3072,
+      "mean_excess": -0.0182,
+      "median_excess": -0.0327,
+      "std_excess": 0.1334,
+      "max_excess": 0.448,
+      "min_excess": -0.2508,
+      "concentration_ratio": 0.5434,
+      "bimodality_gap": 0.2976,
+      "distribution": {
+        "<-0.10": 115,
+        "-0.10 to -0.05": 60,
+        "-0.05 to 0": 59,
+        "0 to 0.05": 39,
+        "0.05 to 0.10": 41,
+        "0.10 to 0.15": 29,
+        "0.15 to 0.20": 18,
+        "0.20 to 0.25": 7,
+        ">0.25": 16
+      },
+      "comprehension": {}
+    },
+    {
+      "model": "standard-410m (Model B)",
+      "n_layers": 24,
+      "n_query_heads": 16,
+      "n_kv_heads": 16,
+      "total_head_positions": 384,
+      "top_10_avg_excess": 0.2817,
+      "top_20_avg_excess": 0.2269,
+      "mean_excess": -0.0126,
+      "median_excess": -0.0324,
+      "std_excess": 0.0882,
+      "max_excess": 0.4847,
+      "min_excess": -0.1526,
+      "concentration_ratio": 0.6358,
+      "bimodality_gap": 0.2164,
+      "distribution": {
+        "<-0.10": 38,
+        "-0.10 to -0.05": 118,
+        "-0.05 to 0": 97,
+        "0 to 0.05": 58,
+        "0.05 to 0.10": 32,
+        "0.10 to 0.15": 17,
+        "0.15 to 0.20": 15,
+        "0.20 to 0.25": 4,
+        ">0.25": 5
+      },
+      "comprehension": {}
+    },
+    {
+      "model": "microsoft/phi-2",
+      "n_layers": 32,
+      "n_query_heads": 32,
+      "n_kv_heads": 32,
+      "total_head_positions": 1024,
+      "top_10_avg_excess": 0.6261,
+      "top_20_avg_excess": 0.5934,
+      "mean_excess": NaN,
+      "median_excess": 0.2967,
+      "std_excess": NaN,
+      "max_excess": 0.7453,
+      "min_excess": NaN,
+      "concentration_ratio": 0.1792,
+      "bimodality_gap": NaN,
+      "distribution": {
+        "<-0.10": 2,
+        "-0.10 to -0.05": 2,
+        "-0.05 to 0": 3,
+        "0 to 0.05": 20,
+        "0.05 to 0.10": 25,
+        "0.10 to 0.15": 33,
+        "0.15 to 0.20": 76,
+        "0.20 to 0.25": 108,
+        ">0.25": 755
+      },
+      "comprehension": {
+        "gcf": null,
+        "json": null
+      }
+    },
+    {
+      "model": "mistralai/Mistral-7B-v0.3",
+      "n_layers": 32,
+      "n_query_heads": 32,
+      "n_kv_heads": 8,
+      "total_head_positions": 1024,
+      "top_10_avg_excess": 0.8363,
+      "top_20_avg_excess": 0.827,
+      "mean_excess": 0.5447,
+      "median_excess": 0.5653,
+      "std_excess": 0.1741,
+      "max_excess": 0.8467,
+      "min_excess": 0.0564,
+      "concentration_ratio": 0.1452,
+      "bimodality_gap": 0.2768,
+      "distribution": {
+        "<-0.10": 0,
+        "-0.10 to -0.05": 0,
+        "-0.05 to 0": 0,
+        "0 to 0.05": 0,
+        "0.05 to 0.10": 4,
+        "0.10 to 0.15": 8,
+        "0.15 to 0.20": 10,
+        "0.20 to 0.25": 31,
+        ">0.25": 971
+      },
+      "comprehension": {
+        "gcf": 64.6,
+        "json": 63.6
+      }
+    }
+  ]
+}

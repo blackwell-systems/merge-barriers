@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "experiment": "ablation_connections",
+    "description": "Connect ablation findings to per-token loss (2.4x) and attention entropy (30% to 8.6%)",
+    "timestamp_utc": "2026-06-29T06:24:09.879838+00:00",
+    "device": "cuda",
+    "gpu_name": "NVIDIA RTX 6000 Ada Generation"
+  },
+  "delimiter_heads": 59,
+  "per_token_loss": {
+    "model_a_baseline": {
+      "avg_delimiter_loss": 5.5754,
+      "avg_content_loss": 12.1017,
+      "delimiter_content_ratio": 0.4607,
+      "n_delimiter": 47,
+      "n_content": 71
+    },
+    "model_b_baseline": {
+      "avg_delimiter_loss": 11.8507,
+      "avg_content_loss": 13.4222,
+      "delimiter_content_ratio": 0.8829,
+      "n_delimiter": 36,
+      "n_content": 108
+    },
+    "model_a_ablated": {
+      "avg_delimiter_loss": 5.3962,
+      "avg_content_loss": 11.3609,
+      "delimiter_content_ratio": 0.475,
+      "n_delimiter": 47,
+      "n_content": 71
+    },
+    "delimiter_loss_change_pct": -3.2,
+    "content_loss_change_pct": -6.1
+  },
+  "attention_entropy": {
+    "model_a_baseline": {
+      "avg_entropy": 1.7497,
+      "grammar_attention_share": 0.357,
+      "n_heads": 384
+    },
+    "model_b_baseline": {
+      "avg_entropy": 1.6394,
+      "grammar_attention_share": 0.2094,
+      "n_heads": 384
+    },
+    "model_a_ablated": {
+      "avg_entropy": 1.8486,
+      "grammar_attention_share": 0.4072,
+      "n_heads": 384
+    },
+    "entropy_change_pct": 5.7,
+    "grammar_share_change_pct": 14.1
+  }
+}

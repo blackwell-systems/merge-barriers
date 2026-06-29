@@ -1,0 +1,104 @@
+{
+  "model_a": {
+    "tokenizer": "structok-64k",
+    "step": 20000,
+    "results": [
+      {
+        "records": 5,
+        "json_ppl": 103943.35953537744,
+        "gcf_ppl": 1899.4574254254576,
+        "json_acc": 0.016722408026755852,
+        "gcf_acc": 0.08928571428571429,
+        "json_tokens": 300,
+        "gcf_tokens": 113
+      },
+      {
+        "records": 10,
+        "json_ppl": 167400.72870426287,
+        "gcf_ppl": 2716.5444702505833,
+        "json_acc": 0.008417508417508417,
+        "gcf_acc": 0.039603960396039604,
+        "json_tokens": 595,
+        "gcf_tokens": 203
+      },
+      {
+        "records": 20,
+        "json_ppl": 290846.01269877405,
+        "gcf_ppl": 3951.67446729003,
+        "json_acc": 0.0042158516020236085,
+        "gcf_acc": 0.03125,
+        "json_tokens": 1187,
+        "gcf_tokens": 385
+      },
+      {
+        "records": 50,
+        "json_ppl": 405979.8006703547,
+        "gcf_ppl": 5856.119278389955,
+        "json_acc": 0.002442598925256473,
+        "gcf_acc": 0.017094017094017096,
+        "json_tokens": 2969,
+        "gcf_tokens": 937
+      },
+      {
+        "records": 100,
+        "json_ppl": 382561.1626108481,
+        "gcf_ppl": 9719.018771573257,
+        "json_acc": 0.0014655593551538837,
+        "gcf_acc": 0.008629989212513484,
+        "json_tokens": 5937,
+        "gcf_tokens": 1855
+      }
+    ]
+  },
+  "model_b": {
+    "tokenizer": "standard-64k",
+    "step": 20000,
+    "results": [
+      {
+        "records": 5,
+        "json_ppl": 37233.96756975258,
+        "gcf_ppl": 3641.5989871631987,
+        "json_acc": 0.022222222222222223,
+        "gcf_acc": 0.038461538461538464,
+        "json_tokens": 316,
+        "gcf_tokens": 131
+      },
+      {
+        "records": 10,
+        "json_ppl": 77914.22633251897,
+        "gcf_ppl": 4766.592911953152,
+        "json_acc": 0.009523809523809525,
+        "gcf_acc": 0.024793388429752067,
+        "json_tokens": 631,
+        "gcf_tokens": 243
+      },
+      {
+        "records": 20,
+        "json_ppl": 141646.892542617,
+        "gcf_ppl": 9809.689196572868,
+        "json_acc": 0.012688342585249802,
+        "gcf_acc": 0.016771488469601678,
+        "json_tokens": 1262,
+        "gcf_tokens": 478
+      },
+      {
+        "records": 50,
+        "json_ppl": 239817.91599355382,
+        "gcf_ppl": 21182.56433622462,
+        "json_acc": 0.008304836345872008,
+        "gcf_acc": 0.023457862728062554,
+        "json_tokens": 3157,
+        "gcf_tokens": 1152
+      },
+      {
+        "records": 100,
+        "json_ppl": 211066.9394358638,
+        "gcf_ppl": 33702.98223819622,
+        "json_acc": 0.009281875915974597,
+        "gcf_acc": 0.019052271617000488,
+        "json_tokens": 6312,
+        "gcf_tokens": 2288
+      }
+    ]
+  }
+}

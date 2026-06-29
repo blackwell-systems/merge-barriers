@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "experiment": "head_ablation_v4_extended_transfer",
+    "timestamp_utc": "2026-06-28T16:51:19.503525+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "cuda_version": "12.4",
+    "gpu_name": "NVIDIA RTX 6000 Ada Generation"
+  },
+  "n_delimiter_heads": 40,
+  "n_total_heads": 384,
+  "formats_tested": 15,
+  "unseen_formats_tested": 9,
+  "unseen_formats_hurt": 8,
+  "results": {
+    "gcf_generic": {
+      "baseline": 15897.63,
+      "ablated": 14913.46,
+      "delta_pct": -6.2,
+      "trained": true,
+      "delimiters": "|"
+    },
+    "gcf_graph": {
+      "baseline": 55369.93,
+      "ablated": 42198.74,
+      "delta_pct": -23.8,
+      "trained": true,
+      "delimiters": "@ < |"
+    },
+    "json": {
+      "baseline": 5506432.45,
+      "ablated": 4198504.13,
+      "delta_pct": -23.8,
+      "trained": true,
+      "delimiters": "\" : , { }"
+    },
+    "yaml": {
+      "baseline": 6599.72,
+      "ablated": 8625.36,
+      "delta_pct": 30.7,
+      "trained": true,
+      "delimiters": ": -"
+    },
+    "python": {
+      "baseline": 360.22,
+      "ablated": 332.17,
+      "delta_pct": -7.8,
+      "trained": true,
+      "delimiters": "( ) : { }"
+    },
+    "toon": {
+      "baseline": 21471.09,
+      "ablated": 20893.01,
+      "delta_pct": -2.7,
+      "trained": false,
+      "delimiters": "\\t"
+    },
+    "csv": {
+      "baseline": 11077.12,
+      "ablated": 15287.16,
+      "delta_pct": 38.0,
+      "trained": false,
+      "delimiters": ","
+    },
+    "toml": {
+      "baseline": 4278.3,
+      "ablated": 7477.24,
+      "delta_pct": 74.8,
+      "trained": false,
+      "delimiters": "= [ ] \""
+    },
+    "ini": {
+      "baseline": 5540.65,
+      "ablated": 7810.43,
+      "delta_pct": 41.0,
+      "trained": false,
+      "delimiters": "= [ ]"
+    },
+    "sql": {
+      "baseline": 5863.39,
+      "ablated": 10090.21,
+      "delta_pct": 72.1,
+      "trained": false,
+      "delimiters": "( ) , ' ;"
+    },
+    "xml": {
+      "baseline": 25652.15,
+      "ablated": 28776.14,
+      "delta_pct": 12.2,
+      "trained": false,
+      "delimiters": "< > \" /"
+    },
+    "md_table": {
+      "baseline": 9523.1,
+      "ablated": 11516.62,
+      "delta_pct": 20.9,
+      "trained": false,
+      "delimiters": "|"
+    },
+    "s_expression": {
+      "baseline": 4449.69,
+      "ablated": 5576.64,
+      "delta_pct": 25.3,
+      "trained": false,
+      "delimiters": "( ) \""
+    },
+    "protobuf_text": {
+      "baseline": 18167.8,
+      "ablated": 40044.08,
+      "delta_pct": 120.4,
+      "trained": false,
+      "delimiters": "{ } : \""
+    },
+    "nl": {
+      "baseline": 1754.42,
+      "ablated": 1747.26,
+      "delta_pct": -0.4,
+      "trained": true,
+      "delimiters": "none"
+    }
+  }
+}

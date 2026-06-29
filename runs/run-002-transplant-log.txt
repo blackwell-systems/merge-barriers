@@ -1,0 +1,60 @@
+==========================================================================================
+HEAD TRANSPLANT EXPERIMENT
+==========================================================================================
+
+Question: do delimiter heads carry portable structural knowledge?
+Method: copy Model A's top delimiter head weights into Model B,
+measure if Model B's structured data PPL improves without retraining.
+
+Device: cuda
+
+Loading models...
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+Identifying delimiter heads in Model A...
+Found 101 delimiter heads
+
+==========================================================================================
+BASELINES (each model with its own tokenizer)
+==========================================================================================
+
+Format            Model A    Model B  A/B ratio
+------------------------------------------------
+gcf_generic       15453.5  3331008.3     215.6x
+gcf_graph         10609.8   603524.8      56.9x
+json            6674871.4 41338224.3       6.2x
+nl                 1441.5     1016.7       0.7x
+
+==========================================================================================
+TRANSPLANT: Model A heads -> Model B
+==========================================================================================
+
+ Heads   gcf_generic    gcf_graph         json           nl
+----------------------------------------------------------
+     5   1565242.7     312672.8   25975952.8       1071.7  
+    10    775374.2     281845.8   12722555.7       1070.6  
+    20    581004.8     207693.6    6577223.0       1128.0  
+    40    128664.2     167937.3    2486339.4       1175.3  
+   101     23235.2      85042.5      20556.3       1708.5  
+
+==========================================================================================
+SUMMARY: PPL change from transplant (vs Model B baseline)
+==========================================================================================
+
+ Heads   gcf_generic    gcf_graph         json           nl
+----------------------------------------------------------
+     5       -53.0%       -48.2%       -37.2%        +5.4% 
+    10       -76.7%       -53.3%       -69.2%        +5.3% 
+    20       -82.6%       -65.6%       -84.1%       +10.9% 
+    40       -96.1%       -72.2%       -94.0%       +15.6% 
+   101       -99.3%       -85.9%      -100.0%       +68.0% 
+
+FINDING: Transplant IMPROVED Model B's structured data PPL.
+Delimiter heads carry portable structural knowledge.
+
+Results saved to /root/logs/run-002-transplant-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/transplant-results.json
+  Uploaded logs/run-002-ablation/transplant-log.txt

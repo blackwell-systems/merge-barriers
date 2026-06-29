@@ -1,0 +1,179 @@
+==========================================================================================
+REMAINING ABLATION EXPERIMENTS (#19, #21, #22)
+==========================================================================================
+
+Timestamp: 2026-06-29T05:37:01.212511+00:00
+Device: cuda
+GPU: NVIDIA RTX 6000 Ada Generation (48508 MB)
+PyTorch: 2.4.0
+
+Loading Model A (merge barriers)...
+Loaded llama model from step 40000 (tokenizer: structok-64k)
+Loading Model B (standard BPE)...
+Loaded llama model from step 40000 (tokenizer: standard-64k)
+
+Identifying delimiter heads on Model A...
+  Base rates per probing text:
+    GCF generic: 207/597 = 34.7% delimiter positions
+    GCF graph: 146/474 = 30.8% delimiter positions
+    JSON: 775/1024 = 75.7% delimiter positions
+    YAML: 241/660 = 36.5% delimiter positions
+  Excess threshold: 0.1
+  Heads above threshold: 89 / 384
+Found 89 delimiter-majority heads
+
+==========================================================================================
+EXPERIMENT #19: EMBEDDING SPACE ANALYSIS UNDER ABLATION
+==========================================================================================
+
+Question: Do delimiter heads maintain the embedding structure?
+Method: Extract final-layer reps, measure delimiter cohesion before/after ablation
+
+Extracting baseline representations...
+  Delimiter cohesion:  0.1762
+  Content cohesion:    0.1352
+  Delimiter/content:   1.30x
+
+Ablating delimiter heads and re-extracting...
+  Delimiter cohesion:  0.1994
+  Content cohesion:    0.1419
+  Delimiter/content:   1.41x
+
+Random ablation control (3 seeds)...
+  Seed 0: delimiter/content = 1.55x
+  Seed 1: delimiter/content = 1.15x
+  Seed 2: delimiter/content = 1.22x
+
+Metric                           Baseline    Ablated     Change
+-----------------------------------------------------------------
+Delimiter cohesion                 0.1762     0.1994     +13.2%
+Content cohesion                   0.1352     0.1419      +4.9%
+Delimiter/content ratio              1.30x       1.41x      +7.9%
+Random control ratio (mean)                     1.31x
+
+Conclusion: NULL RESULT: embedding structure is a whole-model property, not head-controlled
+
+==========================================================================================
+EXPERIMENT #21: ADVERSARIAL ROBUSTNESS UNDER ABLATION
+==========================================================================================
+
+Question: Do delimiter heads detect GCF corruption?
+Method: Compare PPL on clean vs corrupted GCF, both models, before/after ablation
+
+Model A (merge barriers): baseline PPL on each corruption type
+  clean                PPL = 16287.8
+  wrong_delimiters     PPL = 25837.6
+  missing_fields       PPL = 20900.6
+  wrong_header         PPL = 17031.1
+  swapped_values       PPL = 10214.5
+
+  Detection (PPL spike vs clean):
+    clean                   +0.0%
+    wrong_delimiters       +58.6%
+    missing_fields         +28.3%
+    wrong_header            +4.6%
+    swapped_values         -37.3%
+
+Model B (standard BPE): baseline PPL on each corruption type
+  clean                PPL = 152085.8
+  wrong_delimiters     PPL = 32530.3
+  missing_fields       PPL = 1092942.4
+  wrong_header         PPL = 902715.7
+  swapped_values       PPL = 198186.9
+
+  Detection (PPL spike vs clean):
+    clean                   +0.0%
+    wrong_delimiters       -78.6%
+    missing_fields        +618.6%
+    wrong_header          +493.6%
+    swapped_values         +30.3%
+
+Model A after delimiter head ablation:
+  clean                PPL = 10973.9
+  wrong_delimiters     PPL = 47802.6
+  missing_fields       PPL = 16501.0
+  wrong_header         PPL = 12906.8
+  swapped_values       PPL = 9485.7
+
+  Detection after ablation (PPL spike vs ablated clean):
+    clean                   +0.0%
+    wrong_delimiters      +335.6%
+    missing_fields         +50.4%
+    wrong_header           +17.6%
+    swapped_values         -13.6%
+
+Corruption             A detect   A abl detect   B detect    A lost?
+----------------------------------------------------------------------
+  clean                     +0.0%          +0.0%      +0.0%          -
+  wrong_delimiters         +58.6%        +335.6%     -78.6%          -
+  missing_fields           +28.3%         +50.4%    +618.6%          -
+  wrong_header              +4.6%         +17.6%    +493.6%          -
+  swapped_values           -37.3%         -13.6%     +30.3%        YES
+
+A avg detection: 32.2%  B avg detection: 305.3%  A ablated avg: 104.3%
+Conclusion: NO DETECTION ADVANTAGE: both models respond similarly to corruption
+
+==========================================================================================
+EXPERIMENT #22: SUFFICIENCY TEST AT SCALE
+==========================================================================================
+
+Question: Do 70 delimiter heads still beat 384 at 100/200 row payloads?
+Method: Reverse ablation (keep ONLY delimiter heads) at larger scales
+
+Delimiter heads: 89 / 384
+Sizes: [30, 50, 100, 200]
+Formats: ['gcf_generic', 'json', 'yaml', 'nl']
+
+Token counts per size:
+    30 rows: GCF=  355  JSON= 1203
+    50 rows: GCF=  597  JSON= 2013
+   100 rows: GCF= 1227  JSON= 4063 (TRUNC)
+   200 rows: GCF= 2487 (TRUNC)  JSON= 8163 (TRUNC)
+
+ Size Format        All heads   Delim only   Delim Δ  Random only    Rand Δ  Sufficient?
+----------------------------------------------------------------------------------------------------
+   30 gcf_generic     13447.9       8496.0    -36.8%       -58.2%    -58.2%           NO
+   30 json           210031.5        201.2    -99.9%       -99.8%    -99.8%          YES
+   30 yaml             9047.2       1686.9    -81.4%       -78.4%    -78.4%          YES
+   30 nl               2306.7      15074.6   +553.5%     +1682.3%  +1682.3%          YES
+
+   50 gcf_generic     16287.8       8887.3    -45.4%       -65.2%    -65.2%           NO
+   50 json           230558.1        209.5    -99.9%       -99.9%    -99.9%          YES
+   50 yaml            14973.9       1752.1    -88.3%       -86.8%    -86.8%          YES
+   50 nl               2306.7      15074.6   +553.5%     +1682.3%  +1682.3%          YES
+
+  100 gcf_generic     34124.0       9608.7    -71.8%       -83.7%    -83.7%           NO
+  100 json           236014.6        210.5    -99.9%       -99.9%    -99.9%          YES
+  100 yaml            23125.1       1839.0    -92.0%       -91.3%    -91.3%          YES
+  100 nl               2306.7      15074.6   +553.5%     +1682.3%  +1682.3%          YES
+
+  200 gcf_generic     58618.8      10855.6    -81.5%       -89.3%    -89.3%           NO
+  200 json           236014.6        210.5    -99.9%       -99.9%    -99.9%          YES
+  200 yaml            23125.1       1839.0    -92.0%       -91.3%    -91.3%          YES
+  200 nl               2306.7      15074.6   +553.5%     +1682.3%  +1682.3%          YES
+
+SUFFICIENCY SUMMARY:
+
+ Size    gcf_generic           json           yaml             nl
+-----------------------------------------------------------------
+   30        +21.4pp         -0.1pp*         -3.0pp*      -1128.8pp*
+   50        +19.8pp         +0.0pp*         -1.5pp*      -1128.8pp*
+  100        +11.9pp         +0.0pp*         -0.7pp*      -1128.8pp*
+  200         +7.8pp         +0.0pp*         -0.7pp*      -1128.8pp*
+
+Conclusion: SUFFICIENCY BREAKS: at larger payloads, other heads become necessary
+
+
+Results saved to /root/run-003-remaining-ablation-results.json
+
+Uploading to R2...
+  Uploaded remaining-ablation-results.json
+  Uploaded remaining-ablation-log.txt
+
+==========================================================================================
+ALL EXPERIMENTS COMPLETE
+==========================================================================================
+
+#19 Embedding space: NULL RESULT: embedding structure is a whole-model property, not head-controlled
+#21 Adversarial:     NO DETECTION ADVANTAGE: both models respond similarly to corruption
+#22 Sufficiency:     SUFFICIENCY BREAKS: at larger payloads, other heads become necessary

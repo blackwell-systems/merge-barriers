@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "experiment": "head_transplant",
+    "timestamp_utc": "2026-06-27T20:03:39.821130+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads_a": 101,
+  "baseline_a": {
+    "gcf_generic": 15453.5059,
+    "gcf_graph": 10609.8246,
+    "json": 6674871.4449,
+    "nl": 1441.5232
+  },
+  "baseline_b": {
+    "gcf_generic": 3331008.3162,
+    "gcf_graph": 603524.8265,
+    "json": 41338224.2816,
+    "nl": 1016.7223
+  },
+  "transplant_results": [
+    {
+      "n_heads": 5,
+      "gcf_generic_ppl": 1565242.67,
+      "gcf_generic_delta": -53.0,
+      "gcf_graph_ppl": 312672.84,
+      "gcf_graph_delta": -48.2,
+      "json_ppl": 25975952.84,
+      "json_delta": -37.2,
+      "nl_ppl": 1071.72,
+      "nl_delta": 5.4
+    },
+    {
+      "n_heads": 10,
+      "gcf_generic_ppl": 775374.19,
+      "gcf_generic_delta": -76.7,
+      "gcf_graph_ppl": 281845.79,
+      "gcf_graph_delta": -53.3,
+      "json_ppl": 12722555.7,
+      "json_delta": -69.2,
+      "nl_ppl": 1070.58,
+      "nl_delta": 5.3
+    },
+    {
+      "n_heads": 20,
+      "gcf_generic_ppl": 581004.76,
+      "gcf_generic_delta": -82.6,
+      "gcf_graph_ppl": 207693.59,
+      "gcf_graph_delta": -65.6,
+      "json_ppl": 6577222.96,
+      "json_delta": -84.1,
+      "nl_ppl": 1127.96,
+      "nl_delta": 10.9
+    },
+    {
+      "n_heads": 40,
+      "gcf_generic_ppl": 128664.15,
+      "gcf_generic_delta": -96.1,
+      "gcf_graph_ppl": 167937.32,
+      "gcf_graph_delta": -72.2,
+      "json_ppl": 2486339.41,
+      "json_delta": -94.0,
+      "nl_ppl": 1175.32,
+      "nl_delta": 15.6
+    },
+    {
+      "n_heads": 101,
+      "gcf_generic_ppl": 23235.22,
+      "gcf_generic_delta": -99.3,
+      "gcf_graph_ppl": 85042.49,
+      "gcf_graph_delta": -85.9,
+      "json_ppl": 20556.3,
+      "json_delta": -100.0,
+      "nl_ppl": 1708.52,
+      "nl_delta": 68.0
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+==========================================================================================
+GENERATION QUALITY UNDER ABLATION
+==========================================================================================
+
+Device: cuda
+Samples per condition: 5
+
+Loading model...
+Identifying delimiter heads...
+Found 45 delimiter heads
+
+======================================================================
+Prompt: generic_orders
+======================================================================
+
+  BASELINE:
+    Sample 1: 6 lines, 17% valid, consistency=33%, delimiters=28
+      >  17 | ya an | y i. @ .io on_ | | | | 
+      >  -1 | fi Wilson | avi wil @ co expired 299 23 ORD- 22 28 
+      >  -4 | fi Ok for | avi ok for ing .ok for cor io expired 30 57 
+      >  -4 | ya vens | mit .s h mail | y .s h dev | | | | | | | | 
+      >  -4 | i an | ian _b wn | i. 
+    Sample 2: 4 lines, 50% valid, consistency=50%, delimiters=18
+    Sample 3: 1 lines, 0% valid, consistency=100%, delimiters=193
+    Sample 4: 1 lines, 0% valid, consistency=100%, delimiters=190
+    Sample 5: 8 lines, 0% valid, consistency=25%, delimiters=44
+
+    Avg: 4.0 lines, 13% valid, consistency=62%, delimiters=95
+
+  ABLATED:
+    Sample 1: 1 lines, 0% valid, consistency=100%, delimiters=191
+      >  28 | ian .and son test. | ian .and son test. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 
+    Sample 2: 1 lines, 0% valid, consistency=100%, delimiters=198
+    Sample 3: 1 lines, 0% valid, consistency=100%, delimiters=189
+    Sample 4: 1 lines, 0% valid, consistency=100%, delimiters=199
+    Sample 5: 1 lines, 0% valid, consistency=100%, delimiters=194
+
+    Avg: 1.0 lines, 0% valid, consistency=100%, delimiters=194
+
+======================================================================
+Prompt: graph_symbols
+======================================================================
+
+  BASELINE:
+    Sample 1: 18 lines, 100% valid, consistency=28%, delimiters=199
+      >  2 parser 0.58 
+      >  2 optim take reference @ method . 0.0 definition @ class . 69 0.87 
+      >  3 metrics. 9 0.0 lsp @ enum er. 501 lsp @ class ator. 0.04 
+      >  4 lsp @ constant . 9 0. structural @ fn configure 0. ast_inferred @ type . check 0. ast_inferred @ pkg ator. 6 0. definition @ constant . queue import @ 
+    Sample 2: 10 lines, 100% valid, consistency=30%, delimiters=198
+    Sample 3: 10 lines, 100% valid, consistency=10%, delimiters=174
+    Sample 4: 16 lines, 100% valid, consistency=25%, delimiters=191
+    Sample 5: 13 lines, 100% valid, consistency=15%, delimiters=160
+
+    Avg: 13.4 lines, 100% valid, consistency=22%, delimiters=184
+
+  ABLATED:
+    Sample 1: 15 lines, 100% valid, consistency=13%, delimiters=198
+      >  2 metrics. 5 alerting. 6 0. import @ iface er. 98 reference @ iface . 8 0.97 
+      >  2 schedul shutdown 0.13 
+      >  3 mock lock lsp @ constant acquire 0.05 
+      >  4 cor schedule definition @ enum ator. 9 0.61 
+      >  5 definition @ variable . ate 0. lsp @ constant health hard 0. definition @ module . 5 0.39 
+    Sample 2: 19 lines, 100% valid, consistency=37%, delimiters=199
+    Sample 3: 15 lines, 100% valid, consistency=27%, delimiters=199
+    Sample 4: 11 lines, 100% valid, consistency=27%, delimiters=199
+    Sample 5: 5 lines, 100% valid, consistency=40%, delimiters=50
+
+    Avg: 13.0 lines, 100% valid, consistency=29%, delimiters=169
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+
+Prompt               Condition      Validity   Consistency   Delimiters
+----------------------------------------------------------------------
+generic_orders       ablated             0%         100%          194
+generic_orders       baseline           13%          62%           95
+graph_symbols        ablated           100%          29%          169
+graph_symbols        baseline          100%          22%          184
+
+  generic_orders: ABLATION DEGRADES GENERATION
+    Validity:    13% -> 0% (+13%)
+    Consistency: 62% -> 100% (-38%)
+
+  graph_symbols: ablation does not significantly degrade generation
+
+Results saved to /root/logs/run-002-generation-ablation-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/generation-ablation-results.json
+  Uploaded generation-ablation-log.txt

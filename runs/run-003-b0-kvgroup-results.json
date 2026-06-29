@@ -1,0 +1,288 @@
+{
+  "metadata": {
+    "timestamp_utc": "2026-06-29T05:51:06.735321+00:00",
+    "device": "cuda",
+    "gpu_name": "NVIDIA RTX 6000 Ada Generation"
+  },
+  "b0_ablation": {
+    "experiment": "b0_ablation",
+    "baselines": {
+      "gcf_generic": 152085.78,
+      "json": 1846606.63,
+      "yaml": 51521.94,
+      "nl": 1223.45
+    },
+    "delimiter_heads": 35,
+    "head_details": [
+      {
+        "layer": 13,
+        "head": 2,
+        "excess": 0.3975
+      },
+      {
+        "layer": 20,
+        "head": 8,
+        "excess": 0.296
+      },
+      {
+        "layer": 23,
+        "head": 9,
+        "excess": 0.2955
+      },
+      {
+        "layer": 19,
+        "head": 10,
+        "excess": 0.2833
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "excess": 0.2663
+      },
+      {
+        "layer": 20,
+        "head": 9,
+        "excess": 0.2606
+      },
+      {
+        "layer": 16,
+        "head": 10,
+        "excess": 0.2579
+      },
+      {
+        "layer": 16,
+        "head": 15,
+        "excess": 0.246
+      },
+      {
+        "layer": 20,
+        "head": 10,
+        "excess": 0.2452
+      },
+      {
+        "layer": 20,
+        "head": 13,
+        "excess": 0.2435
+      },
+      {
+        "layer": 16,
+        "head": 5,
+        "excess": 0.2374
+      },
+      {
+        "layer": 13,
+        "head": 3,
+        "excess": 0.2365
+      },
+      {
+        "layer": 4,
+        "head": 12,
+        "excess": 0.2291
+      },
+      {
+        "layer": 16,
+        "head": 8,
+        "excess": 0.2279
+      },
+      {
+        "layer": 21,
+        "head": 7,
+        "excess": 0.2254
+      },
+      {
+        "layer": 16,
+        "head": 11,
+        "excess": 0.224
+      },
+      {
+        "layer": 21,
+        "head": 13,
+        "excess": 0.2174
+      },
+      {
+        "layer": 16,
+        "head": 14,
+        "excess": 0.2045
+      },
+      {
+        "layer": 6,
+        "head": 7,
+        "excess": 0.198
+      },
+      {
+        "layer": 17,
+        "head": 3,
+        "excess": 0.1948
+      },
+      {
+        "layer": 16,
+        "head": 13,
+        "excess": 0.1862
+      },
+      {
+        "layer": 19,
+        "head": 8,
+        "excess": 0.1776
+      },
+      {
+        "layer": 20,
+        "head": 3,
+        "excess": 0.1774
+      },
+      {
+        "layer": 16,
+        "head": 4,
+        "excess": 0.1767
+      },
+      {
+        "layer": 1,
+        "head": 12,
+        "excess": 0.1751
+      },
+      {
+        "layer": 20,
+        "head": 12,
+        "excess": 0.1734
+      },
+      {
+        "layer": 13,
+        "head": 1,
+        "excess": 0.1663
+      },
+      {
+        "layer": 21,
+        "head": 6,
+        "excess": 0.1659
+      },
+      {
+        "layer": 17,
+        "head": 2,
+        "excess": 0.1606
+      },
+      {
+        "layer": 21,
+        "head": 4,
+        "excess": 0.1591
+      },
+      {
+        "layer": 20,
+        "head": 11,
+        "excess": 0.1583
+      },
+      {
+        "layer": 21,
+        "head": 14,
+        "excess": 0.1574
+      },
+      {
+        "layer": 11,
+        "head": 3,
+        "excess": 0.1542
+      },
+      {
+        "layer": 19,
+        "head": 11,
+        "excess": 0.1529
+      },
+      {
+        "layer": 1,
+        "head": 13,
+        "excess": 0.1523
+      }
+    ],
+    "ablated": {
+      "gcf_generic": {
+        "ppl": 70254.47,
+        "delta": -53.8
+      },
+      "json": {
+        "ppl": 1446286.4,
+        "delta": -21.7
+      },
+      "yaml": {
+        "ppl": 47921.31,
+        "delta": -7.0
+      },
+      "nl": {
+        "ppl": 1369.2,
+        "delta": 11.9
+      }
+    },
+    "functional": true,
+    "conclusion": "B0 heads are FUNCTIONAL (causal)"
+  },
+  "kvgroup_ablation": {
+    "experiment": "kvgroup_ablation",
+    "delimiter_kv_groups": 19,
+    "total_kv_groups": 96,
+    "baselines": {
+      "gcf_generic": 16287.84,
+      "json": 230558.09,
+      "yaml": 10840.35,
+      "nl": 1769.14
+    },
+    "delim_ablated": {
+      "gcf_generic": {
+        "ppl": 13765.25,
+        "delta": -15.5
+      },
+      "json": {
+        "ppl": 386961.27,
+        "delta": 67.8
+      },
+      "yaml": {
+        "ppl": 14522.99,
+        "delta": 34.0
+      },
+      "nl": {
+        "ppl": 2013.6,
+        "delta": 13.8
+      }
+    },
+    "random_control": {
+      "gcf_generic": [
+        -76.4,
+        -83.2,
+        -31.9
+      ],
+      "json": [
+        -99.6,
+        -91.7,
+        -97.2
+      ],
+      "yaml": [
+        -90.2,
+        -93.1,
+        129.3
+      ],
+      "nl": [
+        58.5,
+        1.9,
+        25.0
+      ]
+    },
+    "summary": {
+      "gcf_generic": {
+        "delim_delta": -15.5,
+        "random_delta_mean": -63.9,
+        "gap": 48.4
+      },
+      "json": {
+        "delim_delta": 67.8,
+        "random_delta_mean": -96.2,
+        "gap": 164.0
+      },
+      "yaml": {
+        "delim_delta": 34.0,
+        "random_delta_mean": -18.0,
+        "gap": 52.0
+      },
+      "nl": {
+        "delim_delta": 13.8,
+        "random_delta_mean": 28.5,
+        "gap": -14.7
+      }
+    },
+    "conclusion": "KV-group ablation does NOT recover NeoX direction on GCF. JSON worsens (different from NeoX)"
+  }
+}

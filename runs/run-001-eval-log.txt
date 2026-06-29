@@ -1,0 +1,29 @@
+Device: cpu
+Loaded structok model from step 14000 (training loss: 4.6863)
+
+================================================================================
+structok-410m (step 14000) on cpu
+================================================================================
+
+Records      JSON PPL    GCF PPL   JSON Acc    GCF Acc     Winner
+------------------------------------------------------------
+5             59579.3    24891.4      1.9%      0.0%        GCF
+10           112111.7    29682.8      1.0%      0.0%        GCF
+20           173726.1    26035.3      0.6%      0.0%        GCF
+
+--- Additional format tests ---
+
+GCF graph (10 symbols, 8 edges):  PPL 176184.6, accuracy 4.7%
+JSON graph (same data):            PPL 109725.3, accuracy 1.9%
+GCF advantage:                     0.6x lower PPL
+
+================================================================================
+Pythia-410M (standard BPE baseline)
+================================================================================
+
+Loaded Pythia-410M
+Records      JSON PPL    GCF PPL   JSON Acc    GCF Acc
+--------------------------------------------------
+5                 inf        inf      0.0%      0.0%
+10                inf        inf      0.0%      0.0%
+(20 records: did not complete, killed)

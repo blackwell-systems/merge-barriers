@@ -1,0 +1,541 @@
+{
+  "metadata": {
+    "experiment": "production_model_probing",
+    "description": "Count delimiter-specialized heads in production models and correlate with comprehension scores",
+    "timestamp_utc": "2026-06-27T21:44:11.555699+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "max_seq_len": 256,
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "models": [
+    {
+      "model": "structok-410m (Model A)",
+      "n_layers": 24,
+      "n_query_heads": 16,
+      "n_kv_heads": 16,
+      "total_head_positions": 384,
+      "avg_delimiter_score": 0.4816,
+      "thresholds": {
+        "40pct": {
+          "count": 262,
+          "total": 384,
+          "pct": 68.2
+        },
+        "50pct": {
+          "count": 171,
+          "total": 384,
+          "pct": 44.5
+        },
+        "60pct": {
+          "count": 84,
+          "total": 384,
+          "pct": 21.9
+        }
+      },
+      "top_20": [
+        {
+          "layer": 17,
+          "head": 1,
+          "score": 0.8917
+        },
+        {
+          "layer": 20,
+          "head": 4,
+          "score": 0.8872
+        },
+        {
+          "layer": 17,
+          "head": 7,
+          "score": 0.8575
+        },
+        {
+          "layer": 12,
+          "head": 0,
+          "score": 0.8547
+        },
+        {
+          "layer": 20,
+          "head": 15,
+          "score": 0.8468
+        },
+        {
+          "layer": 1,
+          "head": 2,
+          "score": 0.8429
+        },
+        {
+          "layer": 21,
+          "head": 13,
+          "score": 0.8388
+        },
+        {
+          "layer": 20,
+          "head": 12,
+          "score": 0.8213
+        },
+        {
+          "layer": 18,
+          "head": 11,
+          "score": 0.8108
+        },
+        {
+          "layer": 21,
+          "head": 0,
+          "score": 0.8089
+        },
+        {
+          "layer": 15,
+          "head": 15,
+          "score": 0.7888
+        },
+        {
+          "layer": 11,
+          "head": 12,
+          "score": 0.7868
+        },
+        {
+          "layer": 19,
+          "head": 5,
+          "score": 0.7864
+        },
+        {
+          "layer": 15,
+          "head": 9,
+          "score": 0.7623
+        },
+        {
+          "layer": 13,
+          "head": 13,
+          "score": 0.7573
+        },
+        {
+          "layer": 23,
+          "head": 11,
+          "score": 0.755
+        },
+        {
+          "layer": 22,
+          "head": 2,
+          "score": 0.7523
+        },
+        {
+          "layer": 16,
+          "head": 5,
+          "score": 0.7511
+        },
+        {
+          "layer": 18,
+          "head": 4,
+          "score": 0.746
+        },
+        {
+          "layer": 19,
+          "head": 0,
+          "score": 0.7419
+        }
+      ],
+      "comprehension": {
+        "gcf": null,
+        "json": null,
+        "source": "run-002, PPL only"
+      }
+    },
+    {
+      "model": "standard-410m (Model B)",
+      "n_layers": 24,
+      "n_query_heads": 16,
+      "n_kv_heads": 16,
+      "total_head_positions": 384,
+      "avg_delimiter_score": 0.2421,
+      "thresholds": {
+        "40pct": {
+          "count": 37,
+          "total": 384,
+          "pct": 9.6
+        },
+        "50pct": {
+          "count": 11,
+          "total": 384,
+          "pct": 2.9
+        },
+        "60pct": {
+          "count": 4,
+          "total": 384,
+          "pct": 1.0
+        }
+      },
+      "top_20": [
+        {
+          "layer": 20,
+          "head": 14,
+          "score": 0.8955
+        },
+        {
+          "layer": 22,
+          "head": 1,
+          "score": 0.6802
+        },
+        {
+          "layer": 1,
+          "head": 1,
+          "score": 0.6753
+        },
+        {
+          "layer": 7,
+          "head": 13,
+          "score": 0.6005
+        },
+        {
+          "layer": 18,
+          "head": 7,
+          "score": 0.5662
+        },
+        {
+          "layer": 22,
+          "head": 5,
+          "score": 0.5455
+        },
+        {
+          "layer": 13,
+          "head": 8,
+          "score": 0.5182
+        },
+        {
+          "layer": 13,
+          "head": 15,
+          "score": 0.5079
+        },
+        {
+          "layer": 4,
+          "head": 15,
+          "score": 0.5056
+        },
+        {
+          "layer": 19,
+          "head": 15,
+          "score": 0.5052
+        },
+        {
+          "layer": 1,
+          "head": 2,
+          "score": 0.501
+        },
+        {
+          "layer": 16,
+          "head": 5,
+          "score": 0.4976
+        },
+        {
+          "layer": 23,
+          "head": 12,
+          "score": 0.4951
+        },
+        {
+          "layer": 18,
+          "head": 9,
+          "score": 0.4947
+        },
+        {
+          "layer": 21,
+          "head": 13,
+          "score": 0.4935
+        },
+        {
+          "layer": 22,
+          "head": 15,
+          "score": 0.492
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "score": 0.4889
+        },
+        {
+          "layer": 23,
+          "head": 15,
+          "score": 0.478
+        },
+        {
+          "layer": 4,
+          "head": 12,
+          "score": 0.4755
+        },
+        {
+          "layer": 5,
+          "head": 8,
+          "score": 0.4743
+        }
+      ],
+      "comprehension": {
+        "gcf": null,
+        "json": null,
+        "source": "run-002, PPL only"
+      }
+    },
+    {
+      "model": "microsoft/phi-2",
+      "n_layers": 32,
+      "n_query_heads": 32,
+      "n_kv_heads": 32,
+      "total_head_positions": 1024,
+      "avg_delimiter_score": NaN,
+      "thresholds": {
+        "40pct": {
+          "count": 921,
+          "total": 1024,
+          "pct": 89.9
+        },
+        "50pct": {
+          "count": 884,
+          "total": 1024,
+          "pct": 86.3
+        },
+        "60pct": {
+          "count": 769,
+          "total": 1024,
+          "pct": 75.1
+        }
+      },
+      "top_20": [
+        {
+          "layer": 2,
+          "head": 2,
+          "score": 0.9681
+        },
+        {
+          "layer": 29,
+          "head": 5,
+          "score": 0.958
+        },
+        {
+          "layer": 20,
+          "head": 22,
+          "score": 0.945
+        },
+        {
+          "layer": 2,
+          "head": 0,
+          "score": 0.9357
+        },
+        {
+          "layer": 25,
+          "head": 2,
+          "score": 0.9357
+        },
+        {
+          "layer": 22,
+          "head": 17,
+          "score": 0.9151
+        },
+        {
+          "layer": 2,
+          "head": 8,
+          "score": 0.9048
+        },
+        {
+          "layer": 3,
+          "head": 28,
+          "score": 0.9011
+        },
+        {
+          "layer": 22,
+          "head": 5,
+          "score": 0.8997
+        },
+        {
+          "layer": 4,
+          "head": 3,
+          "score": 0.8993
+        },
+        {
+          "layer": 4,
+          "head": 15,
+          "score": 0.8982
+        },
+        {
+          "layer": 27,
+          "head": 27,
+          "score": 0.8976
+        },
+        {
+          "layer": 3,
+          "head": 11,
+          "score": 0.8921
+        },
+        {
+          "layer": 28,
+          "head": 4,
+          "score": 0.8901
+        },
+        {
+          "layer": 3,
+          "head": 30,
+          "score": 0.8897
+        },
+        {
+          "layer": 25,
+          "head": 5,
+          "score": 0.8844
+        },
+        {
+          "layer": 23,
+          "head": 17,
+          "score": 0.8836
+        },
+        {
+          "layer": 9,
+          "head": 8,
+          "score": 0.8823
+        },
+        {
+          "layer": 26,
+          "head": 3,
+          "score": 0.8822
+        },
+        {
+          "layer": 9,
+          "head": 2,
+          "score": 0.8792
+        }
+      ],
+      "comprehension": {
+        "gcf": null,
+        "json": null,
+        "source": "not yet evaluated"
+      }
+    },
+    {
+      "model": "mistralai/Mistral-7B-v0.3",
+      "n_layers": 32,
+      "n_query_heads": 32,
+      "n_kv_heads": 8,
+      "total_head_positions": 1024,
+      "avg_delimiter_score": 0.7789,
+      "thresholds": {
+        "40pct": {
+          "count": 1022,
+          "total": 1024,
+          "pct": 99.8
+        },
+        "50pct": {
+          "count": 995,
+          "total": 1024,
+          "pct": 97.2
+        },
+        "60pct": {
+          "count": 910,
+          "total": 1024,
+          "pct": 88.9
+        }
+      },
+      "top_20": [
+        {
+          "layer": 12,
+          "head": 5,
+          "score": 0.9994
+        },
+        {
+          "layer": 15,
+          "head": 24,
+          "score": 0.9988
+        },
+        {
+          "layer": 12,
+          "head": 10,
+          "score": 0.9983
+        },
+        {
+          "layer": 2,
+          "head": 20,
+          "score": 0.9976
+        },
+        {
+          "layer": 7,
+          "head": 16,
+          "score": 0.9953
+        },
+        {
+          "layer": 1,
+          "head": 15,
+          "score": 0.9929
+        },
+        {
+          "layer": 0,
+          "head": 21,
+          "score": 0.9908
+        },
+        {
+          "layer": 25,
+          "head": 3,
+          "score": 0.987
+        },
+        {
+          "layer": 11,
+          "head": 1,
+          "score": 0.9863
+        },
+        {
+          "layer": 0,
+          "head": 6,
+          "score": 0.9833
+        },
+        {
+          "layer": 23,
+          "head": 21,
+          "score": 0.983
+        },
+        {
+          "layer": 0,
+          "head": 12,
+          "score": 0.9804
+        },
+        {
+          "layer": 22,
+          "head": 17,
+          "score": 0.9795
+        },
+        {
+          "layer": 1,
+          "head": 17,
+          "score": 0.9784
+        },
+        {
+          "layer": 29,
+          "head": 24,
+          "score": 0.9783
+        },
+        {
+          "layer": 22,
+          "head": 25,
+          "score": 0.9783
+        },
+        {
+          "layer": 0,
+          "head": 15,
+          "score": 0.9771
+        },
+        {
+          "layer": 0,
+          "head": 13,
+          "score": 0.977
+        },
+        {
+          "layer": 2,
+          "head": 24,
+          "score": 0.9767
+        },
+        {
+          "layer": 1,
+          "head": 14,
+          "score": 0.9763
+        }
+      ],
+      "comprehension": {
+        "gcf": 64.6,
+        "json": 63.6,
+        "source": "flatten experiment, Mistral Small proxy"
+      }
+    }
+  ]
+}

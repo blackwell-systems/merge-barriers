@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "experiment": "ablation_connections",
+    "description": "Connect ablation findings to per-token loss (2.4x) and attention entropy (30% to 8.6%)",
+    "timestamp_utc": "2026-06-28T02:53:06.899481+00:00",
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads": 57,
+  "per_token_loss": {
+    "model_a_baseline": {
+      "avg_delimiter_loss": 6.1002,
+      "avg_content_loss": 13.2783,
+      "delimiter_content_ratio": 0.4594,
+      "n_delimiter": 47,
+      "n_content": 71
+    },
+    "model_b_baseline": {
+      "avg_delimiter_loss": 14.8057,
+      "avg_content_loss": 14.7403,
+      "delimiter_content_ratio": 1.0044,
+      "n_delimiter": 36,
+      "n_content": 108
+    },
+    "model_a_ablated": {
+      "avg_delimiter_loss": 5.6646,
+      "avg_content_loss": 11.4333,
+      "delimiter_content_ratio": 0.4954,
+      "n_delimiter": 47,
+      "n_content": 71
+    },
+    "delimiter_loss_change_pct": -7.1,
+    "content_loss_change_pct": -13.9
+  },
+  "attention_entropy": {
+    "model_a_baseline": {
+      "avg_entropy": 2.2814,
+      "grammar_attention_share": 0.3469,
+      "n_heads": 384
+    },
+    "model_b_baseline": {
+      "avg_entropy": 2.261,
+      "grammar_attention_share": 0.2066,
+      "n_heads": 384
+    },
+    "model_a_ablated": {
+      "avg_entropy": 2.3051,
+      "grammar_attention_share": 0.3569,
+      "n_heads": 384
+    },
+    "entropy_change_pct": 1.0,
+    "grammar_share_change_pct": 2.9
+  }
+}

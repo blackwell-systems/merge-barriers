@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "experiment": "structural_pattern_transfer_test",
+    "description": "Is cross-format transfer determined by delimiter character or structural pattern?",
+    "timestamp_utc": "2026-06-28T02:38:58.569136+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads": 88,
+  "results": {
+    "A_tab_gcf_layout": {
+      "character": "tab",
+      "pattern": "flat separator",
+      "description": "Tab in GCF-like flat layout (## header, tab-separated rows)",
+      "baseline_ppl": 22067.41,
+      "ablated_ppl": 33360.02,
+      "delta_pct": 51.2,
+      "transfers": "YES"
+    },
+    "B_tab_tsv_layout": {
+      "character": "tab",
+      "pattern": "header+rows",
+      "description": "Tab in TOON/TSV style (header row + data rows)",
+      "baseline_ppl": 21223.04,
+      "ablated_ppl": 28040.03,
+      "delta_pct": 32.1,
+      "transfers": "YES"
+    },
+    "C_tab_wrapper": {
+      "character": "tab",
+      "pattern": "wrapping",
+      "description": "Tab as key-value wrapper (one field per line)",
+      "baseline_ppl": 4139.64,
+      "ablated_ppl": 9246.07,
+      "delta_pct": 123.4,
+      "transfers": "YES"
+    },
+    "D_pipe_wrapper": {
+      "character": "pipe",
+      "pattern": "wrapping",
+      "description": "Pipe as key-value wrapper (one field per line)",
+      "baseline_ppl": 22558.3,
+      "ablated_ppl": 10379.16,
+      "delta_pct": -54.0,
+      "transfers": "no"
+    },
+    "E_control_gcf": {
+      "character": "pipe",
+      "pattern": "flat separator",
+      "description": "Standard GCF (pipe-separated flat rows, control)",
+      "baseline_ppl": 9838.68,
+      "ablated_ppl": 15730.28,
+      "delta_pct": 59.9,
+      "transfers": "YES"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+==========================================================================================
+BOOTSTRAP CONFIDENCE INTERVALS (5 samples)
+==========================================================================================
+
+Loading model...
+Loaded model from step 40000
+  Excess threshold: 0.15, heads: 35 / 384
+Delimiter heads: 35
+
+ Seed       base_gcf_generic delim_gcf_generic rand_gcf_generic      base_json     delim_json      rand_json        base_nl       delim_nl        rand_nl
+-------------------------------------------------------------------------------------------------------------------------------------------
+    0              64636.3        50092.8        60311.5        39036.5        42078.5        18282.6         4331.1         4659.1         4331.9
+    1              55722.0        43431.7        42956.3        36892.7        40455.4        12830.4         4331.1         4659.1         4440.6
+    2              55382.0        44143.5        39138.4        38095.5        40832.6        17183.7         4331.1         4659.1         4460.7
+    3              73936.9        59837.9        52750.9        37111.7        39318.0         8358.0         4331.1         4659.1         4223.4
+    4              55089.7        41724.9        44940.3        35980.5        39115.8        16298.6         4331.1         4659.1         4495.8
+
+==========================================================================================
+SUMMARY: Mean +/- Std across bootstrap samples
+==========================================================================================
+
+Format               Baseline      Delim abl    Delim delta     Random abl   Random delta
+--------------------------------------------------------------------------------------
+gcf_generic       60953.4+/-7415.2    47846.2         -21.6+/-1.8     48019.5         -21.2+/-8.3 
+json              37423.4+/-1050.2    40360.1          +7.9+/-1.3     14590.6         -61.1+/-9.2 
+nl                 4331.1+/-0.0      4659.1          +7.6+/-0.0      4390.5          +1.4+/-2.3 
+
+Significance check (delimiter vs random delta):
+  gcf_generic: delim-random = -0.4% +/- 9.6%  (mixed direction)
+  json: delim-random = +69.0% +/- 8.8%  (consistent direction)
+  nl: delim-random = +6.2% +/- 2.3%  (consistent direction)
+
+Results saved to /root/run-003-bootstrap-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/bootstrap-results.json
+  Uploaded bootstrap-log.txt

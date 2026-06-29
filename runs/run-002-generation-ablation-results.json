@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "experiment": "generation_quality_under_ablation",
+    "description": "Do delimiter heads matter for GCF generation, not just comprehension?",
+    "timestamp_utc": "2026-06-28T03:04:53.365434+00:00",
+    "device": "cuda",
+    "n_samples": 5,
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads": 45,
+  "results": {
+    "generic_orders_baseline": {
+      "condition": "baseline",
+      "prompt": "generic_orders",
+      "avg_validity_rate": 0.1333,
+      "avg_field_consistency": 0.6167,
+      "avg_delimiter_count": 94.6,
+      "avg_data_lines": 4.0,
+      "samples": [
+        {
+          "n_lines": 6,
+          "n_data_lines": 6,
+          "valid_lines": 1,
+          "validity_rate": 0.1667,
+          "avg_fields": 5.7,
+          "field_consistency": 0.3333,
+          "delimiter_count": 28,
+          "sample": " 17 | ya an | y i. @ .io on_ | | | | \n -1 | fi Wilson | avi wil @ co expired 299 23 ORD- 22 28 \n -4 | fi Ok for | avi ok for ing .ok for cor io expired 30 57 \n -4 | ya vens | mit .s h mail | y .s h dev | | | | | | | | \n -4 | i an | ian _b wn | i. \n -4 64 | ir Vol | | | \n \n"
+        },
+        {
+          "n_lines": 4,
+          "n_data_lines": 4,
+          "valid_lines": 2,
+          "validity_rate": 0.5,
+          "avg_fields": 5.5,
+          "field_consistency": 0.5,
+          "delimiter_count": 18,
+          "sample": " -4 | | K ski | ki ana | ch t ka prod vc approved 25 | 1. \n 9 | ir a owal | ir li @ p. | hold 4 \n 37 | K ski | ian Berg rom b no joh @ | hold 23 98 \n -4 | ian Fern dez | ian rod @ .s | | | | | - \n \n"
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 194.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 193,
+          "sample": " -4 | | G T Brown | Brown | 13 | 13 | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | "
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 191.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 190,
+          "sample": " 6 | G Brown | end Brown me brown internal dev | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |"
+        },
+        {
+          "n_lines": 8,
+          "n_data_lines": 8,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 6.5,
+          "field_consistency": 0.25,
+          "delimiter_count": 44,
+          "sample": " 9 | G Anderson a | ara mith mail | rid joh @ .io processing 27 | 8. \n -4 | en | ian Fern dez ing . nan @ org approved 197 50 \n 39 | ah _ el | ah . el example.com processing 5 63 49 ORD- 44 | len Ros S son no .s son example.com pending 40 92 9 ORD 12 | ris | . \n 45 | ars owal @ | hold 15 43 ORD- 10 "
+        }
+      ]
+    },
+    "generic_orders_ablated": {
+      "condition": "ablated",
+      "prompt": "generic_orders",
+      "avg_validity_rate": 0.0,
+      "avg_field_consistency": 1.0,
+      "avg_delimiter_count": 194.2,
+      "avg_data_lines": 1.0,
+      "samples": [
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 192.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 191,
+          "sample": " 28 | ian .and son test. | ian .and son test. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | "
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 199.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 198,
+          "sample": " 25 | len | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | "
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 190.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 189,
+          "sample": " 9 | ara an | ar berg rom | ar rom | ar rom mail | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |"
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 200.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 199,
+          "sample": " 7 | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |"
+        },
+        {
+          "n_lines": 1,
+          "n_data_lines": 1,
+          "valid_lines": 0,
+          "validity_rate": 0.0,
+          "avg_fields": 195.0,
+          "field_consistency": 1.0,
+          "delimiter_count": 194,
+          "sample": " 9 | ara an | ar pat : | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |"
+        }
+      ]
+    },
+    "graph_symbols_baseline": {
+      "condition": "baseline",
+      "prompt": "graph_symbols",
+      "avg_validity_rate": 1.0,
+      "avg_field_consistency": 0.2163,
+      "avg_delimiter_count": 184.4,
+      "avg_data_lines": 13.4,
+      "samples": [
+        {
+          "n_lines": 18,
+          "n_data_lines": 18,
+          "valid_lines": 18,
+          "validity_rate": 1.0,
+          "avg_fields": 10.2,
+          "field_consistency": 0.2778,
+          "delimiter_count": 199,
+          "sample": " 2 parser 0.58 \n 2 optim take reference @ method . 0.0 definition @ class . 69 0.87 \n 3 metrics. 9 0.0 lsp @ enum er. 501 lsp @ class ator. 0.04 \n 4 lsp @ constant . 9 0. structural @ fn configure 0. ast_inferred @ type . check 0. ast_inferred @ pkg ator. 6 0. definition @ constant . queue import @ "
+        },
+        {
+          "n_lines": 10,
+          "n_data_lines": 10,
+          "valid_lines": 10,
+          "validity_rate": 1.0,
+          "avg_fields": 19.0,
+          "field_consistency": 0.3,
+          "delimiter_count": 198,
+          "sample": " 2 connection. 9 assert. 6 0. ast_inferred @ constant er. 9 0.0 lsp @ pkg . 757 ast_inferred @ pkg . 9 0. import @ fn er. 9 0. ast_inferred @ constant initialize import @ module .close definition @ struct .s 9 0. import @ trait cancel definition @ method . queue structural @ constant er. 7 0.29 \n ed"
+        },
+        {
+          "n_lines": 10,
+          "n_data_lines": 10,
+          "valid_lines": 10,
+          "validity_rate": 1.0,
+          "avg_fields": 16.6,
+          "field_consistency": 0.1,
+          "delimiter_count": 174,
+          "sample": " 2 tokenizer. fix 0. definition @ pkg . 0. import @ class encrypt ast_inferred @ module er. 0.72 \n 4 0. import @ module izer. 856 ast_inferred @ enum er. 0. ast_inferred @ type er. 9 0. definition @ constant er. balance definition @ method . 5 0.67 \n edges 0 inventory marshal 0. definition @ constan"
+        },
+        {
+          "n_lines": 16,
+          "n_data_lines": 16,
+          "valid_lines": 16,
+          "validity_rate": 1.0,
+          "avg_fields": 11.1,
+          "field_consistency": 0.25,
+          "delimiter_count": 191,
+          "sample": " 2 protocol. 5 0.39 \n 2 jwt. 9 0.04 \n 3 transform encode . 1. reference @ struct ing. 9 0.24 \n 4 0.58 \n 4 isol trace 0. import @ fn extract 0.66 \n 5 payment 7 0. import @ pkg ing. 9 0.81 \n 6 0.59 \n 7 0. import @ pkg . 9 0. definition @ pkg . 0. definition @ class er. 373 reference @ class . 45 defin"
+        },
+        {
+          "n_lines": 13,
+          "n_data_lines": 13,
+          "valid_lines": 13,
+          "validity_rate": 1.0,
+          "avg_fields": 11.5,
+          "field_consistency": 0.1538,
+          "delimiter_count": 160,
+          "sample": " 2 storage. 0.05 \n 3 s . provision reference @ type .scale 66 ast_inferred @ class er. 6 0.0 structural @ trait . 9 0.25 \n 4 runtime. 6 0. definition @ type ator. 6 0. reference @ fn ping. 7 0.97 \n 8 migration. 7 0.28 \n 7 s . 6 0. structural @ struct . 9 0. lsp @ fn . 9 0. definition @ trait er. 6 0"
+        }
+      ]
+    },
+    "graph_symbols_ablated": {
+      "condition": "ablated",
+      "prompt": "graph_symbols",
+      "avg_validity_rate": 1.0,
+      "avg_field_consistency": 0.2882,
+      "avg_delimiter_count": 169.0,
+      "avg_data_lines": 13.0,
+      "samples": [
+        {
+          "n_lines": 15,
+          "n_data_lines": 15,
+          "valid_lines": 15,
+          "validity_rate": 1.0,
+          "avg_fields": 12.3,
+          "field_consistency": 0.1333,
+          "delimiter_count": 198,
+          "sample": " 2 metrics. 5 alerting. 6 0. import @ iface er. 98 reference @ iface . 8 0.97 \n 2 schedul shutdown 0.13 \n 3 mock lock lsp @ constant acquire 0.05 \n 4 cor schedule definition @ enum ator. 9 0.61 \n 5 definition @ variable . ate 0. lsp @ constant health hard 0. definition @ module . 5 0.39 \n 8 cache. 9"
+        },
+        {
+          "n_lines": 19,
+          "n_data_lines": 19,
+          "valid_lines": 19,
+          "validity_rate": 1.0,
+          "avg_fields": 9.6,
+          "field_consistency": 0.3684,
+          "delimiter_count": 199,
+          "sample": " 2 compil refresh enum er. 9 0.94 \n 2 report read from @ pkg . 0.0 import @ iface .p etch 0. import @ enum . 0.54 \n 3 s . 9 import @ type open structural @ method . 9 0.34 \n 4 cart 6 0.83 \n 4 catalog probe 0.37 \n 5 connection 0. import @ type . 0.31 \n 6 0.55 \n 7 migration. 79 ast_inferred @ type er."
+        },
+        {
+          "n_lines": 15,
+          "n_data_lines": 15,
+          "valid_lines": 15,
+          "validity_rate": 1.0,
+          "avg_fields": 12.4,
+          "field_consistency": 0.2667,
+          "delimiter_count": 199,
+          "sample": " 2 logging : type s. 0. reference @ struct . 0. lsp @ struct chunk 0. structural @ module . fix lsp @ method er. 0.39 \n 3 catalog 9 0.38 \n 4 logging. 762 import @ pkg or. 34 structural @ enum ter. 0.74 \n 5 0.15 \n 5 queue 0.94 \n 7 cart abort definition @ enum . 0. reference @ pkg emit validate lsp @ "
+        },
+        {
+          "n_lines": 11,
+          "n_data_lines": 11,
+          "valid_lines": 11,
+          "validity_rate": 1.0,
+          "avg_fields": 17.3,
+          "field_consistency": 0.2727,
+          "delimiter_count": 199,
+          "sample": " 2 alerting. 6 0.0 lsp @ constant . 0. structural @ variable . 0.59 \n 2 cart dir 38 import @ type close reference @ type . 6 0. definition @ enum .scale 0.0 ast_inferred @ enum er. 0.68 \n 3 import @ variable .merge import @ module er. 7 0.31 \n 4 check 0. import @ struct ator. ify 0. reference @ vari"
+        },
+        {
+          "n_lines": 5,
+          "n_data_lines": 5,
+          "valid_lines": 5,
+          "validity_rate": 1.0,
+          "avg_fields": 9.4,
+          "field_consistency": 0.4,
+          "delimiter_count": 50,
+          "sample": " 2 fixture replic 9 0. import @ trait .s 5 0.14 \n 3 parser 6 config. 2 \" type . \" \" \n 4 connection. import @ type as from 0. lsp @ class er. 8 reference @ type ter. 6 0. definition @ type . 0.96 \n edges \n profile= \n \n"
+        }
+      ]
+    }
+  }
+}

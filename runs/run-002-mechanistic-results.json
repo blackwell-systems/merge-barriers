@@ -1,0 +1,370 @@
+{
+  "per-token_loss_heatmap": {
+    "model_a": {
+      "avg_delimiter_loss": 6.100161604464371,
+      "avg_content_loss": 13.278306537950543,
+      "n_delimiter": 47,
+      "n_content": 71,
+      "top5_loss": [
+        {
+          "pos": 37,
+          "token": "Carla",
+          "loss": 20.9969,
+          "type": "content"
+        },
+        {
+          "pos": 96,
+          "token": "47",
+          "loss": 20.775,
+          "type": "content"
+        },
+        {
+          "pos": 118,
+          "token": "47",
+          "loss": 19.9405,
+          "type": "content"
+        },
+        {
+          "pos": 15,
+          "token": "ORD-00001",
+          "loss": 19.705,
+          "type": "content"
+        },
+        {
+          "pos": 25,
+          "token": "ORD-00002",
+          "loss": 19.592,
+          "type": "content"
+        }
+      ]
+    },
+    "model_b": {
+      "avg_delimiter_loss": 14.805695614880985,
+      "avg_content_loss": 14.740268958249578,
+      "n_delimiter": 36,
+      "n_content": 108,
+      "top5_loss": [
+        {
+          "pos": 99,
+          "token": "|",
+          "loss": 34.9506,
+          "type": "delimiter"
+        },
+        {
+          "pos": 48,
+          "token": "shipped",
+          "loss": 34.5946,
+          "type": "content"
+        },
+        {
+          "pos": 33,
+          "token": "|",
+          "loss": 33.7886,
+          "type": "delimiter"
+        },
+        {
+          "pos": 125,
+          "token": "|",
+          "loss": 33.7771,
+          "type": "delimiter"
+        },
+        {
+          "pos": 112,
+          "token": "|",
+          "loss": 32.4832,
+          "type": "delimiter"
+        }
+      ]
+    }
+  },
+  "head_specialization": {
+    "model_a": {
+      "n_delimiter_heads": 105,
+      "top10": [
+        {
+          "layer": 12,
+          "head": 0,
+          "score": 0.8531111046470081
+        },
+        {
+          "layer": 11,
+          "head": 12,
+          "score": 0.8491038655311031
+        },
+        {
+          "layer": 16,
+          "head": 5,
+          "score": 0.8475828503706613
+        },
+        {
+          "layer": 17,
+          "head": 7,
+          "score": 0.8451880384801022
+        },
+        {
+          "layer": 8,
+          "head": 7,
+          "score": 0.8276519128208064
+        },
+        {
+          "layer": 9,
+          "head": 0,
+          "score": 0.8098800292065552
+        },
+        {
+          "layer": 20,
+          "head": 15,
+          "score": 0.807103291584266
+        },
+        {
+          "layer": 10,
+          "head": 7,
+          "score": 0.7807048905196918
+        },
+        {
+          "layer": 10,
+          "head": 1,
+          "score": 0.7658360379104897
+        },
+        {
+          "layer": 1,
+          "head": 2,
+          "score": 0.7630515065697239
+        }
+      ],
+      "avg_delimiter_score": 0.3616326588575302
+    },
+    "model_b": {
+      "n_delimiter_heads": 23,
+      "top10": [
+        {
+          "layer": 20,
+          "head": 11,
+          "score": 0.7937339064838315
+        },
+        {
+          "layer": 18,
+          "head": 8,
+          "score": 0.7859901547198148
+        },
+        {
+          "layer": 21,
+          "head": 0,
+          "score": 0.742361770867373
+        },
+        {
+          "layer": 19,
+          "head": 13,
+          "score": 0.7095835258183174
+        },
+        {
+          "layer": 1,
+          "head": 7,
+          "score": 0.6743634757748301
+        },
+        {
+          "layer": 23,
+          "head": 8,
+          "score": 0.65032796730788
+        },
+        {
+          "layer": 16,
+          "head": 9,
+          "score": 0.6480078197779857
+        },
+        {
+          "layer": 1,
+          "head": 1,
+          "score": 0.6462535613501582
+        },
+        {
+          "layer": 20,
+          "head": 14,
+          "score": 0.6322142410530265
+        },
+        {
+          "layer": 18,
+          "head": 0,
+          "score": 0.6240830851240582
+        }
+      ],
+      "avg_delimiter_score": 0.2352920922815216
+    }
+  },
+  "corruption_detection": {
+    "model_a": {
+      "clean_ppl": 1019.4476685987717,
+      "corruptions": {
+        "wrong_delimiter": {
+          "ppl": 1217.5009154206923,
+          "spike_ratio": 1.1942750500318906
+        },
+        "missing_field": {
+          "ppl": 1084.598890362643,
+          "spike_ratio": 1.0639083532884248
+        },
+        "extra_pipe": {
+          "ppl": 826.8783333063237,
+          "spike_ratio": 0.811104246717113
+        },
+        "wrong_count": {
+          "ppl": 1420.861165243658,
+          "spike_ratio": 1.393755863110294
+        },
+        "broken_header": {
+          "ppl": 1042.1397735459725,
+          "spike_ratio": 1.022259215108502
+        }
+      }
+    },
+    "model_b": {
+      "clean_ppl": 11942.723554111908,
+      "corruptions": {
+        "wrong_delimiter": {
+          "ppl": 13006.563336843212,
+          "spike_ratio": 1.0890784901711152
+        },
+        "missing_field": {
+          "ppl": 11606.534083691125,
+          "spike_ratio": 0.9718498490819515
+        },
+        "extra_pipe": {
+          "ppl": 11401.305166854876,
+          "spike_ratio": 0.9546654174147219
+        },
+        "wrong_count": {
+          "ppl": 16397.83439937393,
+          "spike_ratio": 1.3730397697875303
+        },
+        "broken_header": {
+          "ppl": 10043.736783076316,
+          "spike_ratio": 0.8409921520471128
+        }
+      }
+    }
+  },
+  "embedding_space": {
+    "model_a": {
+      "n_delimiter_tokens": 22,
+      "delim_internal_sim": 0.1657896190881729,
+      "content_internal_sim": 0.002165875630453229,
+      "cross_sim": -0.007754420395940542,
+      "delim_avg_norm": 1.1497288942337036,
+      "content_avg_norm": 1.262473225593567,
+      "separation": 0.1735440343618393
+    },
+    "model_b": {
+      "n_delimiter_tokens": 1463,
+      "delim_internal_sim": 0.09767449647188187,
+      "content_internal_sim": 0.006190325599163771,
+      "cross_sim": -0.01758609525859356,
+      "delim_avg_norm": 1.3324334621429443,
+      "content_avg_norm": 1.3591598272323608,
+      "separation": 0.11526059359312057
+    }
+  },
+  "cross-format_transfer": {
+    "model_a": {
+      "gcf_ppl": 55000.16777075957,
+      "toon_ppl": 18091.42037323826,
+      "json_ppl": 1328210.758167344
+    },
+    "model_b": {
+      "gcf_ppl": 2844107.1218522945,
+      "toon_ppl": 41187.95845996085,
+      "json_ppl": 1802773.1111941664
+    }
+  },
+  "confidence_calibration": {
+    "model_a": {
+      "avg_delimiter_confidence": 0.08573152249840804,
+      "avg_content_confidence": 0.0010273638377356065,
+      "avg_correct_delimiter_conf": 0.21050939708948135,
+      "avg_correct_content_conf": 0,
+      "n_delimiter": 33,
+      "n_content": 62
+    },
+    "model_b": {
+      "avg_delimiter_confidence": 0.05794253509845846,
+      "avg_content_confidence": 0.0026715926272248237,
+      "avg_correct_delimiter_conf": 0.22292902568976083,
+      "avg_correct_content_conf": 0,
+      "n_delimiter": 27,
+      "n_content": 77
+    }
+  },
+  "few-shot_generation": {
+    "model_a": {
+      "valid": 0,
+      "total": 5,
+      "samples": [
+        {
+          "output": "[ ] category [ ] product \n \n 4 \n ( ) > [ product ] \n \n \n --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---",
+          "has_header": false,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "[ ] product { , , } \n \n 4 \n [ product ] \n \n \n --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --",
+          "has_header": true,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "[ ] product_id \n : \n : : \n : \n \n \n 2 \n 3 \n \n 3 \n 4 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n",
+          "has_header": false,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "[ ] product { , , } \n \n 5 \n [ ] \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n ",
+          "has_header": true,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "[ ] products 3 { , , , } \n \n users 3 \n { , , } \n { , } \n , \n , \n , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,",
+          "has_header": true,
+          "pipe_rows": 0,
+          "valid": false
+        }
+      ]
+    },
+    "model_b": {
+      "valid": 0,
+      "total": 5,
+      "samples": [
+        {
+          "output": "products14\n 14\n15\n\n\n:  name is\n  slug ()   =\n login\n:\n: = is\n slug  slug slug =\n slug is\n\n: is slug slug slug\n: slug slug:slug\n\n\n: slug slugslug\n\n: slug slug\n: slug slugslug\n\n: slug slug\n\n: slug slug\n",
+          "has_header": false,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "-\n 1 User\n \n\n--\n\n-\n\n\n\n\n\n\n-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+          "has_header": false,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "users4\n 4  ||||||||||||||||||||||||\n\n 4 ||||||||||||||||||\n 5||||||||||||||||||\n 4|||\n 5|\n\n _974Alice\n emailexamplecomexamplecom\n examplecom\n com\n \n\n\n: _\n name nameValue  noqa\n rules\n rules\n\n: \n rules",
+          "has_header": false,
+          "pipe_rows": 5,
+          "valid": false
+        },
+        {
+          "output": "\n products3\n4\n\n 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+          "has_header": false,
+          "pipe_rows": 0,
+          "valid": false
+        },
+        {
+          "output": "\nInput of\n |||||||||||||||||||||||||||||||\n\n 4\n\n 4\n 5 6\n 7\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+          "has_header": false,
+          "pipe_rows": 1,
+          "valid": false
+        }
+      ]
+    }
+  }
+}

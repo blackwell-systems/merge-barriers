@@ -1,0 +1,88 @@
+==========================================================================================
+CONNECTING ABLATION TO ORIGINAL PAPER NUMBERS
+==========================================================================================
+
+Device: cuda
+
+Loading Model A (merge barriers)...
+Loading Model B (standard BPE)...
+
+Identifying delimiter heads in Model A...
+  Excess threshold: 0.15, heads: 59 / 384
+Found 59 delimiter heads
+
+==========================================================================================
+EXPERIMENT 17: PER-TOKEN LOSS UNDER ABLATION
+==========================================================================================
+
+Question: does ablating delimiter heads spike delimiter prediction
+loss back to Model B levels?
+
+Original finding: Model A delimiter loss 6.1, Model B 14.8 (2.4x)
+
+Model A (baseline):
+  Delimiter loss: 5.5754
+  Content loss:   12.1017
+  Ratio:          0.4607x
+
+Model B (baseline):
+  Delimiter loss: 11.8507
+  Content loss:   13.4222
+  Ratio:          0.8829x
+
+Model A (delimiter heads ablated):
+  Delimiter loss: 5.3962
+  Content loss:   11.3609
+  Ratio:          0.4750x
+
+  Delimiter loss change: -3.2%
+  Content loss change:   -6.1%
+
+  Delimiter loss increased but didn't reach Model B levels
+  (5.4 vs Model B's 11.9)
+
+==========================================================================================
+EXPERIMENT 18: ATTENTION ENTROPY UNDER ABLATION
+==========================================================================================
+
+Question: does ablating delimiter heads increase attention entropy
+(more diffuse, like the grammar attention collapse)?
+
+Model A (baseline):
+  Avg entropy:          1.7497
+  Grammar attn share:   35.7%
+
+Model B (baseline):
+  Avg entropy:          1.6394
+  Grammar attn share:   20.9%
+
+Model A (delimiter heads ablated):
+  Avg entropy:          1.8486
+  Grammar attn share:   40.7%
+
+  Entropy change:        +5.7%
+  Grammar share change:  +14.1%
+
+  CONFIRMED: ablation increases entropy (more diffuse attention)
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+
+Per-token loss:
+  Model A baseline:  delim=5.6, content=12.1
+  Model A ablated:   delim=5.4, content=11.4
+  Model B:           delim=11.9, content=13.4
+  Ablation effect:   delimiter loss -3.2%, content loss -6.1%
+
+Attention entropy:
+  Model A baseline:  entropy=1.7497, grammar=35.7%
+  Model A ablated:   entropy=1.8486, grammar=40.7%
+  Model B:           entropy=1.6394, grammar=20.9%
+  Ablation effect:   entropy +5.7%, grammar share +14.1%
+
+Results saved to /root/run-003-connections-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/ablation-connections-results.json
+  Uploaded ablation-connections-log.txt

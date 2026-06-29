@@ -1,0 +1,56 @@
+==========================================================================================
+STRUCTURAL PATTERN TRANSFER TEST
+==========================================================================================
+
+Device: cuda
+
+Question: does transfer depend on the delimiter character or the structural pattern?
+
+Predictions:
+  If CHARACTER matters: tab formats (A,B,C) don't transfer. Pipe formats (D,E) transfer.
+  If PATTERN matters:   flat-separator formats (A,E) transfer. Others don't.
+
+Formats:
+  A_tab_gcf_layout: tab + flat separator (1191 chars)
+  B_tab_tsv_layout: tab + header+rows (1175 chars)
+  C_tab_wrapper: tab + wrapping (2315 chars)
+  D_pipe_wrapper: pipe + wrapping (2315 chars)
+  E_control_gcf: pipe + flat separator (1191 chars)
+
+Loading model...
+Identifying delimiter heads...
+Found 88 delimiter heads
+
+Format                   Char          Pattern   Baseline    Ablated    Delta  Transfers?
+----------------------------------------------------------------------------------------
+A_tab_gcf_layout          tab   flat separator    22067.4    33360.0   +51.2%         YES
+B_tab_tsv_layout          tab      header+rows    21223.0    28040.0   +32.1%         YES
+C_tab_wrapper             tab         wrapping     4139.6     9246.1  +123.4%         YES
+D_pipe_wrapper           pipe         wrapping    22558.3    10379.2   -54.0%          no
+E_control_gcf            pipe   flat separator     9838.7    15730.3   +59.9%         YES
+
+==========================================================================================
+ANALYSIS
+==========================================================================================
+
+Decisive test: A (tab+flat) vs B (tab+TSV)
+  A (tab, GCF layout):  +51.2%
+  B (tab, TSV layout):  +32.1%
+  RESULT: NEITHER. Both tab formats transfer. Something else is driving it.
+
+Confirmation test: D (pipe+wrapper) vs E (pipe+flat)
+  D (pipe, wrapper):   -54.0%
+  E (pipe, flat/GCF):  +59.9%
+  CONFIRMED: Pipe in flat layout transfers. Pipe in wrapper layout doesn't.
+  The heads learned 'flat field separator', not 'attend to pipe'.
+
+Full pattern matrix:
+  Flat separator: A=+51.2%, E=+59.9%
+  Header+rows:    B=+32.1%
+  Wrapping:       C=+123.4%, D=-54.0%
+
+Results saved to /root/logs/run-002-structural-pattern-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/structural-pattern-results.json
+  Uploaded structural-pattern-log.txt

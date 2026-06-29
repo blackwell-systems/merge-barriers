@@ -1,0 +1,270 @@
+{
+  "model_a": {
+    "tokenizer": "structok-64k",
+    "step": 20000,
+    "results": [
+      {
+        "records": 5,
+        "json_ppl": 103943.35953537744,
+        "gcf_ppl": 1899.4574254254576,
+        "json_acc": 0.016722408026755852,
+        "gcf_acc": 0.08928571428571429,
+        "json_tokens": 300,
+        "gcf_tokens": 113
+      },
+      {
+        "records": 10,
+        "json_ppl": 167400.72870426287,
+        "gcf_ppl": 2716.5444702505833,
+        "json_acc": 0.008417508417508417,
+        "gcf_acc": 0.039603960396039604,
+        "json_tokens": 595,
+        "gcf_tokens": 203
+      },
+      {
+        "records": 20,
+        "json_ppl": 290846.01269877405,
+        "gcf_ppl": 3951.67446729003,
+        "json_acc": 0.0042158516020236085,
+        "gcf_acc": 0.03125,
+        "json_tokens": 1187,
+        "gcf_tokens": 385
+      },
+      {
+        "records": 50,
+        "json_ppl": 405979.8006703547,
+        "gcf_ppl": 5856.119278389955,
+        "json_acc": 0.002442598925256473,
+        "gcf_acc": 0.017094017094017096,
+        "json_tokens": 2969,
+        "gcf_tokens": 937
+      },
+      {
+        "records": 100,
+        "json_ppl": 382561.1626108481,
+        "gcf_ppl": 9719.018771573257,
+        "json_acc": 0.0014655593551538837,
+        "gcf_acc": 0.008629989212513484,
+        "json_tokens": 5937,
+        "gcf_tokens": 1855
+      }
+    ]
+  },
+  "model_b": {
+    "tokenizer": "standard-64k",
+    "step": 20000,
+    "results": [
+      {
+        "records": 5,
+        "json_ppl": 37233.96756975258,
+        "gcf_ppl": 3641.5989871631987,
+        "json_acc": 0.022222222222222223,
+        "gcf_acc": 0.038461538461538464,
+        "json_tokens": 316,
+        "gcf_tokens": 131
+      },
+      {
+        "records": 10,
+        "json_ppl": 77914.22633251897,
+        "gcf_ppl": 4766.592911953152,
+        "json_acc": 0.009523809523809525,
+        "gcf_acc": 0.024793388429752067,
+        "json_tokens": 631,
+        "gcf_tokens": 243
+      },
+      {
+        "records": 20,
+        "json_ppl": 141646.892542617,
+        "gcf_ppl": 9809.689196572868,
+        "json_acc": 0.012688342585249802,
+        "gcf_acc": 0.016771488469601678,
+        "json_tokens": 1262,
+        "gcf_tokens": 478
+      },
+      {
+        "records": 50,
+        "json_ppl": 239817.91599355382,
+        "gcf_ppl": 21182.56433622462,
+        "json_acc": 0.008304836345872008,
+        "gcf_acc": 0.023457862728062554,
+        "json_tokens": 3157,
+        "gcf_tokens": 1152
+      },
+      {
+        "records": 100,
+        "json_ppl": 211066.9394358638,
+        "gcf_ppl": 33702.98223819622,
+        "json_acc": 0.009281875915974597,
+        "gcf_acc": 0.019052271617000488,
+        "json_tokens": 6312,
+        "gcf_tokens": 2288
+      }
+    ]
+  },
+  "extended_a": {
+    "graph_10sym": {
+      "label": "Graph (10 symbols, 8 edges)",
+      "gcf_ppl": 14094.867161673968,
+      "json_ppl": 288563.91713664256,
+      "gcf_acc": 0.014084507042253521,
+      "json_acc": 0.008658008658008658,
+      "gcf_tokens": 214,
+      "json_tokens": 694
+    },
+    "graph_20sym": {
+      "label": "Graph (20 symbols, 15 edges)",
+      "gcf_ppl": 18289.408070819296,
+      "json_ppl": 585709.7079863187,
+      "gcf_acc": 0.020512820512820513,
+      "json_acc": 0.0037230081906180195,
+      "gcf_tokens": 391,
+      "json_tokens": 1344
+    },
+    "schema_users": {
+      "label": "Tabular: users (20 records, 5 fields)",
+      "gcf_ppl": 13607.291824605836,
+      "json_ppl": 192523.31931988252,
+      "gcf_acc": 0.06596306068601583,
+      "json_acc": 0.004612546125461255,
+      "gcf_tokens": 380,
+      "json_tokens": 1085
+    },
+    "schema_logs": {
+      "label": "Tabular: logs (20 records, 5 fields)",
+      "gcf_ppl": 14422.183588494237,
+      "json_ppl": 449118.18543430226,
+      "gcf_acc": 0.03991596638655462,
+      "json_acc": 0.002457002457002457,
+      "gcf_tokens": 477,
+      "json_tokens": 1222
+    },
+    "schema_api_response": {
+      "label": "Tabular: API response (15 items, nested tags)",
+      "gcf_ppl": 1935.2637210167659,
+      "json_ppl": 176073.0578386648,
+      "gcf_acc": 0.08552631578947369,
+      "json_acc": 0.014450867052023121,
+      "gcf_tokens": 305,
+      "json_tokens": 1039
+    },
+    "natural_lang": {
+      "label": "Natural language (Wikipedia)",
+      "ppl": 1028.9607273286915,
+      "acc": 0.006493506493506494,
+      "tokens": 155
+    },
+    "code_python": {
+      "label": "Code (Python)",
+      "ppl": 542.7741617511082,
+      "acc": 0.05278592375366569,
+      "tokens": 342
+    },
+    "code_go": {
+      "label": "Code (Go)",
+      "ppl": 1403.4741942360006,
+      "acc": 0.06356968215158924,
+      "tokens": 410
+    },
+    "code_typescript": {
+      "label": "Code (TypeScript)",
+      "ppl": 729.402039692261,
+      "acc": 0.03626943005181347,
+      "tokens": 387
+    },
+    "yaml_users": {
+      "label": "YAML: users (10 records)",
+      "ppl": 5438.830379958679,
+      "acc": 0.013201320132013201,
+      "tokens": 304
+    },
+    "csv_users": {
+      "label": "CSV: users (10 records)",
+      "ppl": 2846.4920057069476,
+      "acc": 0.05235602094240838,
+      "tokens": 192
+    }
+  },
+  "extended_b": {
+    "graph_10sym": {
+      "label": "Graph (10 symbols, 8 edges)",
+      "gcf_ppl": 39558.3167184334,
+      "json_ppl": 183644.50008045862,
+      "gcf_acc": 0.004219409282700422,
+      "json_acc": 0.0027472527472527475,
+      "gcf_tokens": 238,
+      "json_tokens": 729
+    },
+    "graph_20sym": {
+      "label": "Graph (20 symbols, 15 edges)",
+      "gcf_ppl": 36313.771057422535,
+      "json_ppl": 369730.60977245576,
+      "gcf_acc": 0.0022727272727272726,
+      "json_acc": 0.002840909090909091,
+      "gcf_tokens": 441,
+      "json_tokens": 1409
+    },
+    "schema_users": {
+      "label": "Tabular: users (20 records, 5 fields)",
+      "gcf_ppl": 695921.7043718236,
+      "json_ppl": 485414.8341043577,
+      "gcf_acc": 0.027707808564231738,
+      "json_acc": 0.0009319664492078285,
+      "gcf_tokens": 398,
+      "json_tokens": 1074
+    },
+    "schema_logs": {
+      "label": "Tabular: logs (20 records, 5 fields)",
+      "gcf_ppl": 722296.8331669739,
+      "json_ppl": 461555.4349424312,
+      "gcf_acc": 0.010771992818671455,
+      "json_acc": 0.0007993605115907274,
+      "gcf_tokens": 558,
+      "json_tokens": 1252
+    },
+    "schema_api_response": {
+      "label": "Tabular: API response (15 items, nested tags)",
+      "gcf_ppl": 14074.691861829799,
+      "json_ppl": 109307.89922168941,
+      "gcf_acc": 0.040372670807453416,
+      "json_acc": 0.0037593984962406013,
+      "gcf_tokens": 323,
+      "json_tokens": 1065
+    },
+    "natural_lang": {
+      "label": "Natural language (Wikipedia)",
+      "ppl": 1032.8145966988704,
+      "acc": 0.0,
+      "tokens": 150
+    },
+    "code_python": {
+      "label": "Code (Python)",
+      "ppl": 2686.1929832399665,
+      "acc": 0.02056555269922879,
+      "tokens": 390
+    },
+    "code_go": {
+      "label": "Code (Go)",
+      "ppl": 4182.709827688309,
+      "acc": 0.06088992974238876,
+      "tokens": 428
+    },
+    "code_typescript": {
+      "label": "Code (TypeScript)",
+      "ppl": 2666.951730781116,
+      "acc": 0.018140589569160998,
+      "tokens": 442
+    },
+    "yaml_users": {
+      "label": "YAML: users (10 records)",
+      "ppl": 16871.519203408487,
+      "acc": 0.005208333333333333,
+      "tokens": 385
+    },
+    "csv_users": {
+      "label": "CSV: users (10 records)",
+      "ppl": 30615.5025760801,
+      "acc": 0.045,
+      "tokens": 201
+    }
+  }
+}

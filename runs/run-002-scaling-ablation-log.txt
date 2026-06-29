@@ -1,0 +1,77 @@
+==========================================================================================
+SCALING ABLATION: PAYLOAD SIZE vs CAUSAL EFFECT
+==========================================================================================
+
+Device: cuda
+Control seeds: 3
+Hypothesis: delimiter-random gap widens with scale
+
+Loading model...
+Loaded model from step 20000
+
+Identifying delimiter heads...
+Delimiter heads: 168 / 384
+
+Payload sizes: [10, 30, 50, 100, 200]
+Formats: ['gcf_generic', 'json', 'toon', 'nl']
+
+Token counts per size:
+    10 rows: GCF=  125  JSON=  405  TOON=  112
+    30 rows: GCF=  355  JSON= 1203  TOON=  330
+    50 rows: GCF=  597  JSON= 2013  TOON=  560
+   100 rows: GCF= 1227  JSON= 4063 (TRUNCATED)  TOON= 1160
+   200 rows: GCF= 2487 (TRUNCATED)  JSON= 8163 (TRUNCATED)  TOON= 2360
+
+ Size Format         Baseline  Delim abl   Delim Δ  Random Δ (mean)      Gap
+------------------------------------------------------------------------------
+   10 gcf_generic     19090.7    16500.6    -13.6%          -75.6%    +62.0pp
+   10 json          3147573.8     1382.9   -100.0%          -57.8%    -42.2pp
+   10 toon            14194.7     4012.5    -71.7%          +55.5%   -127.2pp
+   10 nl               1754.4     2686.4    +53.1%         +129.8%    -76.7pp
+
+   30 gcf_generic      9838.7     9149.2     -7.0%          +12.6%    -19.6pp
+   30 json          5506441.4     1755.7   -100.0%          -48.7%    -51.3pp
+   30 toon            21471.1     1982.2    -90.8%         +112.2%   -203.0pp
+   30 nl               1754.4     2686.4    +53.1%         +129.8%    -76.7pp
+
+   50 gcf_generic      9648.9     6245.3    -35.3%          +65.3%   -100.6pp
+   50 json          7488072.6     1898.8   -100.0%          -59.5%    -40.5pp
+   50 toon            22116.8     1506.1    -93.2%         +128.6%   -221.8pp
+   50 nl               1754.4     2686.4    +53.1%         +129.8%    -76.7pp
+
+  100 gcf_generic     11927.4     5390.8    -54.8%         +141.4%   -196.2pp
+  100 json          7811600.8     1918.0   -100.0%          -60.3%    -39.7pp
+  100 toon            28453.9     1173.3    -95.9%         +117.8%   -213.6pp
+  100 nl               1754.4     2686.4    +53.1%         +129.8%    -76.7pp
+
+  200 gcf_generic     18576.1     6961.6    -62.5%         +206.8%   -269.3pp
+  200 json          7811600.8     1918.0   -100.0%          -60.3%    -39.7pp
+  200 toon            46740.2     1364.9    -97.1%         +177.1%   -274.2pp
+  200 nl               1754.4     2686.4    +53.1%         +129.8%    -76.7pp
+
+==========================================================================================
+SCALING SUMMARY: Delimiter-Random gap by payload size
+==========================================================================================
+
+ Size    gcf_generic           json           toon             nl
+-----------------------------------------------------------------
+   10         +62.0pp         -42.2pp        -127.2pp         -76.7pp
+   30         -19.6pp         -51.3pp        -203.0pp         -76.7pp
+   50        -100.6pp         -40.5pp        -221.8pp         -76.7pp
+  100        -196.2pp         -39.7pp        -213.6pp         -76.7pp
+  200        -269.3pp         -39.7pp        -274.2pp         -76.7pp
+
+Scaling trend (GCF generic gap):
+    10 rows:   +62.0pp  +++++++++++++++++++++++++++++++
+    30 rows:   -19.6pp  ---------
+    50 rows:  -100.6pp  --------------------------------------------------
+   100 rows:  -196.2pp  --------------------------------------------------------------------------------------------------
+   200 rows:  -269.3pp  --------------------------------------------------------------------------------------------------------------------------------------
+
+  REVERSED: gap narrows from +62.0pp to -269.3pp
+
+Results saved to /root/logs/run-002-scaling-ablation-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/scaling-ablation-results.json
+  Uploaded scaling-ablation-log.txt

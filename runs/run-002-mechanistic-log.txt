@@ -1,0 +1,206 @@
+================================================================================
+MECHANISTIC ANALYSIS
+Device: cuda
+================================================================================
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+================================================================================
+1. PER-TOKEN LOSS HEATMAP
+================================================================================
+
+  structok-64k:
+    Avg delimiter loss: 6.1002 (n=47)
+    Avg content loss:   13.2783 (n=71)
+    Delimiter/content ratio: 0.46x
+    Top-5 highest loss:
+      pos  37: loss 20.9969 [content] 'Carla'
+      pos  96: loss 20.7750 [content] '47'
+      pos 118: loss 19.9405 [content] '47'
+      pos  15: loss 19.7050 [content] 'ORD-00001'
+      pos  25: loss 19.5920 [content] 'ORD-00002'
+
+  standard-64k:
+    Avg delimiter loss: 14.8057 (n=36)
+    Avg content loss:   14.7403 (n=108)
+    Delimiter/content ratio: 1.00x
+    Top-5 highest loss:
+      pos  99: loss 34.9506 [delimiter] '|'
+      pos  48: loss 34.5946 [content] 'shipped'
+      pos  33: loss 33.7886 [delimiter] '|'
+      pos 125: loss 33.7771 [delimiter] '|'
+      pos 112: loss 32.4832 [delimiter] '|'
+
+================================================================================
+2. HEAD SPECIALIZATION
+================================================================================
+
+  structok-64k:
+    Total heads: 384
+    Delimiter-majority heads (>50%): 105
+    Top-10 delimiter-focused heads:
+      Layer 12, Head  0: 85.3% attention to delimiters
+      Layer 11, Head 12: 84.9% attention to delimiters
+      Layer 16, Head  5: 84.8% attention to delimiters
+      Layer 17, Head  7: 84.5% attention to delimiters
+      Layer  8, Head  7: 82.8% attention to delimiters
+      Layer  9, Head  0: 81.0% attention to delimiters
+      Layer 20, Head 15: 80.7% attention to delimiters
+      Layer 10, Head  7: 78.1% attention to delimiters
+      Layer 10, Head  1: 76.6% attention to delimiters
+      Layer  1, Head  2: 76.3% attention to delimiters
+    Bottom-5 (least delimiter attention):
+      Layer  8, Head 10: 5.8%
+      Layer 10, Head 10: 5.8%
+      Layer 19, Head 13: 5.0%
+      Layer 21, Head  7: 2.8%
+      Layer  7, Head  5: 2.1%
+
+  standard-64k:
+    Total heads: 384
+    Delimiter-majority heads (>50%): 23
+    Top-10 delimiter-focused heads:
+      Layer 20, Head 11: 79.4% attention to delimiters
+      Layer 18, Head  8: 78.6% attention to delimiters
+      Layer 21, Head  0: 74.2% attention to delimiters
+      Layer 19, Head 13: 71.0% attention to delimiters
+      Layer  1, Head  7: 67.4% attention to delimiters
+      Layer 23, Head  8: 65.0% attention to delimiters
+      Layer 16, Head  9: 64.8% attention to delimiters
+      Layer  1, Head  1: 64.6% attention to delimiters
+      Layer 20, Head 14: 63.2% attention to delimiters
+      Layer 18, Head  0: 62.4% attention to delimiters
+    Bottom-5 (least delimiter attention):
+      Layer 19, Head 12: 3.8%
+      Layer  9, Head 10: 3.3%
+      Layer 23, Head  4: 2.7%
+      Layer 14, Head 12: 1.9%
+      Layer  2, Head  9: 1.7%
+
+================================================================================
+3. CORRUPTION DETECTION
+================================================================================
+
+  structok-64k:
+    Clean PPL: 1019.4
+    wrong_delimiter      PPL     1217.5 (spike: 1.19x) missed
+    missing_field        PPL     1084.6 (spike: 1.06x) missed
+    extra_pipe           PPL      826.9 (spike: 0.81x) missed
+    wrong_count          PPL     1420.9 (spike: 1.39x) missed
+    broken_header        PPL     1042.1 (spike: 1.02x) missed
+
+  standard-64k:
+    Clean PPL: 11942.7
+    wrong_delimiter      PPL    13006.6 (spike: 1.09x) missed
+    missing_field        PPL    11606.5 (spike: 0.97x) missed
+    extra_pipe           PPL    11401.3 (spike: 0.95x) missed
+    wrong_count          PPL    16397.8 (spike: 1.37x) missed
+    broken_header        PPL    10043.7 (spike: 0.84x) missed
+
+================================================================================
+4. EMBEDDING SPACE
+================================================================================
+
+  structok-64k:
+    Delimiter tokens: 22
+    Delimiter internal cosine sim: 0.1658
+    Content internal cosine sim:   0.0022
+    Cross-group cosine sim:        -0.0078
+    Delimiter avg embedding norm:  1.1497
+    Content avg embedding norm:    1.2625
+    Separation metric (internal - cross): 0.1735
+
+  standard-64k:
+    Delimiter tokens: 1463
+    Delimiter internal cosine sim: 0.0977
+    Content internal cosine sim:   0.0062
+    Cross-group cosine sim:        -0.0176
+    Delimiter avg embedding norm:  1.3324
+    Content avg embedding norm:    1.3592
+    Separation metric (internal - cross): 0.1153
+
+================================================================================
+5. CROSS-FORMAT TRANSFER
+================================================================================
+
+  structok-64k:
+    GCF PPL:     55000.2 (64 tokens)
+    TOON PPL:    18091.4 (57 tokens)
+    JSON PPL:  1328210.8 (202 tokens)
+
+  standard-64k:
+    GCF PPL:   2844107.1 (79 tokens)
+    TOON PPL:    41188.0 (73 tokens)
+    JSON PPL:  1802773.1 (209 tokens)
+
+================================================================================
+6. CONFIDENCE CALIBRATION
+================================================================================
+
+  structok-64k:
+    Avg delimiter confidence:  0.0857 (n=33)
+    Avg content confidence:    0.0010 (n=62)
+    Correct delimiter conf:    0.2105 (n=10)
+    Correct content conf:      0.0000 (n=0)
+
+  standard-64k:
+    Avg delimiter confidence:  0.0579 (n=27)
+    Avg content confidence:    0.0027 (n=77)
+    Correct delimiter conf:    0.2229 (n=6)
+    Correct content conf:      0.0000 (n=0)
+
+================================================================================
+7. FEW-SHOT GENERATION
+================================================================================
+
+  structok-64k:
+    [0] invalid: [ ] category [ ] product \n \n 4 \n ( ) > [ product ] \n \n \n --- --- --- --- --- ---
+    [1] invalid: [ ] product { , , } \n \n 4 \n [ product ] \n \n \n --- --- --- --- --- --- --- --- --
+    [2] invalid: [ ] product_id \n : \n : : \n : \n \n \n 2 \n 3 \n \n 3 \n 4 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n
+    [3] invalid: [ ] product { , , } \n \n 5 \n [ ] \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n 
+    [4] invalid: [ ] products 3 { , , , } \n \n users 3 \n { , , } \n { , } \n , \n , \n , , , , , , , ,
+    Valid: 0/5
+
+  standard-64k:
+    [0] invalid: products14\n 14\n15\n\n\n:  name is\n  slug ()   =\n login\n:\n: = is\n slug  slug slug =\n
+    [1] invalid: -\n 1 User\n \n\n--\n\n-\n\n\n\n\n\n\n-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+    [2] invalid: users4\n 4  ||||||||||||||||||||||||\n\n 4 ||||||||||||||||||\n 5||||||||||||||||||\n
+    [3] invalid: \n products3\n4\n\n 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+    [4] invalid: \nInput of\n |||||||||||||||||||||||||||||||\n\n 4\n\n 4\n 5 6\n 7\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+    Valid: 0/5
+
+================================================================================
+MECHANISTIC ANALYSIS SUMMARY
+================================================================================
+
+  Per-token loss:
+    structok-64k: delimiter 6.1002, content 13.2783
+    standard-64k: delimiter 14.8057, content 14.7403
+
+  Head specialization:
+    structok-64k: 105 delimiter-majority heads, avg score 0.362
+    standard-64k: 23 delimiter-majority heads, avg score 0.235
+
+  Corruption detection:
+    structok-64k: 0/5 corruptions detected (>1.5x spike)
+    standard-64k: 0/5 corruptions detected
+
+  Embedding space separation:
+    structok-64k: 0.1735
+    standard-64k: 0.1153
+
+  Cross-format transfer (TOON PPL):
+    structok-64k: 18091.4
+    standard-64k: 41188.0
+
+  Delimiter confidence:
+    structok-64k: 0.0857
+    standard-64k: 0.0579
+
+  Few-shot generation:
+    structok-64k: 0/5 valid
+    standard-64k: 0/5 valid
+
+  Results written to /workspace/run-002-mechanistic-results.json
+
+Done.

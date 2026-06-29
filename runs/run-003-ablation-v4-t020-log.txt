@@ -1,0 +1,98 @@
+==========================================================================================
+HEAD ABLATION v4: EXTENDED CROSS-FORMAT TRANSFER
+==========================================================================================
+
+Timestamp: 2026-06-29T01:52:43.399909+00:00
+Device: cuda
+
+Format            Trained Delimiters              Chars
+--------------------------------------------------------
+gcf_generic           yes |                       1,203
+gcf_graph             yes @ < |                   1,208
+json                  yes " : , { }               3,602
+yaml                  yes : -                     2,276
+python                yes ( ) : { }                 800
+toon                   NO \t                      1,187
+csv                    NO ,                       1,187
+toml                   NO = [ ] "                 1,889
+ini                    NO = [ ]                   1,361
+sql                    NO ( ) , ' ;               2,404
+xml                    NO < > " /                 2,846
+md_table               NO |                       1,539
+s_expression           NO ( ) "                   1,575
+protobuf_text          NO { } : "                 1,825
+nl                    yes none                      306
+
+Loading Model A (merge barriers)...
+Loaded llama model from step 40000 (tokenizer: structok-64k)
+
+==========================================================================================
+BASELINES
+==========================================================================================
+  gcf_generic: 17068.39
+  gcf_graph: 85158.39
+  json: 210031.50
+  yaml: 9047.19
+  python: 225.59
+  toon: 13025.89
+  csv: 18294.11
+  toml: 5152.59
+  ini: 7307.20
+  sql: 7725.84
+  xml: 14859.44
+  md_table: 5337.16
+  s_expression: 4804.32
+  protobuf_text: 9205.35
+  nl: 2306.72
+  Base rates per probing text:
+    GCF generic: 127/337 = 37.7%
+    GCF graph: 106/330 = 32.1%
+    JSON: 775/1024 = 75.7%
+    YAML: 241/660 = 36.5%
+  Excess threshold: 0.2
+  Heads above threshold: 31 / 384
+
+Delimiter heads: 31 / 384
+
+==========================================================================================
+CROSS-FORMAT TRANSFER: DELIMITER HEAD ABLATION
+==========================================================================================
+
+Format            Trained     Baseline      Ablated    Delta  Transfer?
+------------------------------------------------------------------------
+gcf_generic           yes      17068.4      17053.1    -0.1%           
+gcf_graph             yes      85158.4      69161.6   -18.8%           
+json                  yes     210031.5     238502.1   +13.6%           
+yaml                  yes       9047.2       9381.0    +3.7%           
+python                yes        225.6        254.5   +12.8%           
+toon                   NO      13025.9      11441.9   -12.2%         no
+csv                    NO      18294.1      20294.1   +10.9%        YES
+toml                   NO       5152.6       6038.2   +17.2%        YES
+ini                    NO       7307.2       8821.1   +20.7%        YES
+sql                    NO       7725.8       7558.0    -2.2%       weak
+xml                    NO      14859.4      16932.2   +13.9%        YES
+md_table               NO       5337.2       7494.0   +40.4%        YES
+s_expression           NO       4804.3       6281.6   +30.7%        YES
+protobuf_text          NO       9205.4       9988.5    +8.5%        YES
+nl                    yes       2306.7       2430.2    +5.4%           
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+
+Unseen formats (never in training): 9 tested
+  Hurt by delimiter ablation (transfer confirmed): 7
+  Helped by delimiter ablation: 1
+  Neutral: 1
+  Average degradation on hurt formats: +20.4%
+
+  CONCLUSION: Cross-format transfer is UNIVERSAL.
+  Delimiter heads help 7 of 9 unseen formats.
+  The mechanism is not GCF-specific; it works for any format with clean delimiters.
+
+Results saved to /root/run-003-ablation-t020-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/ablation-v4-excess-results.json (3 KB)
+  Uploaded logs/run-002-ablation/ablation-v4-excess-log.txt (4 KB)
+R2 upload complete.

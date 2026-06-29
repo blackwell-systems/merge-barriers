@@ -1,0 +1,102 @@
+==========================================================================================
+LLAMA ABLATION EXPERIMENTS (Run-003 Stage 1)
+==========================================================================================
+Device: cuda
+GPU: NVIDIA RTX 6000 Ada Generation
+
+Loading model...
+Loaded Llama model from step 40000
+
+Identifying delimiter heads (threshold 0.15)...
+  Excess threshold: 0.15
+  Heads above threshold: 66 / 384
+Found 66 delimiter heads
+
+==========================================================================================
+EXPERIMENT 1: LAYER-WISE ABLATION
+==========================================================================================
+
+Group                 Heads  GCF delta JSON delta YAML delta   NL delta
+----------------------------------------------------------------------
+early (0-7)              25     -41.0%     +31.1%      -3.1%      +4.8%
+middle (8-15)            25     +20.1%      -3.2%     +11.0%      +3.6%
+late (16-23)             16      +6.4%      +7.2%      +7.8%      +1.2%
+
+==========================================================================================
+EXPERIMENT 2: SUFFICIENCY SCALING
+==========================================================================================
+
+ Size   Baseline   Delim only  Delim delta Random delta  Sufficient?
+---------------------------------------------------------------------------
+   30    13447.9      10615.2       -21.1%       -43.2%           NO
+   50    16287.8      11048.6       -32.2%       -53.0%           NO
+  100    34124.0      11733.1       -65.6%       -78.6%           NO
+  200    58618.8      13319.2       -77.3%       -86.4%           NO
+
+==========================================================================================
+EXPERIMENT 3: SINGLE-HEAD IMPORTANCE RANKING
+==========================================================================================
+Baseline GCF PPL: 16287.8
+
+36 of 66 heads hurt GCF when removed
+30 of 66 heads help GCF when removed
+Top 5 account for 36% of total degradation
+
+Top 10 most important heads:
+  L19H9 (excess 0.159): +4.14%
+  L15H1 (excess 0.211): +3.97%
+  L11H14 (excess 0.162): +3.93%
+  L21H2 (excess 0.191): +2.89%
+  L3H2 (excess 0.239): +2.39%
+  L6H1 (excess 0.230): +2.15%
+  L15H2 (excess 0.176): +2.07%
+  L3H11 (excess 0.166): +2.03%
+  L11H1 (excess 0.215): +1.87%
+  L1H13 (excess 0.231): +1.77%
+
+==========================================================================================
+EXPERIMENT 4: ATTENTION PATTERN ANALYSIS
+==========================================================================================
+
+gcf_generic (512 tokens: 181 delimiter, 331 content)
+Head             d->d     d->c     c->d     c->c
+------------------------------------------------
+L8H15 (0.37)     0.786    0.214    0.856    0.144
+L6H3 (0.36)     0.750    0.250    0.700    0.300
+L6H2 (0.36)     0.774    0.226    0.731    0.269
+L6H0 (0.34)     0.825    0.175    0.647    0.353
+L17H7 (0.34)     0.719    0.281    0.782    0.218
+
+json (512 tokens: 390 delimiter, 122 content)
+Head             d->d     d->c     c->d     c->c
+------------------------------------------------
+L8H15 (0.37)     0.918    0.082    0.971    0.029
+L6H3 (0.36)     0.922    0.078    0.975    0.025
+L6H2 (0.36)     0.891    0.109    0.977    0.023
+L6H0 (0.34)     0.987    0.013    0.992    0.008
+L17H7 (0.34)     0.980    0.020    0.985    0.015
+
+==========================================================================================
+EXPERIMENT 5: EMERGENCE TIMING
+==========================================================================================
+Checkpoints found: [40000]
+
+Step 40000:
+Loaded Llama model from step 40000
+  Excess threshold: 0.15
+  Heads above threshold: 66 / 384
+  Heads: 66, Concentration: 14.8%
+
+
+Results saved to /root/run-003-llama-ablation-results.json
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+Delimiter heads: 66
+Layer-wise: late layers GCF delta = 6.4%
+Sufficiency 30 rows: delim -21.1% vs random -43.2% -> NO
+Sufficiency 50 rows: delim -32.2% vs random -53.0% -> NO
+Sufficiency 100 rows: delim -65.6% vs random -78.6% -> NO
+Sufficiency 200 rows: delim -77.3% vs random -86.4% -> NO
+Head ranking: top 5 = 35.8% of effect

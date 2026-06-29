@@ -1,0 +1,363 @@
+{
+  "metadata": {
+    "experiment": "head_transplant_v2",
+    "timestamp_utc": "2026-06-27T20:12:22.055112+00:00",
+    "device": "cuda",
+    "torch_version": "2.4.0",
+    "gpu_name": "NVIDIA GeForce RTX 3090"
+  },
+  "delimiter_heads_a": 167,
+  "delimiter_heads_b": 11,
+  "baseline_a": {
+    "gcf_generic": 15195.7461,
+    "json": 7488072.58,
+    "toon": 22116.8474,
+    "csv": 13490.8674,
+    "nl": 1754.4228
+  },
+  "baseline_b": {
+    "gcf_generic": 3322522.4637,
+    "json": 46951576.9541,
+    "toon": 113940.549,
+    "csv": 144443.0808,
+    "nl": 1331.9972
+  },
+  "results": {
+    "exp1_forward_delimiter": [
+      {
+        "gcf_generic_ppl": 1949629.25,
+        "gcf_generic_delta": -41.3,
+        "json_ppl": 18975256.87,
+        "json_delta": -59.6,
+        "toon_ppl": 135154.75,
+        "toon_delta": 18.6,
+        "csv_ppl": 140198.86,
+        "csv_delta": -2.9,
+        "nl_ppl": 1346.36,
+        "nl_delta": 1.1,
+        "n_heads": 5,
+        "type": "delimiter"
+      },
+      {
+        "gcf_generic_ppl": 948091.54,
+        "gcf_generic_delta": -71.5,
+        "json_ppl": 12813625.21,
+        "json_delta": -72.7,
+        "toon_ppl": 128288.84,
+        "toon_delta": 12.6,
+        "csv_ppl": 100720.18,
+        "csv_delta": -30.3,
+        "nl_ppl": 1422.36,
+        "nl_delta": 6.8,
+        "n_heads": 10,
+        "type": "delimiter"
+      },
+      {
+        "gcf_generic_ppl": 625385.81,
+        "gcf_generic_delta": -81.2,
+        "json_ppl": 6401542.97,
+        "json_delta": -86.4,
+        "toon_ppl": 76879.76,
+        "toon_delta": -32.5,
+        "csv_ppl": 58729.19,
+        "csv_delta": -59.3,
+        "nl_ppl": 1489.16,
+        "nl_delta": 11.8,
+        "n_heads": 20,
+        "type": "delimiter"
+      }
+    ],
+    "exp2_random_control": [
+      {
+        "gcf_generic_ppl": 2407256.75,
+        "gcf_generic_delta": -27.5,
+        "json_ppl": 5747040.05,
+        "json_delta": -87.8,
+        "toon_ppl": 32422.3,
+        "toon_delta": -71.5,
+        "csv_ppl": 36445.43,
+        "csv_delta": -74.8,
+        "nl_ppl": 1353.23,
+        "nl_delta": 1.6,
+        "n_heads": 5,
+        "type": "random"
+      },
+      {
+        "gcf_generic_ppl": 2699691.13,
+        "gcf_generic_delta": -18.7,
+        "json_ppl": 5765730.67,
+        "json_delta": -87.7,
+        "toon_ppl": 38629.9,
+        "toon_delta": -66.1,
+        "csv_ppl": 30846.03,
+        "csv_delta": -78.6,
+        "nl_ppl": 1343.11,
+        "nl_delta": 0.8,
+        "n_heads": 10,
+        "type": "random"
+      },
+      {
+        "gcf_generic_ppl": 1011334.91,
+        "gcf_generic_delta": -69.6,
+        "json_ppl": 383309.29,
+        "json_delta": -99.2,
+        "toon_ppl": 15262.67,
+        "toon_delta": -86.6,
+        "csv_ppl": 6828.03,
+        "csv_delta": -95.3,
+        "nl_ppl": 1350.43,
+        "nl_delta": 1.4,
+        "n_heads": 20,
+        "type": "random"
+      }
+    ],
+    "exp3_reverse": [
+      {
+        "gcf_generic_ppl": 13394.61,
+        "gcf_generic_delta": -11.9,
+        "json_ppl": 1676284.78,
+        "json_delta": -77.6,
+        "toon_ppl": 9092.84,
+        "toon_delta": -58.9,
+        "csv_ppl": 7847.98,
+        "csv_delta": -41.8,
+        "nl_ppl": 1874.34,
+        "nl_delta": 6.8,
+        "n_heads": 5
+      },
+      {
+        "gcf_generic_ppl": 10145.54,
+        "gcf_generic_delta": -33.2,
+        "json_ppl": 176658.37,
+        "json_delta": -97.6,
+        "toon_ppl": 3209.35,
+        "toon_delta": -85.5,
+        "csv_ppl": 2084.17,
+        "csv_delta": -84.6,
+        "nl_ppl": 1858.88,
+        "nl_delta": 6.0,
+        "n_heads": 10
+      },
+      {
+        "gcf_generic_ppl": 8611.61,
+        "gcf_generic_delta": -43.3,
+        "json_ppl": 102792.85,
+        "json_delta": -98.6,
+        "toon_ppl": 2879.26,
+        "toon_delta": -87.0,
+        "csv_ppl": 2009.73,
+        "csv_delta": -85.1,
+        "nl_ppl": 1891.65,
+        "nl_delta": 7.8,
+        "n_heads": 20
+      }
+    ],
+    "exp4_cross_position": [
+      {
+        "gcf_generic_ppl": 213400.2,
+        "gcf_generic_delta": -93.6,
+        "json_ppl": 803912.71,
+        "json_delta": -98.3,
+        "toon_ppl": 13367.87,
+        "toon_delta": -88.3,
+        "csv_ppl": 17795.11,
+        "csv_delta": -87.7,
+        "nl_ppl": 1498.86,
+        "nl_delta": 12.5,
+        "n_heads": 20,
+        "type": "cross_position"
+      },
+      {
+        "gcf_generic_ppl": 625385.81,
+        "gcf_generic_delta": -81.2,
+        "json_ppl": 6401542.97,
+        "json_delta": -86.4,
+        "toon_ppl": 76879.76,
+        "toon_delta": -32.5,
+        "csv_ppl": 58729.19,
+        "csv_delta": -59.3,
+        "nl_ppl": 1489.16,
+        "nl_delta": 11.8,
+        "n_heads": 20,
+        "type": "correct_position"
+      }
+    ],
+    "exp5_random_subsets": [
+      {
+        "gcf_generic_ppl": 2016768.81,
+        "gcf_generic_delta": -39.3,
+        "json_ppl": 16363813.18,
+        "json_delta": -65.1,
+        "toon_ppl": 97109.65,
+        "toon_delta": -14.8,
+        "csv_ppl": 107412.22,
+        "csv_delta": -25.6,
+        "nl_ppl": 1335.37,
+        "nl_delta": 0.3,
+        "seed": 0,
+        "heads": [
+          {
+            "layer": 20,
+            "head": 9
+          },
+          {
+            "layer": 9,
+            "head": 13
+          },
+          {
+            "layer": 15,
+            "head": 15
+          },
+          {
+            "layer": 23,
+            "head": 4
+          },
+          {
+            "layer": 14,
+            "head": 2
+          }
+        ]
+      },
+      {
+        "gcf_generic_ppl": 3266461.73,
+        "gcf_generic_delta": -1.7,
+        "json_ppl": 44600621.44,
+        "json_delta": -5.0,
+        "toon_ppl": 124952.45,
+        "toon_delta": 9.7,
+        "csv_ppl": 140417.07,
+        "csv_delta": -2.8,
+        "nl_ppl": 1339.5,
+        "nl_delta": 0.6,
+        "seed": 1,
+        "heads": [
+          {
+            "layer": 10,
+            "head": 11
+          },
+          {
+            "layer": 7,
+            "head": 13
+          },
+          {
+            "layer": 19,
+            "head": 0
+          },
+          {
+            "layer": 13,
+            "head": 5
+          },
+          {
+            "layer": 21,
+            "head": 6
+          }
+        ]
+      },
+      {
+        "gcf_generic_ppl": 2248743.34,
+        "gcf_generic_delta": -32.3,
+        "json_ppl": 22129948.17,
+        "json_delta": -52.9,
+        "toon_ppl": 113868.65,
+        "toon_delta": -0.1,
+        "csv_ppl": 136690.64,
+        "csv_delta": -5.4,
+        "nl_ppl": 1366.39,
+        "nl_delta": 2.6,
+        "seed": 2,
+        "heads": [
+          {
+            "layer": 19,
+            "head": 1
+          },
+          {
+            "layer": 23,
+            "head": 5
+          },
+          {
+            "layer": 16,
+            "head": 6
+          },
+          {
+            "layer": 23,
+            "head": 2
+          },
+          {
+            "layer": 13,
+            "head": 1
+          }
+        ]
+      },
+      {
+        "gcf_generic_ppl": 1053808.14,
+        "gcf_generic_delta": -68.3,
+        "json_ppl": 43290813.48,
+        "json_delta": -7.8,
+        "toon_ppl": 105126.72,
+        "toon_delta": -7.7,
+        "csv_ppl": 125817.21,
+        "csv_delta": -12.9,
+        "nl_ppl": 1248.36,
+        "nl_delta": -6.3,
+        "seed": 3,
+        "heads": [
+          {
+            "layer": 9,
+            "head": 11
+          },
+          {
+            "layer": 8,
+            "head": 5
+          },
+          {
+            "layer": 1,
+            "head": 5
+          },
+          {
+            "layer": 2,
+            "head": 14
+          },
+          {
+            "layer": 17,
+            "head": 6
+          }
+        ]
+      },
+      {
+        "gcf_generic_ppl": 971764.78,
+        "gcf_generic_delta": -70.8,
+        "json_ppl": 20311573.87,
+        "json_delta": -56.7,
+        "toon_ppl": 86351.51,
+        "toon_delta": -24.2,
+        "csv_ppl": 76991.32,
+        "csv_delta": -46.7,
+        "nl_ppl": 1359.84,
+        "nl_delta": 2.1,
+        "seed": 4,
+        "heads": [
+          {
+            "layer": 9,
+            "head": 11
+          },
+          {
+            "layer": 21,
+            "head": 10
+          },
+          {
+            "layer": 20,
+            "head": 3
+          },
+          {
+            "layer": 9,
+            "head": 0
+          },
+          {
+            "layer": 6,
+            "head": 7
+          }
+        ]
+      }
+    ]
+  }
+}

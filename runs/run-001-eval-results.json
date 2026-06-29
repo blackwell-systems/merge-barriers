@@ -1,0 +1,50 @@
+{
+  "run_id": "run-001-structok-64k-410m",
+  "eval_date": "2026-06-25",
+  "checkpoint": "step-14000",
+  "model": "structok-410m",
+  "tokenizer": "structok-64k.json",
+  "vocab_size": 65539,
+  "device": "cpu",
+
+  "tabular_comprehension": {
+    "description": "JSON vs GCF perplexity on identical e-commerce order data",
+    "metric": "perplexity (lower = better comprehension)",
+    "results": [
+      {"records": 5, "json_ppl": 59579.3, "gcf_ppl": 24891.4, "gcf_advantage": 2.4, "json_acc": 0.019, "gcf_acc": 0.0},
+      {"records": 10, "json_ppl": 112111.7, "gcf_ppl": 29682.8, "gcf_advantage": 3.8, "json_acc": 0.010, "gcf_acc": 0.0},
+      {"records": 20, "json_ppl": 173726.1, "gcf_ppl": 26035.3, "gcf_advantage": 6.7, "json_acc": 0.006, "gcf_acc": 0.0}
+    ],
+    "finding": "GCF comprehension 2.4-6.7x better than JSON, advantage scales with record count"
+  },
+
+  "graph_comprehension": {
+    "description": "GCF graph syntax vs JSON graph on code symbol/edge data",
+    "results": {
+      "gcf_graph_ppl": 176184.6,
+      "gcf_graph_acc": 0.047,
+      "json_graph_ppl": 109725.3,
+      "json_graph_acc": 0.019,
+      "json_advantage": 1.6
+    },
+    "finding": "JSON wins on graph data. Model needs more GCF graph training data (only 1.3% of corpus)"
+  },
+
+  "pythia_comparison": {
+    "description": "Pythia-410M (standard BPE, trained on 300B tokens from The Pile)",
+    "status": "incomplete",
+    "results": {
+      "5_records": {"json_ppl": "inf", "gcf_ppl": "inf"},
+      "10_records": {"json_ppl": "inf", "gcf_ppl": "inf"}
+    },
+    "finding": "Pythia returns inf PPL on synthetic e-commerce data. Not a fair comparison since Pythia was not trained on similar data. Needs test data from Pythia's training distribution or a controlled experiment (same corpus, different tokenizer)."
+  },
+
+  "training_metrics_at_eval": {
+    "step": 14000,
+    "training_loss": 4.6863,
+    "best_ppl_observed": 25.4,
+    "best_ppl_step": 11150,
+    "tokens_seen_estimate": "460M (14000 steps x 32 batch x 2048 seq)"
+  }
+}

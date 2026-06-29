@@ -1,0 +1,102 @@
+==========================================================================================
+HEAD TRANSPLANT v2: COMPREHENSIVE CONTROLS
+==========================================================================================
+
+Device: cuda
+
+Loading models...
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+Model A delimiter heads: 167
+Model B delimiter heads: 11
+
+==========================================================================================
+BASELINES
+==========================================================================================
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  Model A baseline                             15196   7488073     22117     13491      1754
+  Model B baseline                           3322522  46951577    113941    144443      1332
+
+==========================================================================================
+EXP 1: Forward transplant (A's delimiter heads -> B)
+==========================================================================================
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  Top 5 delimiter heads A->B                  -41.3%    -59.6%    +18.6%     -2.9%     +1.1%
+  Top 10 delimiter heads A->B                 -71.5%    -72.7%    +12.6%    -30.3%     +6.8%
+  Top 20 delimiter heads A->B                 -81.2%    -86.4%    -32.5%    -59.3%    +11.8%
+
+==========================================================================================
+EXP 2: Random head transplant (A's non-delimiter heads -> B)
+==========================================================================================
+CRITICAL CONTROL: if random heads also improve B, the effect
+is not delimiter-specific.
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  Random 5 non-delimiter A->B                 -27.5%    -87.8%    -71.5%    -74.8%     +1.6%
+  Random 10 non-delimiter A->B                -18.7%    -87.7%    -66.1%    -78.6%     +0.8%
+  Random 20 non-delimiter A->B                -69.6%    -99.2%    -86.6%    -95.3%     +1.4%
+
+==========================================================================================
+EXP 3: Reverse transplant (B's heads -> A)
+==========================================================================================
+Directionality control: does putting B's heads into A hurt?
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  B's heads -> A top 5 positions              -11.9%    -77.6%    -58.9%    -41.8%     +6.8%
+  B's heads -> A top 10 positions             -33.2%    -97.6%    -85.5%    -84.6%     +6.0%
+  B's heads -> A top 20 positions             -43.3%    -98.6%    -87.0%    -85.1%     +7.8%
+
+==========================================================================================
+EXP 4: Cross-position transplant (A's delimiter heads -> wrong positions in B)
+==========================================================================================
+Tests whether knowledge is position-dependent or weight-portable.
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  Top 20 delimiter, shifted positions         -93.6%    -98.3%    -88.3%    -87.7%    +12.5%
+  Top 20 delimiter, correct positions         -81.2%    -86.4%    -32.5%    -59.3%    +11.8%
+
+==========================================================================================
+EXP 5: Random subsets of 5 delimiter heads (5 seeds)
+==========================================================================================
+Tests whether all delimiter heads contribute or only the top ones.
+
+                                         gcf_generic      json      toon       csv        nl
+------------------------------------------------------------------------------------------
+  Random 5 delimiter (seed 0)                 -39.3%    -65.1%    -14.8%    -25.6%     +0.3%
+  Random 5 delimiter (seed 1)                  -1.7%     -5.0%     +9.7%     -2.8%     +0.6%
+  Random 5 delimiter (seed 2)                 -32.3%    -52.9%     -0.1%     -5.4%     +2.6%
+  Random 5 delimiter (seed 3)                 -68.3%     -7.8%     -7.7%    -12.9%     -6.3%
+  Random 5 delimiter (seed 4)                 -70.8%    -56.7%    -24.2%    -46.7%     +2.1%
+  gcf_generic: mean -42.5%, std 25.5%
+  json: mean -37.5%, std 25.7%
+  toon: mean -7.4%, std 11.7%
+  csv: mean -18.7%, std 16.1%
+  nl: mean -0.1%, std 3.2%
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+
+At 20 heads transplanted (A -> B):
+                                       GCF      JSON      TOON       CSV        NL
+  Delimiter heads                   -81.2%    -86.4%    -32.5%    -59.3%    +11.8%
+  Random non-delimiter heads        -69.6%    -99.2%    -86.6%    -95.3%     +1.4%
+
+  DELIMITER-SPECIFIC: delimiter heads improve GCF -81.2% vs random -69.6%
+  NOT DIRECTIONAL: B's heads also help A (-43.3% GCF)
+  POSITION-INDEPENDENT: correct -81.2%, shifted -93.6%
+  CROSS-FORMAT TRANSFER via transplant: TOON -32.5%, CSV -59.3%
+
+Results saved to /root/logs/run-002-transplant-v2-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/transplant-v2-results.json
+  Uploaded transplant-v2-log.txt

@@ -1,0 +1,9 @@
+{
+  "model": "NousResearch/Meta-Llama-3.1-8B",
+  "total_heads": 1024,
+  "top_10_avg_excess": 0.7545,
+  "mean_excess": 0.4882,
+  "concentration_ratio": 0.1491,
+  "above_25_pct": 91.5,
+  "comprehension_gcf": 65.4
+}

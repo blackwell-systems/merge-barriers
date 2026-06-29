@@ -1,0 +1,203 @@
+=== EMERGENCE EXPERIMENT: TRAIN + PROBE + CLEANUP ===
+Training 5K steps, checkpoint every 500
+Each checkpoint: probe for delimiter heads, upload to R2, delete local copy
+
+============================================================
+structok model training
+  Size: 410m (1024h 24L 16H)
+  Device: cuda:0 (single)
+  Tokenizer: /root/structok-64k.json
+  Data: /root/data/
+  Steps: 5000
+  Batch size: 8 per GPU (8 effective)
+  Checkpoint every: 500 steps
+============================================================
+
+Tokenizer vocab: 65,539
+Creating model from scratch...
+Parameters: 436,535,296 (436.5M)
+  Gradient checkpointing: enabled
+  Mixed precision: fp16
+Loading pre-tokenized data from /root/data/tokens.bin...
+  1,258,728,671 tokens memory-mapped from binary
+  1,258,728,671 tokens -> 614,613 sequences of 2048
+
+Training from step 0 to 5000...
+
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+  step     50/5000 | loss 7.7714 | ppl 2371.8 | 1.8 steps/s | eta 45m
+  step    100/5000 | loss 6.9561 | ppl 1049.5 | 1.8 steps/s | eta 44m
+  step    150/5000 | loss 6.6853 | ppl 800.6 | 1.9 steps/s | eta 44m
+  step    200/5000 | loss 6.4221 | ppl 615.3 | 1.9 steps/s | eta 43m
+  step    250/5000 | loss 6.1962 | ppl 490.9 | 1.9 steps/s | eta 43m
+  step    300/5000 | loss 6.0492 | ppl 423.8 | 1.9 steps/s | eta 42m
+  step    350/5000 | loss 5.9417 | ppl 380.6 | 1.9 steps/s | eta 42m
+  step    400/5000 | loss 5.8269 | ppl 339.3 | 1.9 steps/s | eta 41m
+  step    450/5000 | loss 5.7652 | ppl 319.0 | 1.9 steps/s | eta 41m
+  step    500/5000 | loss 5.6608 | ppl 287.4 | 1.9 steps/s | eta 40m
+  Checkpoint saved: /root/checkpoints/step-500
+  Background upload started for step-500
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+  step    550/5000 | loss 5.5539 | ppl 258.2 | 1.8 steps/s | eta 40m
+  step    600/5000 | loss 5.5864 | ppl 266.8 | 1.8 steps/s | eta 40m
+  step    650/5000 | loss 5.6352 | ppl 280.1 | 1.8 steps/s | eta 39m
+  step    700/5000 | loss 5.3833 | ppl 217.8 | 1.8 steps/s | eta 39m
+  step    750/5000 | loss 5.4790 | ppl 239.6 | 1.8 steps/s | eta 38m
+  step    800/5000 | loss 5.3842 | ppl 217.9 | 1.8 steps/s | eta 38m
+  step    850/5000 | loss 5.1916 | ppl 179.7 | 1.8 steps/s | eta 38m
+  step    900/5000 | loss 5.3788 | ppl 216.8 | 1.8 steps/s | eta 37m
+  step    950/5000 | loss 5.3651 | ppl 213.8 | 1.8 steps/s | eta 37m
+  step   1000/5000 | loss 5.3440 | ppl 209.4 | 1.8 steps/s | eta 36m
+  Checkpoint saved: /root/checkpoints/step-1000
+  Background upload started for step-1000
+  step   1050/5000 | loss 5.2285 | ppl 186.5 | 1.8 steps/s | eta 36m
+  step   1100/5000 | loss 5.1999 | ppl 181.2 | 1.8 steps/s | eta 35m
+  step   1150/5000 | loss 5.3898 | ppl 219.2 | 1.8 steps/s | eta 35m
+  step   1200/5000 | loss 5.0506 | ppl 156.1 | 1.8 steps/s | eta 34m
+  step   1250/5000 | loss 5.2128 | ppl 183.6 | 1.8 steps/s | eta 34m
+  step   1300/5000 | loss 5.1636 | ppl 174.8 | 1.8 steps/s | eta 34m
+  step   1350/5000 | loss 5.0502 | ppl 156.0 | 1.8 steps/s | eta 33m
+  step   1400/5000 | loss 5.1060 | ppl 165.0 | 1.8 steps/s | eta 33m
+  step   1450/5000 | loss 5.1140 | ppl 166.3 | 1.8 steps/s | eta 32m
+  step   1500/5000 | loss 5.2229 | ppl 185.5 | 1.8 steps/s | eta 32m
+  Checkpoint saved: /root/checkpoints/step-1500
+  Background upload started for step-1500
+  step   1550/5000 | loss 5.0663 | ppl 158.6 | 1.8 steps/s | eta 31m
+  step   1600/5000 | loss 5.1234 | ppl 167.9 | 1.8 steps/s | eta 31m
+  step   1650/5000 | loss 5.0866 | ppl 161.8 | 1.8 steps/s | eta 30m
+  step   1700/5000 | loss 4.8299 | ppl 125.2 | 1.8 steps/s | eta 30m
+  step   1750/5000 | loss 4.9195 | ppl 136.9 | 1.8 steps/s | eta 30m
+  step   1800/5000 | loss 4.8465 | ppl 127.3 | 1.8 steps/s | eta 29m
+  step   1850/5000 | loss 4.7601 | ppl 116.8 | 1.8 steps/s | eta 29m
+  step   1900/5000 | loss 5.0221 | ppl 151.7 | 1.8 steps/s | eta 28m
+  step   1950/5000 | loss 4.8184 | ppl 123.8 | 1.8 steps/s | eta 28m
+  step   2000/5000 | loss 4.8562 | ppl 128.5 | 1.8 steps/s | eta 27m
+  Checkpoint saved: /root/checkpoints/step-2000
+  Background upload started for step-2000
+  step   2050/5000 | loss 4.9504 | ppl 141.2 | 1.8 steps/s | eta 27m
+  step   2100/5000 | loss 5.0123 | ppl 150.2 | 1.8 steps/s | eta 26m
+  step   2150/5000 | loss 4.8904 | ppl 133.0 | 1.8 steps/s | eta 26m
+  step   2200/5000 | loss 4.8771 | ppl 131.3 | 1.8 steps/s | eta 25m
+  step   2250/5000 | loss 4.7332 | ppl 113.7 | 1.8 steps/s | eta 25m
+  step   2300/5000 | loss 4.8301 | ppl 125.2 | 1.8 steps/s | eta 25m
+  step   2350/5000 | loss 4.7376 | ppl 114.2 | 1.8 steps/s | eta 24m
+  step   2400/5000 | loss 4.7234 | ppl 112.6 | 1.8 steps/s | eta 24m
+  step   2450/5000 | loss 4.7562 | ppl 116.3 | 1.8 steps/s | eta 23m
+  step   2500/5000 | loss 4.6996 | ppl 109.9 | 1.8 steps/s | eta 23m
+  Checkpoint saved: /root/checkpoints/step-2500
+  Background upload started for step-2500
+  step   2550/5000 | loss 4.5758 | ppl 97.1 | 1.8 steps/s | eta 22m
+  step   2600/5000 | loss 4.8838 | ppl 132.1 | 1.8 steps/s | eta 22m
+  step   2650/5000 | loss 4.7012 | ppl 110.1 | 1.8 steps/s | eta 21m
+  step   2700/5000 | loss 4.6150 | ppl 101.0 | 1.8 steps/s | eta 21m
+  step   2750/5000 | loss 4.6837 | ppl 108.2 | 1.8 steps/s | eta 20m
+  step   2800/5000 | loss 4.5194 | ppl 91.8 | 1.8 steps/s | eta 20m
+  step   2850/5000 | loss 4.6050 | ppl 100.0 | 1.8 steps/s | eta 20m
+  step   2900/5000 | loss 4.7410 | ppl 114.5 | 1.8 steps/s | eta 19m
+  step   2950/5000 | loss 4.9015 | ppl 134.5 | 1.8 steps/s | eta 19m
+  step   3000/5000 | loss 4.6777 | ppl 107.5 | 1.8 steps/s | eta 18m
+  Checkpoint saved: /root/checkpoints/step-3000
+  Background upload started for step-3000
+  step   3050/5000 | loss 4.5894 | ppl 98.4 | 1.8 steps/s | eta 18m
+  step   3100/5000 | loss 4.6283 | ppl 102.3 | 1.8 steps/s | eta 17m
+  step   3150/5000 | loss 4.6507 | ppl 104.7 | 1.8 steps/s | eta 17m
+  step   3200/5000 | loss 4.6225 | ppl 101.7 | 1.8 steps/s | eta 16m
+  step   3250/5000 | loss 4.8056 | ppl 122.2 | 1.8 steps/s | eta 16m
+  step   3300/5000 | loss 4.7201 | ppl 112.2 | 1.8 steps/s | eta 15m
+  step   3350/5000 | loss 4.6316 | ppl 102.7 | 1.8 steps/s | eta 15m
+  step   3400/5000 | loss 4.7173 | ppl 111.9 | 1.8 steps/s | eta 15m
+  step   3450/5000 | loss 4.3008 | ppl 73.8 | 1.8 steps/s | eta 14m
+  step   3500/5000 | loss 4.6104 | ppl 100.5 | 1.8 steps/s | eta 14m
+  Checkpoint saved: /root/checkpoints/step-3500
+  Background upload started for step-3500
+  step   3550/5000 | loss 4.4838 | ppl 88.6 | 1.8 steps/s | eta 13m
+  step   3600/5000 | loss 4.7597 | ppl 116.7 | 1.8 steps/s | eta 13m
+  step   3650/5000 | loss 4.4967 | ppl 89.7 | 1.8 steps/s | eta 12m
+  step   3700/5000 | loss 4.4730 | ppl 87.6 | 1.8 steps/s | eta 12m
+  step   3750/5000 | loss 4.5632 | ppl 95.9 | 1.8 steps/s | eta 11m
+  step   3800/5000 | loss 4.5065 | ppl 90.6 | 1.8 steps/s | eta 11m
+  step   3850/5000 | loss 4.6558 | ppl 105.2 | 1.8 steps/s | eta 10m
+  step   3900/5000 | loss 4.4798 | ppl 88.2 | 1.8 steps/s | eta 10m
+  step   3950/5000 | loss 4.6136 | ppl 100.8 | 1.8 steps/s | eta 10m
+  step   4000/5000 | loss 4.5137 | ppl 91.3 | 1.8 steps/s | eta 9m
+  Checkpoint saved: /root/checkpoints/step-4000
+  Background upload started for step-4000
+  step   4050/5000 | loss 4.2794 | ppl 72.2 | 1.8 steps/s | eta 9m
+  step   4100/5000 | loss 4.4790 | ppl 88.1 | 1.8 steps/s | eta 8m
+  step   4150/5000 | loss 4.5170 | ppl 91.6 | 1.8 steps/s | eta 8m
+  step   4200/5000 | loss 4.2279 | ppl 68.6 | 1.8 steps/s | eta 7m
+  step   4250/5000 | loss 4.5117 | ppl 91.1 | 1.8 steps/s | eta 7m
+  step   4300/5000 | loss 4.2372 | ppl 69.2 | 1.8 steps/s | eta 6m
+  step   4350/5000 | loss 4.3794 | ppl 79.8 | 1.8 steps/s | eta 6m
+  step   4400/5000 | loss 4.2496 | ppl 70.1 | 1.8 steps/s | eta 5m
+  step   4450/5000 | loss 4.4713 | ppl 87.5 | 1.8 steps/s | eta 5m
+  step   4500/5000 | loss 4.5377 | ppl 93.5 | 1.8 steps/s | eta 5m
+  Checkpoint saved: /root/checkpoints/step-4500
+  Background upload started for step-4500
+  step   4550/5000 | loss 4.4592 | ppl 86.4 | 1.8 steps/s | eta 4m
+  step   4600/5000 | loss 4.4219 | ppl 83.3 | 1.8 steps/s | eta 4m
+  step   4650/5000 | loss 4.5649 | ppl 96.1 | 1.8 steps/s | eta 3m
+  step   4700/5000 | loss 4.1498 | ppl 63.4 | 1.8 steps/s | eta 3m
+  step   4750/5000 | loss 4.5599 | ppl 95.6 | 1.8 steps/s | eta 2m
+  step   4800/5000 | loss 4.2034 | ppl 66.9 | 1.8 steps/s | eta 2m
+  step   4850/5000 | loss 4.5378 | ppl 93.5 | 1.8 steps/s | eta 1m
+  step   4900/5000 | loss 4.3066 | ppl 74.2 | 1.8 steps/s | eta 1m
+  step   4950/5000 | loss 4.2119 | ppl 67.5 | 1.8 steps/s | eta 0m
+  step   5000/5000 | loss 4.1470 | ppl 63.2 | 1.8 steps/s | eta 0m
+  Checkpoint saved: /root/checkpoints/step-5000
+  Background upload started for step-5000
+  Checkpoint saved: /root/checkpoints/step-5000
+  Background upload started for step-5000
+
+Training complete: 5000 steps in 45.5 minutes
+Final loss: 4.7093
+Checkpoints in: /root/checkpoints/
+
+=== TRAINING COMPLETE, PROBING CHECKPOINTS ===
+
+==========================================================================================
+DELIMITER HEAD EMERGENCE TIMING
+==========================================================================================
+
+Device: cuda
+Found 4 checkpoints
+
+  Step     Loss  Delim heads  Top-10 exc  Concen     Std  Late (16-23)
+------------------------------------------------------------------------
+  3500   3.4963           70      0.5022  50.2%  0.2061            21
+  4000   3.2653           60      0.4763  54.4%  0.1990            17
+  4500   4.4513           66      0.4834  53.4%  0.2024            20
+  5000   4.7093           61      0.4740  54.1%  0.1965            16
+
+==========================================================================================
+EMERGENCE ANALYSIS
+==========================================================================================
+
+Largest head count jump: +6 heads at step 4500
+GRADUAL: heads increased from 70 to 61 over 1500 steps
+  (~-3.0 heads per 500 steps)
+
+First significant specialization (>5 heads): step 3500
+
+Timeline:
+  Step  3500:  70 heads  ███████████████████████████████████
+  Step  4000:  60 heads  ██████████████████████████████
+  Step  4500:  66 heads  █████████████████████████████████
+  Step  5000:  61 heads  ██████████████████████████████
+
+Results saved to /root/logs/run-002-emergence-results.json
+
+Uploading to R2...
+  Uploaded logs/run-002-ablation/emergence-results.json
+  Uploaded emergence-log.txt
+
+Cleaning up local checkpoints...
+  Removing /root/checkpoints/step-3500/
+  Removing /root/checkpoints/step-4000/
+  Removing /root/checkpoints/step-4500/
+  Removing /root/checkpoints/step-5000/
+Done. Disk freed.
+overlay          30G  5.0G   26G  17% /

@@ -1,0 +1,321 @@
+{
+  "metadata": {
+    "experiment": "remaining_ablation_combined",
+    "description": "Three remaining ablation experiments: embedding space (#19), adversarial robustness (#21), sufficiency scaling (#22)",
+    "timestamp_utc": "2026-06-29T05:37:01.212511+00:00",
+    "device": "cuda",
+    "platform": "Linux-5.15.0-181-generic-x86_64-with-glibc2.35",
+    "python_version": "3.11.9",
+    "torch_version": "2.4.0",
+    "cuda_version": "12.4",
+    "gpu_name": "NVIDIA RTX 6000 Ada Generation",
+    "gpu_memory_mb": 48508
+  },
+  "delimiter_heads_count": 89,
+  "embedding_space": {
+    "experiment": "embedding_space_ablation",
+    "baseline": {
+      "delimiter_cohesion": 0.1762,
+      "content_cohesion": 0.1352,
+      "ratio": 1.3031,
+      "n_delimiter_tokens": 1128,
+      "n_content_tokens": 967
+    },
+    "ablated": {
+      "delimiter_cohesion": 0.1994,
+      "content_cohesion": 0.1419,
+      "ratio": 1.4056
+    },
+    "random_control": {
+      "ratios": [
+        1.5459,
+        1.1542,
+        1.2236
+      ],
+      "mean_ratio": 1.3079
+    },
+    "changes": {
+      "delimiter_cohesion_pct": 13.2,
+      "content_cohesion_pct": 4.9,
+      "ratio_change_pct": 7.9
+    },
+    "conclusion": "NULL RESULT: embedding structure is a whole-model property, not head-controlled"
+  },
+  "adversarial_robustness": {
+    "experiment": "adversarial_robustness_ablation",
+    "model_a_baseline": {
+      "clean": 16287.84,
+      "wrong_delimiters": 25837.6,
+      "missing_fields": 20900.59,
+      "wrong_header": 17031.07,
+      "swapped_values": 10214.51
+    },
+    "model_a_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": 58.6,
+      "missing_fields": 28.3,
+      "wrong_header": 4.6,
+      "swapped_values": -37.3
+    },
+    "model_b_baseline": {
+      "clean": 152085.78,
+      "wrong_delimiters": 32530.31,
+      "missing_fields": 1092942.43,
+      "wrong_header": 902715.66,
+      "swapped_values": 198186.85
+    },
+    "model_b_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": -78.6,
+      "missing_fields": 618.6,
+      "wrong_header": 493.6,
+      "swapped_values": 30.3
+    },
+    "model_a_ablated": {
+      "clean": 10973.86,
+      "wrong_delimiters": 47802.59,
+      "missing_fields": 16500.96,
+      "wrong_header": 12906.82,
+      "swapped_values": 9485.75
+    },
+    "model_a_ablated_detection_pct": {
+      "clean": 0.0,
+      "wrong_delimiters": 335.6,
+      "missing_fields": 50.4,
+      "wrong_header": 17.6,
+      "swapped_values": -13.6
+    },
+    "summary": {
+      "a_avg_detection": 32.2,
+      "b_avg_detection": 305.3,
+      "a_ablated_avg_detection": 104.3
+    },
+    "conclusion": "NO DETECTION ADVANTAGE: both models respond similarly to corruption"
+  },
+  "sufficiency_scaling": {
+    "experiment": "sufficiency_scaling",
+    "delimiter_heads": 89,
+    "total_heads": 384,
+    "sizes_tested": [
+      30,
+      50,
+      100,
+      200
+    ],
+    "results": [
+      {
+        "size": 30,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 13447.85,
+            "delim_only_ppl": 8495.99,
+            "delim_only_delta_pct": -36.8,
+            "random_only_delta_mean_pct": -58.2,
+            "random_only_deltas": [
+              -64.4,
+              -27.7,
+              -82.6
+            ],
+            "sufficient": "NO"
+          },
+          "json": {
+            "baseline_ppl": 210031.5,
+            "delim_only_ppl": 201.2,
+            "delim_only_delta_pct": -99.9,
+            "random_only_delta_mean_pct": -99.8,
+            "random_only_deltas": [
+              -99.8,
+              -99.8,
+              -99.9
+            ],
+            "sufficient": "YES"
+          },
+          "yaml": {
+            "baseline_ppl": 9047.19,
+            "delim_only_ppl": 1686.85,
+            "delim_only_delta_pct": -81.4,
+            "random_only_delta_mean_pct": -78.4,
+            "random_only_deltas": [
+              -80.3,
+              -63.2,
+              -91.7
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 2306.72,
+            "delim_only_ppl": 15074.56,
+            "delim_only_delta_pct": 553.5,
+            "random_only_delta_mean_pct": 1682.3,
+            "random_only_deltas": [
+              537.0,
+              4372.9,
+              137.0
+            ],
+            "sufficient": "YES"
+          }
+        }
+      },
+      {
+        "size": 50,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 16287.84,
+            "delim_only_ppl": 8887.26,
+            "delim_only_delta_pct": -45.4,
+            "random_only_delta_mean_pct": -65.2,
+            "random_only_deltas": [
+              -71.1,
+              -38.6,
+              -85.9
+            ],
+            "sufficient": "NO"
+          },
+          "json": {
+            "baseline_ppl": 230558.09,
+            "delim_only_ppl": 209.51,
+            "delim_only_delta_pct": -99.9,
+            "random_only_delta_mean_pct": -99.9,
+            "random_only_deltas": [
+              -99.9,
+              -99.8,
+              -99.9
+            ],
+            "sufficient": "YES"
+          },
+          "yaml": {
+            "baseline_ppl": 14973.89,
+            "delim_only_ppl": 1752.06,
+            "delim_only_delta_pct": -88.3,
+            "random_only_delta_mean_pct": -86.8,
+            "random_only_deltas": [
+              -87.8,
+              -77.9,
+              -94.8
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 2306.72,
+            "delim_only_ppl": 15074.56,
+            "delim_only_delta_pct": 553.5,
+            "random_only_delta_mean_pct": 1682.3,
+            "random_only_deltas": [
+              537.0,
+              4372.9,
+              137.0
+            ],
+            "sufficient": "YES"
+          }
+        }
+      },
+      {
+        "size": 100,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 34123.95,
+            "delim_only_ppl": 9608.71,
+            "delim_only_delta_pct": -71.8,
+            "random_only_delta_mean_pct": -83.7,
+            "random_only_deltas": [
+              -86.4,
+              -71.6,
+              -93.2
+            ],
+            "sufficient": "NO"
+          },
+          "json": {
+            "baseline_ppl": 236014.63,
+            "delim_only_ppl": 210.5,
+            "delim_only_delta_pct": -99.9,
+            "random_only_delta_mean_pct": -99.9,
+            "random_only_deltas": [
+              -99.9,
+              -99.8,
+              -99.9
+            ],
+            "sufficient": "YES"
+          },
+          "yaml": {
+            "baseline_ppl": 23125.14,
+            "delim_only_ppl": 1839.0,
+            "delim_only_delta_pct": -92.0,
+            "random_only_delta_mean_pct": -91.3,
+            "random_only_deltas": [
+              -91.9,
+              -85.5,
+              -96.5
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 2306.72,
+            "delim_only_ppl": 15074.56,
+            "delim_only_delta_pct": 553.5,
+            "random_only_delta_mean_pct": 1682.3,
+            "random_only_deltas": [
+              537.0,
+              4372.9,
+              137.0
+            ],
+            "sufficient": "YES"
+          }
+        }
+      },
+      {
+        "size": 200,
+        "formats": {
+          "gcf_generic": {
+            "baseline_ppl": 58618.78,
+            "delim_only_ppl": 10855.64,
+            "delim_only_delta_pct": -81.5,
+            "random_only_delta_mean_pct": -89.3,
+            "random_only_deltas": [
+              -90.8,
+              -82.3,
+              -94.9
+            ],
+            "sufficient": "NO"
+          },
+          "json": {
+            "baseline_ppl": 236014.63,
+            "delim_only_ppl": 210.5,
+            "delim_only_delta_pct": -99.9,
+            "random_only_delta_mean_pct": -99.9,
+            "random_only_deltas": [
+              -99.9,
+              -99.8,
+              -99.9
+            ],
+            "sufficient": "YES"
+          },
+          "yaml": {
+            "baseline_ppl": 23125.14,
+            "delim_only_ppl": 1839.0,
+            "delim_only_delta_pct": -92.0,
+            "random_only_delta_mean_pct": -91.3,
+            "random_only_deltas": [
+              -91.9,
+              -85.5,
+              -96.5
+            ],
+            "sufficient": "YES"
+          },
+          "nl": {
+            "baseline_ppl": 2306.72,
+            "delim_only_ppl": 15074.56,
+            "delim_only_delta_pct": 553.5,
+            "random_only_delta_mean_pct": 1682.3,
+            "random_only_deltas": [
+              537.0,
+              4372.9,
+              137.0
+            ],
+            "sufficient": "YES"
+          }
+        }
+      }
+    ],
+    "conclusion": "SUFFICIENCY BREAKS: at larger payloads, other heads become necessary"
+  }
+}

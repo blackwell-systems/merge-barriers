@@ -1,0 +1,126 @@
+==========================================================================================
+HEAD ABLATION EXPERIMENT v2
+==========================================================================================
+
+Timestamp: 2026-06-27T19:01:27.177958+00:00
+Device: cuda
+GPU: NVIDIA GeForce RTX 3090 (24126 MB)
+PyTorch: 2.4.0, CUDA: 12.1
+Ablating model: a
+Control seeds: 5
+Delimiter threshold: 0.5
+
+Test data:
+  gcf_generic: 2 texts, 3,150 chars
+  gcf_graph: 2 texts, 3,059 chars
+  json: 2 texts, 9,636 chars
+  yaml: 1 texts, 2,796 chars
+  code: 1 texts, 1,464 chars
+  nl: 3 texts, 1,568 chars
+
+Loading Model A (merge barriers)...
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loading Model B (standard BPE)...
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+==========================================================================================
+PHASE 1: Identify delimiter-specialized heads
+==========================================================================================
+
+Delimiter-majority heads (>50%): 40 / 384
+  Layer 20, Head 15: 77.6%
+  Layer 19, Head 15: 75.5%
+  Layer 20, Head  4: 71.5%
+  Layer 21, Head 13: 69.9%
+  Layer 17, Head  1: 69.7%
+  Layer 10, Head  5: 67.6%
+  Layer 12, Head  0: 66.7%
+  Layer 15, Head 15: 66.0%
+  Layer 11, Head 12: 65.1%
+  Layer 21, Head  0: 64.7%
+
+==========================================================================================
+PHASE 2: Baselines
+==========================================================================================
+
+Model A (merge barriers):
+  gcf_generic: 9719.20
+  gcf_graph: 46663.34
+  json: 5784278.93
+  yaml: 11327.90
+  code: 602.80
+  nl: 2027.19
+
+Model B (standard BPE):
+  gcf_generic: 447663.82
+  gcf_graph: 504157.68
+  json: 25188322.23
+  yaml: 58950.39
+  code: 2971.95
+  nl: 1375.32
+
+==========================================================================================
+PHASE 3: Progressive delimiter head ablation
+==========================================================================================
+
+ Heads  gcf_generic    gcf_graph         json         yaml         code           nl
+------------------------------------------------------------------------------------
+     0     9719.2      46663.3    5784278.9      11327.9        602.8       2027.2  
+     4    12052.2      51972.7    6041146.6      11058.0        594.2       2030.4  
+     8    11688.7      49086.9    5362474.4      12137.9        583.4       2030.0  
+    12    11373.4      46229.6    4940190.5      12390.7        537.9       2037.8  
+    16    10640.5      40617.6    4133044.3      12314.9        531.7       2051.1  
+    20    10300.1      35419.3    4011412.3      12980.7        528.3       2056.4  
+    24    10839.8      36064.7    3788646.2      13689.7        522.9       2104.5  
+    28    11893.1      36219.0    3725907.0      13328.1        521.6       2128.6  
+    32    14810.7      37732.8    3554226.5      13215.0        513.9       2144.2  
+    36    15706.8      38261.2    3622186.5      13450.5        511.6       2147.4  
+    40    15428.5      37467.8    3643597.5      13215.8        514.4       2113.2  
+
+==========================================================================================
+PHASE 4: Control ablation (5 random seeds)
+==========================================================================================
+
+  Seed 0:
+       0 heads:  gcf_generic=9719(+0%)  gcf_graph=46663(+0%)  json=5784279(+0%)  yaml=11328(+0%)  code=603(+0%)  nl=2027(+0%)
+      20 heads:  gcf_generic=6510(-33%)  gcf_graph=20554(-56%)  json=4281645(-26%)  yaml=7378(-35%)  code=636(+6%)  nl=2078(+3%)
+      40 heads:  gcf_generic=2006(-79%)  gcf_graph=10505(-77%)  json=738354(-87%)  yaml=634(-94%)  code=595(-1%)  nl=2077(+2%)
+
+  Seed 1:
+       0 heads:  gcf_generic=9719(+0%)  gcf_graph=46663(+0%)  json=5784279(+0%)  yaml=11328(+0%)  code=603(+0%)  nl=2027(+0%)
+      20 heads:  gcf_generic=9869(+2%)  gcf_graph=49052(+5%)  json=2172523(-62%)  yaml=9841(-13%)  code=561(-7%)  nl=2080(+3%)
+      40 heads:  gcf_generic=8718(-10%)  gcf_graph=39695(-15%)  json=1195963(-79%)  yaml=5258(-54%)  code=529(-12%)  nl=2070(+2%)
+
+  Seed 2:
+       0 heads:  gcf_generic=9719(+0%)  gcf_graph=46663(+0%)  json=5784279(+0%)  yaml=11328(+0%)  code=603(+0%)  nl=2027(+0%)
+      20 heads:  gcf_generic=6866(-29%)  gcf_graph=34237(-27%)  json=1624486(-72%)  yaml=4506(-60%)  code=549(-9%)  nl=2053(+1%)
+      40 heads:  gcf_generic=3249(-67%)  gcf_graph=21166(-55%)  json=187288(-97%)  yaml=461(-96%)  code=420(-30%)  nl=2061(+2%)
+
+  Seed 3:
+       0 heads:  gcf_generic=9719(+0%)  gcf_graph=46663(+0%)  json=5784279(+0%)  yaml=11328(+0%)  code=603(+0%)  nl=2027(+0%)
+      20 heads:  gcf_generic=7625(-22%)  gcf_graph=25180(-46%)  json=2687736(-54%)  yaml=11217(-1%)  code=611(+1%)  nl=2102(+4%)
+      40 heads:  gcf_generic=7294(-25%)  gcf_graph=16988(-64%)  json=1824595(-68%)  yaml=12636(+12%)  code=604(+0%)  nl=2124(+5%)
+
+  Seed 4:
+       0 heads:  gcf_generic=9719(+0%)  gcf_graph=46663(+0%)  json=5784279(+0%)  yaml=11328(+0%)  code=603(+0%)  nl=2027(+0%)
+      20 heads:  gcf_generic=8836(-9%)  gcf_graph=35105(-25%)  json=4103645(-29%)  yaml=7211(-36%)  code=596(-1%)  nl=2048(+1%)
+      40 heads:  gcf_generic=9936(+2%)  gcf_graph=38879(-17%)  json=3377986(-42%)  yaml=5078(-55%)  code=640(+6%)  nl=2093(+3%)
+
+==========================================================================================
+SUMMARY: Delimiter ablation vs Control (all heads ablated)
+==========================================================================================
+
+Format           Baseline  Delim abl  Delim Δ   Ctrl mean   Ctrl Δ Ctrl std
+------------------------------------------------------------------------------
+gcf_generic        9719.2    15428.5   +58.7%      6240.6   -35.8%   3091.2
+gcf_graph         46663.3    37467.8   -19.7%     25446.7   -45.5%  11803.1
+json            5784278.9  3643597.5   -37.0%   1464837.3   -74.7% 1097430.5
+yaml              11327.9    13215.8   +16.7%      4813.5   -57.5%   4424.0
+code                602.8      514.4   -14.7%       557.7    -7.5%     77.6
+nl                 2027.2     2113.2    +4.2%      2085.2    +2.9%     22.0
+
+If delimiter Δ is WORSE than control Δ on GCF but SIMILAR on JSON/NL,
+the delimiter heads are specifically important for GCF comprehension.
+If both are similar, the heads aren't special.
+
+Results saved to /root/logs/run-002-ablation-results.json

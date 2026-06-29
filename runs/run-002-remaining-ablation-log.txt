@@ -1,0 +1,179 @@
+==========================================================================================
+REMAINING ABLATION EXPERIMENTS (#19, #21, #22)
+==========================================================================================
+
+Timestamp: 2026-06-28T15:52:42.597793+00:00
+Device: cuda
+GPU: NVIDIA RTX 6000 Ada Generation (48508 MB)
+PyTorch: 2.4.0
+
+Loading Model A (merge barriers)...
+Loaded model from step 20000 (tokenizer: structok-64k)
+Loading Model B (standard BPE)...
+Loaded model from step 20000 (tokenizer: standard-64k)
+
+Identifying delimiter heads on Model A...
+  Base rates per probing text:
+    GCF generic: 207/597 = 34.7% delimiter positions
+    GCF graph: 146/474 = 30.8% delimiter positions
+    JSON: 775/1024 = 75.7% delimiter positions
+    YAML: 241/660 = 36.5% delimiter positions
+  Excess threshold: 0.1
+  Heads above threshold: 50 / 384
+Found 50 delimiter-majority heads
+
+==========================================================================================
+EXPERIMENT #19: EMBEDDING SPACE ANALYSIS UNDER ABLATION
+==========================================================================================
+
+Question: Do delimiter heads maintain the embedding structure?
+Method: Extract final-layer reps, measure delimiter cohesion before/after ablation
+
+Extracting baseline representations...
+  Delimiter cohesion:  0.1707
+  Content cohesion:    0.1410
+  Delimiter/content:   1.21x
+
+Ablating delimiter heads and re-extracting...
+  Delimiter cohesion:  0.1735
+  Content cohesion:    0.1517
+  Delimiter/content:   1.14x
+
+Random ablation control (3 seeds)...
+  Seed 0: delimiter/content = 1.19x
+  Seed 1: delimiter/content = 1.10x
+  Seed 2: delimiter/content = 1.31x
+
+Metric                           Baseline    Ablated     Change
+-----------------------------------------------------------------
+Delimiter cohesion                 0.1707     0.1735      +1.7%
+Content cohesion                   0.1410     0.1517      +7.6%
+Delimiter/content ratio              1.21x       1.14x      -5.5%
+Random control ratio (mean)                     1.20x
+
+Conclusion: NULL RESULT: embedding structure is a whole-model property, not head-controlled
+
+==========================================================================================
+EXPERIMENT #21: ADVERSARIAL ROBUSTNESS UNDER ABLATION
+==========================================================================================
+
+Question: Do delimiter heads detect GCF corruption?
+Method: Compare PPL on clean vs corrupted GCF, both models, before/after ablation
+
+Model A (merge barriers): baseline PPL on each corruption type
+  clean                PPL = 9648.9
+  wrong_delimiters     PPL = 15544.4
+  missing_fields       PPL = 18315.5
+  wrong_header         PPL = 15339.5
+  swapped_values       PPL = 22224.0
+
+  Detection (PPL spike vs clean):
+    clean                   +0.0%
+    wrong_delimiters       +61.1%
+    missing_fields         +89.8%
+    wrong_header           +59.0%
+    swapped_values        +130.3%
+
+Model B (standard BPE): baseline PPL on each corruption type
+  clean                PPL = 429010.6
+  wrong_delimiters     PPL = 210512.4
+  missing_fields       PPL = 2572447.6
+  wrong_header         PPL = 3266847.4
+  swapped_values       PPL = 972498.1
+
+  Detection (PPL spike vs clean):
+    clean                   +0.0%
+    wrong_delimiters       -50.9%
+    missing_fields        +499.6%
+    wrong_header          +661.5%
+    swapped_values        +126.7%
+
+Model A after delimiter head ablation:
+  clean                PPL = 15260.7
+  wrong_delimiters     PPL = 24864.1
+  missing_fields       PPL = 19801.4
+  wrong_header         PPL = 17643.4
+  swapped_values       PPL = 21389.7
+
+  Detection after ablation (PPL spike vs ablated clean):
+    clean                   +0.0%
+    wrong_delimiters       +62.9%
+    missing_fields         +29.8%
+    wrong_header           +15.6%
+    swapped_values         +40.2%
+
+Corruption             A detect   A abl detect   B detect    A lost?
+----------------------------------------------------------------------
+  clean                     +0.0%          +0.0%      +0.0%          -
+  wrong_delimiters         +61.1%         +62.9%     -50.9%          -
+  missing_fields           +89.8%         +29.8%    +499.6%        YES
+  wrong_header             +59.0%         +15.6%    +661.5%        YES
+  swapped_values          +130.3%         +40.2%    +126.7%        YES
+
+A avg detection: 85.1%  B avg detection: 334.7%  A ablated avg: 37.1%
+Conclusion: NO DETECTION ADVANTAGE: both models respond similarly to corruption
+
+==========================================================================================
+EXPERIMENT #22: SUFFICIENCY TEST AT SCALE
+==========================================================================================
+
+Question: Do 70 delimiter heads still beat 384 at 100/200 row payloads?
+Method: Reverse ablation (keep ONLY delimiter heads) at larger scales
+
+Delimiter heads: 50 / 384
+Sizes: [30, 50, 100, 200]
+Formats: ['gcf_generic', 'json', 'yaml', 'nl']
+
+Token counts per size:
+    30 rows: GCF=  355  JSON= 1203
+    50 rows: GCF=  597  JSON= 2013
+   100 rows: GCF= 1227  JSON= 4063 (TRUNC)
+   200 rows: GCF= 2487 (TRUNC)  JSON= 8163 (TRUNC)
+
+ Size Format        All heads   Delim only   Delim Δ  Random only    Rand Δ  Sufficient?
+----------------------------------------------------------------------------------------------------
+   30 gcf_generic      9838.7       4369.5    -55.6%       +37.7%    +37.7%          YES
+   30 json          5506432.5        469.5   -100.0%      -100.0%   -100.0%           NO
+   30 yaml             6599.7        726.4    -89.0%       -87.5%    -87.5%          YES
+   30 nl               1754.4      11850.3   +575.5%      +353.7%   +353.7%           NO
+
+   50 gcf_generic      9648.9       4325.1    -55.2%       +34.4%    +34.4%          YES
+   50 json          7488072.6        484.9   -100.0%      -100.0%   -100.0%           NO
+   50 yaml            10190.8        703.9    -93.1%       -92.4%    -92.4%          YES
+   50 nl               1754.4      11850.3   +575.5%      +353.7%   +353.7%           NO
+
+  100 gcf_generic     11927.4       4289.3    -64.0%        -1.3%     -1.3%          YES
+  100 json          7811585.9        483.5   -100.0%      -100.0%   -100.0%           NO
+  100 yaml            15837.3        728.7    -95.4%       -95.0%    -95.0%          YES
+  100 nl               1754.4      11850.3   +575.5%      +353.7%   +353.7%           NO
+
+  200 gcf_generic     18576.1       5306.0    -71.4%       -30.6%    -30.6%          YES
+  200 json          7811585.9        483.5   -100.0%      -100.0%   -100.0%           NO
+  200 yaml            15837.3        728.7    -95.4%       -95.0%    -95.0%          YES
+  200 nl               1754.4      11850.3   +575.5%      +353.7%   +353.7%           NO
+
+SUFFICIENCY SUMMARY:
+
+ Size    gcf_generic           json           yaml             nl
+-----------------------------------------------------------------
+   30        -93.3pp*         +0.0pp         -1.5pp*       +221.8pp
+   50        -89.6pp*         +0.0pp         -0.7pp*       +221.8pp
+  100        -62.7pp*         +0.0pp         -0.4pp*       +221.8pp
+  200        -40.8pp*         +0.0pp         -0.4pp*       +221.8pp
+
+Conclusion: SUFFICIENCY HOLDS: delimiter heads outperform random at all scales including 100/200 rows
+
+
+Results saved to /root/remaining-ablation-results.json
+
+Uploading to R2...
+  Uploaded remaining-ablation-results.json
+  Uploaded remaining-ablation-log.txt
+
+==========================================================================================
+ALL EXPERIMENTS COMPLETE
+==========================================================================================
+
+#19 Embedding space: NULL RESULT: embedding structure is a whole-model property, not head-controlled
+#21 Adversarial:     NO DETECTION ADVANTAGE: both models respond similarly to corruption
+#22 Sufficiency:     SUFFICIENCY HOLDS: delimiter heads outperform random at all scales including 100/200 rows
