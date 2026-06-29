@@ -82,7 +82,7 @@ We tested 43 tokenizers from 20 providers: OpenAI (cl100k, o200k, GPT-2), Anthro
 
 ![Figure 1: Delimiter merge rates across 43 tokenizers](../charts/delimiter-merge-rates.png){ width=85% }
 
-![Figure 2: Field merge rates across 43 tokenizers](../charts/field-merge-rates.png)
+![Figure 2: Field merge rates across 43 tokenizers](../charts/field-merge-rates.png){ width=85% }
 
 The most common JSON field names merge with the opening quote on 30% of tokenizers:
 
@@ -169,7 +169,7 @@ We decoded every entry in all 43 vocabularies and classified entries where delim
 
 JSON's total adversarial surface across all 7 grammar characters: **1,939 words**. That is 81x the pipe's 24. GPT-4 has 1,173 tab+letter vocabulary entries. TOON chose the delimiter with the largest adversarial surface of any common separator character.
 
-![Figure 3: Vocabulary merge entries by tokenizer](../charts/vocab-merge-entries.png)
+![Figure 3: Vocabulary merge entries by tokenizer](../charts/vocab-merge-entries.png){ width=85% }
 
 #### Multi-grammar vocabulary entries
 
@@ -192,7 +192,7 @@ The pipe has 24 merged entries across all 43 vocabularies, but exclusively with 
 
 #### ASCII character safety ranking
 
-![Figure 4: ASCII adversarial surface across all 94 printable characters](../charts/ascii-adversarial-surface.png)
+![Figure 4: ASCII adversarial surface across all 94 printable characters](../charts/ascii-adversarial-surface.png){ width=85% }
 
 We scanned all 94 printable ASCII characters (codes 33-126) across all 43 vocabularies:
 
@@ -208,7 +208,7 @@ Digits are the only perfectly safe characters, but cannot serve as delimiters (t
 
 ### 3.4 Token Overhead
 
-![Figure 5: JSON overhead scaling: O(n) per row vs O(1) for header-factored formats](../charts/overhead-scaling.png)
+![Figure 5: JSON overhead scaling: O(n) per row vs O(1) for header-factored formats](../charts/overhead-scaling.png){ width=85% }
 
 At 500 rows, JSON's token distribution:
 
@@ -230,7 +230,7 @@ GCF for the same 500-row data:
 
 GCF's overhead is 2.3%. JSON's is 81%. The difference is structural: GCF declares field names once in a header (`## orders [500]{orderId,customer,status,total}`) rather than repeating them on every row.
 
-![Figure 6: Savings stability bands across 43 tokenizers](../charts/savings-stability-bands.png)
+![Figure 6: Savings stability bands across 43 tokenizers](../charts/savings-stability-bands.png){ width=85% }
 
 #### Grammar swap experiment
 
@@ -238,7 +238,7 @@ To confirm that token savings are a structural property (header factoring) and n
 
 ### 3.5 Structural Equivalence Proof
 
-![Figure 7: Structural equivalence across 43 tokenizers](../charts/structural-equivalence.png)
+![Figure 7: Structural equivalence across 43 tokenizers](../charts/structural-equivalence.png){ width=85% }
 
 We measured structural equivalence by testing whether each grammar character tokenizes as its own token (isolated) or fuses with adjacent content (merged) across all 43 tokenizers.
 
@@ -449,7 +449,7 @@ The comprehension gap introduced in Section 3.7 comes from an independent evalua
 
 #### NeoX core evaluation (run-002)
 
-![Figure 8: GCF PPL scaling curve (fine-grained 8-size evaluation)](../charts/scaling-curve.png)
+![Figure 8: GCF PPL scaling curve (fine-grained 8-size evaluation)](../charts/scaling-curve.png){ width=85% }
 
 On held-out test data, the merge-barrier model (Model A) achieves 3x lower GCF perplexity:
 
@@ -469,7 +469,7 @@ Model B reads JSON better (1.9x lower JSON PPL), as expected: standard BPE merge
 
 #### Training convergence
 
-![Figure 9: Training convergence: standard BPE converges faster, both reach same PPL](../charts/training-convergence.png)
+![Figure 9: Training convergence: standard BPE converges faster, both reach same PPL](../charts/training-convergence.png){ width=85% }
 
 Standard BPE converges approximately 25% faster per step on overall perplexity. Model B reached PPL ~21 at step 8,000; Model A reached the same at step 10,000. But both settled to identical final PPL by step 20,000 (19.4 vs 19.5). The slower convergence is consistent with the merge-barrier tokenizer producing more tokens per text: the model needs more steps to see the same effective amount of data.
 
@@ -492,7 +492,7 @@ Tested at 1, 2, 3, 5, 10, 20, 50, 100 records:
 
 #### Code comprehension (NeoX)
 
-![Figure 10: Code comprehension: 3-5x better with merge barriers](../charts/code-comprehension.png)
+![Figure 10: Code comprehension: 3-5x better with merge barriers](../charts/code-comprehension.png){ width=85% }
 
 An unexpected finding: merge barriers improve code comprehension 3-5x. The barrier characters (`{`, `}`, `(`, `)`, `:`, `;`) that protect structured data delimiters also protect code syntax.
 
@@ -506,7 +506,7 @@ An unexpected finding: merge barriers improve code comprehension 3-5x. The barri
 
 #### All formats tested (NeoX)
 
-![Figure 11: All formats comparison: Model A wins 11/11](../charts/all-formats.png)
+![Figure 11: All formats comparison: Model A wins 11/11](../charts/all-formats.png){ width=85% }
 
 | Category | Test | Model A PPL | Model B PPL | Advantage |
 |----------|------|------------|------------|-----------|
@@ -528,7 +528,7 @@ An unexpected finding: merge barriers improve code comprehension 3-5x. The barri
 
 #### Adversarial inputs (NeoX)
 
-![Figure 12: Adversarial robustness: Model A wins 5/5](../charts/adversarial.png)
+![Figure 12: Adversarial robustness: Model A wins 5/5](../charts/adversarial.png){ width=85% }
 
 GCF payloads with deliberately ambiguous content values:
 
@@ -556,7 +556,7 @@ Model A is 2.3x better on a format it has never seen, because the tab merge barr
 
 ### 6.2 Architectural Reorganization
 
-![Figure 13: Delimiter head specialization: 105 vs 23 heads](../charts/delimiter-heads.png)
+![Figure 13: Delimiter head specialization: 105 vs 23 heads](../charts/delimiter-heads.png){ width=85% }
 
 As a first indicator of how merge barriers reshape the model's internal organization, we counted attention heads where >50% of attention goes to delimiter tokens (raw threshold, before the excess-score correction applied in Section 7.1):
 
@@ -570,7 +570,7 @@ Model A develops **4.6x more delimiter-majority heads** (heads where over half o
 
 ### 6.3 Per-Token Loss
 
-![Figure 14: Per-token loss: delimiters are 2.4x easier for Model A](../charts/per-token-loss.png)
+![Figure 14: Per-token loss: delimiters are 2.4x easier for Model A](../charts/per-token-loss.png){ width=85% }
 
 We computed cross-entropy loss at every token position on a 10-order GCF payload:
 
@@ -599,7 +599,7 @@ Ablating delimiter heads does NOT spike delimiter loss back to Model B levels on
 
 ### 6.4 Embedding Space
 
-![Figure 15: Embedding space: delimiter tokens cluster 69% more cohesively](../charts/embedding-space.png)
+![Figure 15: Embedding space: delimiter tokens cluster 69% more cohesively](../charts/embedding-space.png){ width=85% }
 
 | Metric | Model A | Model B |
 |--------|--------|--------|
@@ -621,11 +621,11 @@ The separation metric (internal similarity minus cross-category similarity) is 5
 | 50 | **30.5%** | 20.5% |
 | 100 | **29.7%** | 18.1% |
 
-![Figure 16: Grammar attention at scale: Model A maintains 50% more](../charts/grammar-attention.png)
+![Figure 16: Grammar attention at scale: Model A maintains 50% more](../charts/grammar-attention.png){ width=85% }
 
 Model A allocates 50% more attention to grammar tokens at every scale and resists grammar attention collapse:
 
-![Figure 17: Grammar attention collapse comparison](../charts/collapse-comparison.png)
+![Figure 17: Grammar attention collapse comparison](../charts/collapse-comparison.png){ width=85% }
 
 | Model | Small scale (5-10) | Large scale (50-100) | Change |
 |-------|-------------------|---------------------|--------|
@@ -646,7 +646,7 @@ Ablating delimiter heads increases entropy by +1.0% on NeoX and +5.7% on Llama. 
 | 50 | 78.0% | 81.0% | 567 | 704 |
 | 100 | 83.9% | 84.6% | 1,167 | 1,423 |
 
-![Figure 18: Token repetition at scale](../charts/token-repetition.png)
+![Figure 18: Token repetition at scale](../charts/token-repetition.png){ width=85% }
 
 Model A has lower token repetition because merge barriers prevent delimiter characters from being absorbed into content tokens. Each `|` is always its own token ID, but field values have more variety because they are not fused with delimiters. Model A also produces 14-19% fewer tokens because isolated delimiters are single tokens rather than multi-byte merged tokens.
 
@@ -746,7 +746,7 @@ On Llama, per-query-head ablation produces weaker absolute effects due to GQA (S
 
 ### 7.3 Sufficiency
 
-![Figure 19: Sufficiency scaling](../charts/sufficiency-scaling.png)
+![Figure 19: Sufficiency scaling](../charts/sufficiency-scaling.png){ width=85% }
 
 On NeoX, keeping only 50 delimiter heads (removing 334 others) produces **better** GCF PPL than the full 384-head model (-55.6% at 30 rows, -55.2% at 50 rows). This is a remarkable result: 13% of the model's heads, working alone with the other 87% zeroed out, produce better structured data comprehension than the full model. Random sets of 50 heads produce +38% to -31% PPL. The delimiter heads are not just "useful"; they are better than the full model at structured data.
 
@@ -756,7 +756,7 @@ On Llama, sufficiency is weaker due to GQA's shared KV projections. Zeroing quer
 
 ### 7.4 Layer-Wise Ablation
 
-![Figure 20: Layer-wise comparison NeoX vs Llama](../charts/run003-layer-comparison.png)
+![Figure 20: Layer-wise comparison NeoX vs Llama](../charts/run003-layer-comparison.png){ width=85% }
 
 | Layer group | NeoX heads | NeoX GCF delta | Llama heads | Llama GCF delta |
 |-------------|-----------|----------------|-------------|-----------------|
@@ -770,7 +770,7 @@ On Llama, the distribution is different: delimiter heads spread across early and
 
 ### 7.5 Attention Saturation (Format-Adversarial Mechanism)
 
-![Figure 21: Attention heatmap GCF vs JSON](../charts/attention-heatmap-gcf-vs-json.png)
+![Figure 21: Attention heatmap GCF vs JSON](../charts/attention-heatmap-gcf-vs-json.png){ width=85% }
 
 | Head | Architecture | GCF c->content | JSON c->content |
 |------|-------------|---------------|----------------|
@@ -814,7 +814,7 @@ Section 6 established the whole-model improvement, and Section 7 proved that del
 
 ### 8.1 Universal Transfer (Layer 4)
 
-![Figure 22: Cross-format transfer NeoX vs Llama](../charts/run003-transfer-comparison.png)
+![Figure 22: Cross-format transfer NeoX vs Llama](../charts/run003-transfer-comparison.png){ width=85% }
 
 | Format | NeoX (50 heads) | Llama (66 heads) | Transfer? |
 |--------|----------------|------------------|-----------|
@@ -856,7 +856,7 @@ The answer is the latter. Per-query-head ablation under GQA is fundamentally dif
 
 We developed KV-group ablation as the GQA-equivalent of NeoX's per-head ablation: zero all 4 query heads sharing one KV head simultaneously. This removes the KV head's entire contribution, matching the intervention strength of NeoX's per-head ablation. 19 delimiter KV groups were identified out of 96 total (20%).
 
-![Figure 23: KV-group ablation gaps](../charts/run003-kvgroup-gaps.png)
+![Figure 23: KV-group ablation gaps](../charts/run003-kvgroup-gaps.png){ width=85% }
 
 | Format | Delimiter KV delta | Random KV delta | Gap |
 |--------|-------------------|-----------------|-----|
