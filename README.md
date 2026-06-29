@@ -22,7 +22,11 @@ Dayna Blackwell, Blackwell Systems
 
 ## Why This Matters
 
-Every production LLM tokenizer merges delimiter characters (`"`, `:`, `{`, `\t`) with adjacent content. The string `"name` is a single token (#32586) in GPT-4's vocabulary. The model receives one integer where there should be a structural boundary. We show this is universal (43/43 tokenizers), irrecoverable for existing models, and fixable for new ones with a single change to BPE training.
+Prior work has described what attention heads do in trained models (Voita et al., 2019; Olsson et al., 2022). This paper answers a different question: **what training conditions cause heads to specialize in the first place?**
+
+The answer is the tokenizer. A single pre-training config choice (whether 16 delimiter characters can participate in BPE merges) determines whether the trained transformer develops concentrated delimiter-specialized attention heads, how many emerge, which layers they occupy, and whether they generalize to unseen formats. The fix is 16 lines of config. The finding is that a tokenizer constraint propagates through the entire training process and reshapes the model's internal architecture.
+
+This is not just a performance improvement. The causal chain reveals how transformers organize themselves around structural boundaries: the B0 finding shows that GQA (shared KV projections) enables partial delimiter specialization even without merge barriers, while full MHA (separate KV projections) does not. Merge barriers amplify a latent capability that depends on attention architecture. No prior work has connected tokenizer design to attention head organization, or shown that the connection is architecture-dependent in this way.
 
 ## Results at a Glance
 
