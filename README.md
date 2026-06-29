@@ -4,7 +4,12 @@
 
 Dayna Blackwell, Blackwell Systems
 
-[Paper (PDF)](paper/merge-barriers-v3.pdf) | [Paper (Markdown)](paper/revision-v3.md) | [Model Checkpoints (HuggingFace)](https://huggingface.co/blackwell-systems/merge-barriers)
+<p align="center">
+  <a href="paper/merge-barriers-v3.pdf"><img src="https://img.shields.io/badge/paper-PDF-18befc?style=for-the-badge" alt="Paper"></a>
+  <a href="https://huggingface.co/blackwell-systems/merge-barriers"><img src="https://img.shields.io/badge/checkpoints-HuggingFace-ff9d00?style=for-the-badge" alt="Checkpoints"></a>
+  <a href="https://doi.org/10.5281/zenodo.20925910"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20925910-blue?style=for-the-badge" alt="DOI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-333?style=for-the-badge" alt="License"></a>
+</p>
 
 ## Summary
 
