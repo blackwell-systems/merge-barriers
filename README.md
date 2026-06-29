@@ -11,6 +11,15 @@ Dayna Blackwell, Blackwell Systems
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-333?style=for-the-badge" alt="License"></a>
 </p>
 
+<p align="center">
+  <img src="charts/delimiter-merge-rates.png" width="45%" alt="Delimiter merge rates">
+  <img src="charts/scaling-curve.png" width="45%" alt="Scaling curve">
+</p>
+<p align="center">
+  <img src="charts/delimiter-heads.png" width="45%" alt="Head specialization">
+  <img src="charts/run003-transfer-comparison.png" width="45%" alt="Cross-format transfer">
+</p>
+
 ## Summary
 
 BPE tokenizers merge delimiter characters with adjacent content, hiding structural boundaries inside single tokens. We introduce merge barriers (16 delimiter characters forbidden from participating in BPE merges) and prove through controlled experiments on two architectures that this single tokenizer change causally determines attention head specialization.
