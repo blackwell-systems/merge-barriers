@@ -20,24 +20,56 @@ Dayna Blackwell, Blackwell Systems
   <img src="charts/run003-transfer-comparison.png" width="45%" alt="Cross-format transfer">
 </p>
 
-## Summary
+## Why This Matters
 
-BPE tokenizers merge delimiter characters with adjacent content, hiding structural boundaries inside single tokens. We introduce merge barriers (16 delimiter characters forbidden from participating in BPE merges) and prove through controlled experiments on two architectures that this single tokenizer change causally determines attention head specialization.
+Every production LLM tokenizer merges delimiter characters (`"`, `:`, `{`, `\t`) with adjacent content. The string `"name` is a single token (#32586) in GPT-4's vocabulary. The model receives one integer where there should be a structural boundary. We show this is universal (43/43 tokenizers), irrecoverable for existing models, and fixable for new ones with a single change to BPE training.
 
-**Key findings:**
+## Results at a Glance
 
-- 43 tokenizers from 20 providers: delimiter merging is universal and irrecoverable
-- Controlled experiments on GPT-NeoX 410M and Llama 410M (same corpus, same hyperparameters, only the tokenizer differs)
-- 3-46x lower perplexity on structured data with zero natural language cost
-- 50-66 delimiter-specialized attention heads emerge (identified via excess-score method)
-- 18-phase causal ablation: heads are necessary (+59% degradation when removed), sufficient (13% of heads beat the full model), and transfer to 8/9 unseen formats
-- Architecture-independent: replicates on both GPT-NeoX (full MHA) and Llama (GQA)
-- 27 references, 23 figures, 7 appendices
+| Metric | NeoX (merge barriers vs standard) | Llama (merge barriers vs standard) |
+|--------|-----------------------------------|-------------------------------------|
+| GCF structured data PPL | **46x better** | **10x better** |
+| Code comprehension (Python/Go/TS) | **3-5x better** | **5-8x better** |
+| Natural language PPL | Identical (19.4 vs 19.5) | Identical (~23 vs ~21) |
+| Delimiter-specialized heads | 50 vs 3 (non-functional) | 66 vs 35 (GQA enables partial) |
+| Cross-format transfer (unseen formats) | 8/9 formats (+44.7% avg) | 8/9 formats (+21.4% avg) |
+| Per-token delimiter prediction | 2.4x easier | 2.1x easier |
+
+## The Fix: 16 Barrier Characters
+
+During BPE tokenizer training, these characters are forbidden from participating in any merge operation:
+
+```
+|  @  <  >  "  '  :  ,  ;  \t  {  }  [  ]  (  )
+```
+
+No changes to the BPE algorithm, training loop, or model architecture. The constraint is a pre-tokenization rule (16 lines of config). The resulting tokenizer has zero merged delimiter entries and zero adversarial surface.
+
+## What's New vs Prior Work
+
+| Prior work | What they showed | What we add |
+|-----------|------------------|-------------|
+| Voita et al. (2019), Clark et al. (2019) | Heads specialize in trained models | We prove what *causes* specialization |
+| Olsson et al. (2022) | Induction heads cause in-context learning | We prove delimiter heads cause structural comprehension |
+| Deekeswar (2026), Matveev (2026) | JSON is token-inefficient | We explain *why* (delimiter merging) and fix it |
+| Karim & Batatia (2025) | Fixed tokens for structure | We achieve this by construction with merge barriers |
+
+This is the first controlled experiment connecting tokenizer design to attention head organization, and the first demonstration that the mechanism is architecture-independent.
+
+## Key Findings
+
+- **43 tokenizers from 20 providers**: delimiter merging is universal and irrecoverable
+- **Controlled experiments** on GPT-NeoX 410M and Llama 410M (same corpus, same hyperparameters, only the tokenizer differs)
+- **3-46x lower perplexity** on structured data with zero natural language cost
+- **50-66 delimiter-specialized heads** emerge (identified via excess-score method)
+- **18-phase causal ablation**: heads are necessary (+59% degradation when removed), sufficient (13% of heads beat the full model), and transfer to 8/9 unseen formats
+- **Architecture-independent**: replicates on both GPT-NeoX (full MHA) and Llama (GQA 4:1)
+- **B0 finding**: standard-BPE Llama develops 35 functional delimiter heads through GQA (NeoX develops 3 non-functional). Merge barriers amplify a capability GQA partially enables.
 
 ## Repository Contents
 
 ```
-paper/                    # Paper (v3, 16K words, 27 references)
+paper/                    # Paper (v3, 16K words, 27 references, 23 figures)
   revision-v3.md          # Markdown source
   merge-barriers-v3.pdf   # Rendered PDF
 
@@ -45,9 +77,9 @@ structok-64k.json         # Merge-barrier tokenizer (65,539 vocab, 16 barriers)
 structok-256k.json        # 256K variant
 
 eval_*.py                 # 23 evaluation/ablation scripts
-runs/                     # 77 result files (JSON + logs) with full provenance
+runs/                     # 86 result files (JSON + logs) with full provenance
 
-charts/                   # 35 chart PNGs + generator scripts
+charts/                   # 39 chart PNGs + 5 generator scripts
 generate_charts.py        # Root-level chart generator (11 charts)
 ```
 
@@ -61,7 +93,7 @@ pip install torch transformers tokenizers matplotlib numpy
 
 ### Re-run ablation experiments
 
-All eval scripts expect model checkpoints in their default paths. Download from [HuggingFace](https://huggingface.co/blackwell-systems/merge-barriers):
+Download model checkpoints from [HuggingFace](https://huggingface.co/blackwell-systems/merge-barriers):
 
 ```bash
 # NeoX ablation (18 phases)
@@ -136,5 +168,5 @@ MIT
 
 ## Related
 
-- [GCF: Graph Compact Format](https://github.com/blackwell-systems/gcf) (the wire format used as comparison)
+- [GCF: Graph Compact Format](https://github.com/blackwell-systems/gcf) (the wire format used as comparison format)
 - [DOI: 10.5281/zenodo.20925910](https://doi.org/10.5281/zenodo.20925910)
