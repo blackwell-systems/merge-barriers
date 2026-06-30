@@ -82,7 +82,7 @@ At small scale (5-20 records), JSON entropy is lower than GCF because the model 
 
 At 50+ records, JSON's grammar attention collapses from 30% to 8.6%. The model stops attending to structural tokens and distributes attention uniformly across payload. It can no longer distinguish structure from content.
 
-This is the mechanism behind the comprehension gap observed on production models: GCF 91.2% accuracy vs JSON 53.4% on 500-record payloads across 10 frontier models.
+This is the mechanism behind the comprehension gap observed on production models: GCF 91.6% accuracy vs JSON 54.6% on 500-record payloads across 12 frontier models.
 
 ## Controlled experiments
 
