@@ -1,20 +1,18 @@
 # Research Background
 
-structok is built on findings from the GCF tokenizer analysis, the most comprehensive tokenizer boundary study published for any wire format. This document connects each design decision to the data that motivated it.
+This document connects each finding to the data that motivated it, from the initial 43-tokenizer analysis through three controlled experiments and 30 ablation phases.
 
-## The study
+Paper: [Merge Barriers in BPE Tokenization: How Tokenizer Design Causally Determines Attention Head Specialization](paper/merge-barriers-in-bpe-tokenization.pdf)
 
-43 tokenizers from 20 providers (OpenAI, Anthropic, Meta, Google, Mistral, DeepSeek, Qwen, Microsoft, TII, 01.AI, BigCode, NVIDIA, AI21, Stability AI, EleutherAI, Snowflake, AllenAI, and more). Every major model family in production.
+DOI: [10.5281/zenodo.20925910](https://doi.org/10.5281/zenodo.20925910)
 
-Full analysis: [gcformat.com/guide/tokenizer-analysis](https://gcformat.com/guide/tokenizer-analysis)
+## The tokenizer study
 
-Source code: [github.com/blackwell-systems/gcf/tree/main/eval](https://github.com/blackwell-systems/gcf/tree/main/eval)
+43 tokenizers from 20 providers (OpenAI, Anthropic, Meta, Google, Mistral, DeepSeek, Qwen, Microsoft, TII, 01.AI, BigCode, NVIDIA, AI21, Stability AI, EleutherAI, Snowflake, AllenAI, and more). Every major model family in production. Vocabulary sizes from 32K to 262K.
 
-## Why merge barriers?
+### Finding 1: Delimiter merging is universal
 
-### Finding 1: Delimiter merge rates vary wildly by character
-
-We measured how often each delimiter fuses with adjacent content across 43 tokenizers:
+BPE tokenizers fuse delimiter characters with adjacent content. This is not occasional; it is universal across all 43 tokenizers tested.
 
 | Delimiter | Merge rate | Checks |
 |-----------|-----------|--------|
@@ -22,122 +20,171 @@ We measured how often each delimiter fuses with adjacent content across 43 token
 | Quote (") | 8.17% | 158/1,935 |
 | Tab (\t) | 32.91% | 283/860 |
 
-The pipe has the lowest merge rate of any common delimiter. The tab has the highest. The difference is 70x. This is not a property of the characters themselves; it's a property of what appeared in the tokenizer training data. JSON's `"name` pattern appeared billions of times, so tokenizers learned it as a merge. GCF's `|name` pattern didn't, so they didn't.
+JSON's `"name` is token #32586 in GPT-4's vocabulary. The tokenizer always selects it. This is a dictionary lookup, not a probabilistic decision. The opening quote fuses with the field name, hiding the structural boundary inside the embedding.
 
-structok's insight: instead of hoping a delimiter doesn't appear in training data, enforce it as a pre-tokenization rule. Zero merges by construction, not by accident.
+### Finding 2: The adversarial surface is large
 
-### Finding 2: Merged entries are hardcoded in the vocabulary
+We decoded every entry in all 43 vocabularies and counted unique words that fuse with each delimiter:
 
-BPE is deterministic. If `"name` is vocabulary entry #32586, the tokenizer WILL always select it. There is no context-dependence, no probability. The merge is a dictionary lookup.
-
-We exhaustively scanned every vocabulary in all 43 tokenizers:
-
-| Delimiter | Unique words that can ever merge | 
-|-----------|--------------------------------|
-| Pipe (\|) | 24 |
+| Delimiter | Unique mergeable words |
+|-----------|----------------------|
+| Pipe (\|) | 24 (all TypeScript union keywords) |
 | Quote (") | 193 |
+| Colon (:) | 232 |
+| Comma (,) | 282 |
 | Tab (\t) | 1,238 |
 
-GPT-4 cl100k has 2,116 total merged delimiter entries. GPT-4o o200k has 1,892. These cannot be fixed without retraining the model from scratch. The vocabulary is frozen.
-
-structok has 0 merged delimiter entries. The pre-tokenization barrier prevents any merge from ever being created.
+JSON's total adversarial surface across all 7 grammar characters: 1,939 words (81x the pipe's 24). These are hardcoded vocabulary entries that cannot be fixed without retraining the model from scratch.
 
 ### Finding 3: JSON grammar fuses into multi-operation tokens
 
 92.5% of JSON's quote-containing tokens pack multiple grammar operations into a single integer. This happens on all 43 tokenizers:
 
-| Token | Grammar operations fused |
-|-------|------------------------|
-| `":"` | Close string + colon + open string |
-| `","` | Close string + comma + open string |
-| `{"` | Open object + open string |
+| Token | Grammar operations fused | Present in |
+|-------|------------------------|------------|
+| `":"` | Close string + colon + open string | 43/43 |
+| `","` | Close string + comma + open string | 43/43 |
+| `{"` | Open object + open string | 43/43 |
+| `":{"` | Close string + colon + open object + open string | 43/43 |
 
-The model must learn to decompose these multi-operation tokens as emergent behavior. structok prevents this by ensuring each grammar character is always its own token.
+The model receives one integer where there should be four grammar decisions.
 
 ### Finding 4: Structural equivalence breaks across tokenizers
-
-We tokenized identical data on all 43 tokenizers and compared structural boundaries:
 
 | Format | Grammar isolation rate |
 |--------|---------------------|
 | GCF (pipe, @, <) | 99.5% |
 | JSON (quote) | 7.5% (92.5% fused) |
 
-GCF's grammar is deterministic: every model sees the same structural boundaries. JSON's grammar is ambiguous: boundaries differ per tokenizer.
+GCF's grammar is deterministic: every model sees the same structural boundaries. JSON's grammar is ambiguous: boundaries differ per tokenizer. The same JSON object `{"orderId":"ORD-001","value":"shipped"}` produces 4 different token counts (12, 13, 14, 15) depending on the model.
 
-structok extends this property to ALL delimiters, not just GCF's.
+## The fix: merge barriers
 
-## Why these 16 characters?
+16 delimiter characters are forbidden from participating in any BPE merge operation during tokenizer training. The BPE algorithm is unchanged; the constraint is a pre-tokenization rule (16 `Split` calls in a `Sequence` pre-tokenizer). See [Appendix A of the paper](paper/merge-barriers-in-bpe-tokenization.pdf) for the full configuration.
 
-Each barrier character was chosen because it serves as a structural delimiter in at least one major data format:
+The resulting tokenizer (structok-64k, 65,539 vocabulary) has zero merged delimiter entries and zero adversarial surface. The barrier characters:
 
-| Character | Formats that use it structurally |
-|-----------|--------------------------------|
-| `\|` | GCF, markdown tables, shell pipes, SQL |
-| `@` | GCF graph IDs, email, decorators (Python/Java/TS) |
-| `<` `>` | HTML/XML tags, GCF edges, comparisons, shell redirect |
-| `"` `'` | JSON, YAML, most programming languages |
-| `:` | JSON key-value, YAML, Python dict, URL scheme |
-| `,` | JSON arrays, CSV, function arguments |
-| `;` | Statement terminator (C/Java/JS), CSS, CSV alternate |
-| `\t` | TSV, TOON format, Makefile, indentation |
-| `\n` | Line separator (GCF rows, code, log files) |
-| `{` `}` | JSON objects, code blocks, template literals |
-| `[` `]` | JSON arrays, indexing, regex character classes |
-| `(` `)` | Function calls, grouping, SQL, regex |
+```
+|  @  <  >  "  '  :  ,  ;  \t  {  }  [  ]  (  )
+```
 
-We tested all 94 printable ASCII characters (codes 33-126) across tokenizers. 74 are "safe" (never merge). 20 are "unsafe" (merge with adjacent content). All 16 barrier characters are drawn from the safe set, meaning they naturally don't merge even without barriers. The barrier is a guarantee, not a workaround.
+Each was chosen because it serves as a structural delimiter in at least one major data format. This is not format-specific: it fixes JSON, YAML, CSV, TOON, GCF, and any format that uses delimiter characters.
 
-## The attention mechanism
+## The attention mechanism (pre-existing models)
 
-We ran a separate experiment using PyTorch with Pythia 410M and Gemma 2B to measure how attention patterns change at scale.
+Before the controlled experiments, we established the transformer-level mechanism using pre-existing models (Pythia 410M, Gemma 2B).
 
-### Entropy crossover (Pythia 410M)
+### Entropy crossover
 
-| Orders | GCF entropy | JSON entropy |
-|--------|------------|-------------|
-| 5 | 3.03 | 2.87 (JSON lower, model knows JSON) |
-| 10 | 3.32 | 3.01 |
-| 20 | 3.66 | 3.16 |
-| 50 | 3.99 | **4.50** (JSON crosses over) |
+At small scale (5-20 records), JSON entropy is lower than GCF because the model has been trained on JSON. At 50 records, JSON entropy exceeds GCF by 13%. The repeated merged tokens overwhelm the model's learned parsing.
 
-At small scale, JSON entropy is lower because the model has been trained on JSON. At 50 orders, JSON entropy exceeds GCF by 13%. The repeated field names overwhelm the model's learned parsing.
+### Grammar attention collapse
 
-### Grammar attention collapse (Gemma 2B)
+At 50+ records, JSON's grammar attention collapses from 30% to 8.6%. The model stops attending to structural tokens and distributes attention uniformly across payload. It can no longer distinguish structure from content.
 
-| Orders | JSON grammar attention | JSON payload attention |
-|--------|----------------------|----------------------|
-| 5 | 29.8% | 67.7% |
-| 20 | 30.4% | 67.4% |
-| 50 | **8.6%** | **86.3%** |
-| 100 | **8.6%** | **86.3%** |
+This is the mechanism behind the comprehension gap observed on production models: GCF 91.2% accuracy vs JSON 53.4% on 500-record payloads across 10 frontier models.
 
-At 50+ orders, JSON's grammar attention collapses from 30% to 8.6%. The model stops attending to structural tokens and distributes attention uniformly across payload. This is the mechanism behind comprehension failure: the model can no longer distinguish structure from data.
+## Controlled experiments
 
-GCF's payload attention increases steadily from 46% to 63% at 100 orders. The model progressively focuses more on data as the payload grows, because the grammar tokens are clean and don't compete for attention.
+Three runs, each building on the previous one.
 
-### Implication for structok
+### Run-001: Preliminary feasibility
 
-A tokenizer with merge barriers eliminates the training-data dependency entirely. The model doesn't need to learn which tokens contain hidden boundaries because there are no hidden boundaries. Every delimiter is its own token, every structural operation is explicit, and attention entropy stays bounded.
+Two GPT-NeoX 410M models, early corpus. Confirmed the effect (2-9x better GCF perplexity) and justified the controlled follow-up.
+
+### Run-002: GPT-NeoX 410M controlled experiment
+
+Two identical models, same corpus (4.5 GB), same hyperparameters, same hardware (4x A100 40GB). Only difference: the tokenizer.
+
+| Metric | Model A (merge barriers) | Model B (standard BPE) |
+|--------|-------------------------|----------------------|
+| Final overall PPL | 19.4 | 19.5 |
+| GCF PPL (100 records) | 9,719 | 33,703 (3.5x worse) |
+| Code PPL (Python) | 543 | 2,686 (4.9x worse) |
+| Wikipedia PPL | 1,029 | 1,033 (identical) |
+| Delimiter-majority heads (raw >50%) | 105 / 384 (27%) | 23 / 384 (6%) |
+| Delimiter heads (excess-score 0.15) | 50 | 3 (non-functional) |
+| Per-token delimiter loss | 6.10 | 14.81 (2.4x harder) |
+
+Model A wins 11/11 format categories, 8/8 sizes, 5/5 adversarial tests. The advantage scales monotonically from 2.1x at 3 records to 5.3x at 100 records.
+
+### Run-003: Llama 410M architecture independence
+
+Same design on a different architecture: Llama 410M (RoPE, GQA 4:1, SwiGLU, RMSNorm). 40,000 steps (vs 20,000 for NeoX).
+
+| Metric | Llama A (merge barriers) | Llama B (standard BPE) |
+|--------|-------------------------|----------------------|
+| GCF PPL | 15,166 | 152,264 (10x worse) |
+| Code PPL | 341 | 2,652 (7.8x worse) |
+| Delimiter heads (excess-score 0.15) | 66 | 35 (functional) |
+
+The B0 finding: standard-BPE Llama develops 35 *functional* delimiter heads (ablation confirms 53.8% GCF PPL drop), while standard-BPE NeoX develops only 3 non-functional ones. GQA's shared KV projections provide implicit structural priors that enable partial delimiter specialization even without merge barriers. This is the most surprising result of the study.
+
+## The causal proof
+
+### Head identification: excess scores
+
+A head is "delimiter-specialized" if its excess delimiter attention (raw attention minus base rate) exceeds threshold 0.15, averaged across 4 probing texts (GCF generic, GCF graph, JSON, YAML). This corrects for the base-rate problem: JSON has 76% delimiter positions, so a uniform-attention head scores 0.76 raw. Without correction, head counts are inflated (168 vs corrected 50-66).
+
+### 18-phase ablation (NeoX) + 12-phase ablation (Llama)
+
+Zero-ablation: deep copy the model, zero the output projection weights for selected heads, measure per-format PPL, discard the copy. Every delimiter ablation paired with a random-head control.
+
+### The causal hierarchy
+
+The experiments reveal a four-layer hierarchy:
+
+**Layer 1 (tokenizer, root cause).** Clean delimiters vs corrupted. The only variable in the controlled experiment. Everything else flows from this.
+
+**Layer 2 (whole model, first-order effect).** Better embeddings (69% more cohesive delimiter clusters), better per-token prediction (2.1-2.4x delimiter advantage), lower attention entropy. These are properties of the entire model. Ablating 50-66 heads does not change them.
+
+**Layer 3 (specialized heads, second-order effect).** 50-66 delimiter heads emerge and are causally necessary for format-level comprehension:
+
+| Test | Key result |
+|------|-----------|
+| Necessity | Ablating delimiter heads hurts GCF +59%; ablating random heads helps -36%. Opposite directions. |
+| Sufficiency | 50 delimiter heads alone (13% of model) beat the full 384-head model on structured data. |
+| Layer-wise | Late layers causal on NeoX (+63%), middle layers on Llama (+20%). Not pattern matching; structural reasoning. |
+| Format-adversarial | JSON *improves* when delimiter heads are removed (-37%). The heads trust structural boundaries, which is harmful when boundaries are corrupted. |
+
+**Layer 4 (cross-format transfer, third-order effect).** Delimiter heads generalize to 8 of 9 unseen formats. Average degradation when removed: +44.7% on NeoX, +21.4% on Llama. Transfer spans every delimiter style: commas (CSV), parentheses (SQL), braces (Protobuf), pipes (Markdown tables), equals signs (INI).
+
+### GQA effects
+
+Every difference between NeoX and Llama results traces to GQA's shared KV projections: smaller A/B baseline ratio (10x vs 46x), earlier layer distribution (middle vs late), weaker per-head ablation effects, B0 developing functional heads. None indicate the mechanism fails; they indicate the ablation methodology needs adaptation for GQA. KV-group ablation (zeroing all 4 query heads per KV head) was developed as the GQA-equivalent methodology.
+
+## What this means
+
+### For tokenizer designers
+
+Merge barriers are a zero-cost improvement. Identical natural language performance, 3-46x better structured data and code comprehension, and a model that develops concentrated structural attention heads. No measured downside. Architecture-independent.
+
+### For model providers
+
+Every model retrain is an opportunity to adopt merge barriers. The tokenizer change is 16 lines of pre-tokenization config. Some providers may already be doing this inadvertently: Claude's tokenizer has 3 quote+letter entries, Gemma has 2.
+
+### For mechanistic interpretability researchers
+
+This is the first controlled experiment connecting a pre-training condition to post-training internal organization. The methodology (excess-score identification, paired random controls, KV-group ablation for GQA) is applicable to studying other training conditions that might influence head specialization.
 
 ## Reproducing
 
-All scripts and data are in the GCF eval directory:
+Everything needed to verify the paper's claims is public:
 
-| Script | What it measures |
-|--------|-----------------|
-| `eval/hf-tokenizer-analysis.py` | 43-tokenizer merge rates, savings, vocabulary analysis |
-| `eval/structural-equivalence-proof.py` | Grammar isolation across all tokenizers |
-| `eval/adversarial-vocab-dump.py` | Exhaustive vocabulary scan (24 vs 193 vs 1,238) |
-| `eval/attention-analysis.py` | Entropy and attention distribution (Pythia 410M, Gemma 2B) |
+| Resource | Location |
+|----------|----------|
+| Paper (PDF + Markdown) | [github.com/blackwell-systems/merge-barriers/paper](https://github.com/blackwell-systems/merge-barriers/tree/main/paper) |
+| 23 eval/ablation scripts | [github.com/blackwell-systems/merge-barriers](https://github.com/blackwell-systems/merge-barriers) |
+| 86 result files (JSON + logs) | [github.com/blackwell-systems/merge-barriers/runs](https://github.com/blackwell-systems/merge-barriers/tree/main/runs) |
+| 4 model checkpoints + 2 tokenizers | [huggingface.co/blackwell-systems/merge-barriers](https://huggingface.co/blackwell-systems/merge-barriers) |
+| 39 charts + 5 generator scripts | [github.com/blackwell-systems/merge-barriers/charts](https://github.com/blackwell-systems/merge-barriers/tree/main/charts) |
+| 43-tokenizer analysis scripts | [github.com/blackwell-systems/gcf/eval](https://github.com/blackwell-systems/gcf/tree/main/eval) |
 
-```bash
-cd gcf/eval
-source .venv/bin/activate
-pip install tokenizers huggingface_hub tiktoken torch transformers
+The training pipeline (corpus construction, training scripts, infrastructure) is not public.
 
-python hf-tokenizer-analysis.py
-python structural-equivalence-proof.py
-python adversarial-vocab-dump.py
-python attention-analysis.py
-```
+## Next steps
+
+- **Run-004 (Llama 1.3B):** Confirm the mechanism scales. Same corpus, same tokenizers, larger model. Single RTX 6000 Ada, ~$40-55.
+- **Run-005 (3B):** Three scale points (410M, 1.3B, 3B) produce a scaling law for head specialization.
+- **Vocabulary size experiment:** Test at 32K and 128K in addition to 64K.
+- **Direct comprehension eval:** Run the GCF comprehension eval on the merge-barrier models themselves (requires 1.3B+ to answer questions).
