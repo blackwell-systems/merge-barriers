@@ -281,10 +281,10 @@ Ildiz et al. (2024) proved mathematically that self-attention weights tokens pro
 
 #### Comprehension correlation
 
-The tokenization analysis connects to observed outcomes from independent comprehension evaluations across 10 frontier models (Blackwell, 2026):
+The tokenization analysis connects to observed outcomes from independent comprehension evaluations across 12 frontier models (Blackwell, 2026):
 
-- JSON accuracy at 500 records: **53.4%**
-- GCF accuracy at 500 records: **91.2%**
+- JSON accuracy at 500 records: **54.6%**
+- GCF accuracy at 500 records: **91.6%**
 - GCF accuracy on standard workloads: **100%** on every frontier model
 
 Error magnitude confirms the mechanism: GCF errors are small (off by 1-2, precision errors). JSON errors are large (off by 50-140, comprehension failures). The model did not slightly misread a number; it could not find the answer.
@@ -445,7 +445,7 @@ The merge-barrier model wins on structured data and code on both architectures. 
 
 #### External validation on production models
 
-The comprehension gap introduced in Section 3.7 comes from an independent evaluation on production models (not the structok-trained models): 23 adversarial runs on 10 frontier models (Claude, GPT-5.5/5.4, Gemini), using 13 questions on 500-symbol payloads with 200 edges, zero format instructions. GCF **91.2%**, TOON 67.5%, JSON **53.4%**. On standard workloads (500 nested orders, 6 frontier models): GCF achieves 100% accuracy. These production-model results are consistent with the mechanistic findings from our controlled experiment: the tokenizer determines whether structural boundaries are visible, and production models with corrupted boundaries fail at scale.
+The comprehension gap introduced in Section 3.7 comes from an independent evaluation on production models (not the structok-trained models): 23 adversarial runs on 12 frontier models (Claude, GPT-5.5/5.4, Gemini), using 13 questions on 500-symbol payloads with 200 edges, zero format instructions. GCF **91.6%**, TOON 66.9%, JSON **54.6%**. On standard workloads (500 nested orders, 6 frontier models): GCF achieves 100% accuracy. These production-model results are consistent with the mechanistic findings from our controlled experiment: the tokenizer determines whether structural boundaries are visible, and production models with corrupted boundaries fail at scale.
 
 #### NeoX core evaluation (run-002)
 
@@ -969,6 +969,8 @@ Corruption detection remains limited at this model scale. While delimiter heads 
 
 **Not claimed:** "Delimiter heads are the mechanism" (they are the expression). "Delimiter heads are portable modules" (transplant controls disprove this; Appendix D). "Concentration ratio predicts comprehension across models" (confounded; Appendix G).
 
+**Also not claimed:** "Tokenizer design is the only factor that influences head specialization." Our controlled experiment isolates the tokenizer by holding everything else constant (architecture, corpus, hyperparameters, random seed, hardware). This proves the tokenizer is *a* causal factor, not that it is the only one. Other training conditions likely influence whether and how delimiter heads emerge: training data composition (what fraction is structured data), vocabulary size (which determines which merges occur), training duration (our emergence data shows head counts change with continued training), and context window length (longer context exposes the model to larger structural payloads). Each of these could be isolated with the same controlled methodology used here. Other architectural choices also changed between our two experiments (positional encoding, activation function, normalization) and could not be isolated from GQA; disentangling these is future work.
+
 ### 10.10 Implications
 
 **For tokenizer designers:** Merge barriers are a zero-cost improvement. They produce identical natural language performance, better structured data comprehension, better code comprehension, and a model that develops specialized structural attention heads. There is no measured downside. The mechanism is architecture-independent.
@@ -1017,7 +1019,7 @@ Corruption detection remains limited at this model scale. While delimiter heads 
 
 ## 13. Conclusion
 
-BPE tokenizers merge delimiter characters with content, hiding structural boundaries inside single tokens. This is universal (43/43 tokenizers), deterministic (dictionary lookups), and irrecoverable for existing models. The mechanism is now fully characterized: on pre-existing production models, merged boundaries produce attention entropy crossover at 50 records and grammar attention collapse from 30% to 8.6% (Section 3.7). On production frontier models, this translates to comprehension failure at 53.4% accuracy on 500-record payloads.
+BPE tokenizers merge delimiter characters with content, hiding structural boundaries inside single tokens. This is universal (43/43 tokenizers), deterministic (dictionary lookups), and irrecoverable for existing models. The mechanism is now fully characterized: on pre-existing production models, merged boundaries produce attention entropy crossover at 50 records and grammar attention collapse from 30% to 8.6% (Section 3.7). On production frontier models, this translates to comprehension failure at 54.6% accuracy on 500-record payloads.
 
 Merge barriers fix this. Sixteen delimiter characters, forbidden from participating in BPE merges, produce a tokenizer with zero merged entries and zero adversarial surface. Controlled experiments on two architectures (GPT-NeoX 410M and Llama 410M) establish a four-layer causal hierarchy: the tokenizer change (Layer 1) improves the entire model's structured data processing (Layer 2), causes 50-66 delimiter-specialized attention heads to emerge (Layer 3), and those heads generalize to unseen formats (Layer 4).
 
